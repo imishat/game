@@ -3,10 +3,10 @@ import React from 'react';
 const AddTournamentModal = () => {
     return (
         <div>
-        <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+        <input type="checkbox" id="add_tournament_modal" className="modal-toggle" />
          <div className="modal">
          <div className="modal-box ">
-            <form action="" className='border border-blue-500 px-5  mt-8 pb-6 rounded-md'>
+            <form action="" className='border-2 border-slate-200 px-5  mt-8 pb-6 rounded-md'>
              <h1 className='text-3xl font-semibold mt-3 mb-1'> Add Tournament  </h1>
 
              <div className='flex flex-col'>
@@ -20,8 +20,8 @@ const AddTournamentModal = () => {
               </div>
             
             <div className="modal-action">
-            <label htmlFor="my_modal_6" className="bg-rose-500 text-white px-4 py-2 rounded-md hover:bg-rose-600 cursor-pointer"> Close </label>
-             <input type='submit' value={'Submit'} className='px-4 py-2 border rounded-md bg-blue-500 hover:bg-blue-600 text-white cursor-pointer' />
+            <label htmlFor="add_tournament_modal" className="bg-rose-500 text-white px-4 py-1 rounded-md hover:bg-rose-600 cursor-pointer"> Close </label>
+             <input type='submit' value={'Submit'} className='px-4 py-1 border rounded-md bg-blue-500 hover:bg-blue-600 text-white cursor-pointer' />
             </div>
             </form>
            

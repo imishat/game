@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { Children } from 'react';
 import Navbar from '../Components/Shared/Navbar';
-import Banner from '../Components/Needful/Banner';
 
-const DefaultLayout = () => {
+const DefaultLayout = ({children}) => {
     return (
         <div>
             <Navbar/>
-            <Banner/>
+             {children}
         </div>
     );
 };
