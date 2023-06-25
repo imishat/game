@@ -11,9 +11,9 @@ const Navbar = () => {
     <li><button> <FaSignOutAlt/> Logout    </button></li>
     {/* <li><button> <FaSignInAlt/> Login     </button></li> */}
     </>
+
     return (
-        <div>
-      <div className="navbar navbar-style text-white">
+      <div className="navbar bg-slate-800 text-white sticky top-0">
   <div className="navbar-start">
     <div className="dropdown">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -42,17 +42,17 @@ const Navbar = () => {
     <li><NavLink className={'navlink-style'} to={"/wwcd"}> WWCD  </NavLink></li>
     <li><NavLink className={'navlink-style'} to={"/addteams"}> <FaPlus/> Add Teams  </NavLink></li> <li tabIndex={0}>
         <details>
-          <summary className={'navlink-style'}> Dropdown </summary>
-          <ul className="px-2 py-0  text-slate-50 navbar-style rounded-bl-md rounded-br-md rounded-t-none  ">
-            <li className=' border-solid  border-t-2 border-t-gray-600'><Link> <FaPlus/> STANDING</Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link> <FaPlus/> Top Fragger</Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link> <FaPlus/> MVP</Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link> <FaPlus/> Display </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link> <FaPlus/> SCHEDULE </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link> <FaPlus/> Next </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link> <FaPlus/> OverAll </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link> <FaPlus/> OverAll MVP </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link> <FaPlus/> Overall Standing </Link></li>
+          <summary className={'navlink-style '}> Dropdown </summary>
+          <ul className="px-2 py-0  text-slate-50 bg-slate-800 rounded-bl-md rounded-br-md rounded-t-none  ">
+            <li className=' border-solid  border-t-2 border-t-gray-600 '><Link className='hover:text-yellow-400'> <FaPlus/> STANDING</Link></li>
+            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> Top Fragger</Link></li>
+            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> MVP</Link></li>
+            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> Display </Link></li>
+            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> SCHEDULE </Link></li>
+            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> Next </Link></li>
+            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> OverAll </Link></li>
+            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> OverAll MVP </Link></li>
+            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> Overall Standing </Link></li>
           </ul>
         </details>
       </li>
@@ -61,7 +61,6 @@ const Navbar = () => {
   </div>
  
   </div>
- </div>
     );
 };
 

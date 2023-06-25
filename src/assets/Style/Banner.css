@@ -1,9 +1,11 @@
 #tournament-banner{
     /* background-image: url('../images/background/bg-slider.png'); */
-    background-image: url('../images/background/bg_project2.png');
+    background-image: url('../images/background/gamingone.jpg');
     background-position: center;
     background-repeat: no-repeat;
-    width: 100;
+    background-size:cover;
+    width: 100%;
     height: 100vh;
+    
 
 }

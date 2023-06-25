@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 .navbar-style{
-  background-color: rgb(1, 1, 78);
+  /* background-color: rgb(1, 1, 78); */
+  background-color: #1e293b;
   border-bottom: 2px solid orange;
 }
 .navlink-style{
-  border-bottom: 1px solid rgb(1, 1, 78) ;
-  border-left: 1px solid rgb(1, 1, 78);
+  border-bottom: 1px solid #1e293b;
+  border-left: 1px solid #1e293b;
   
 }
 .navlink-style:hover{
@@ -16,6 +17,8 @@
   border-left: 1px solid gold;
   color: gold;
 }
+
+
 .active{
   color: gold;
 }
