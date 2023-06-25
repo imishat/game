@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar-style{
+  background-color: rgb(1, 1, 78);
+  border-bottom: 2px solid orange;
+}
+.navlink-style{
+  border-bottom: 1px solid rgb(1, 1, 78) ;
+  border-left: 1px solid rgb(1, 1, 78);
+  
+}
+.navlink-style:hover{
+  border-bottom: 1px solid gold;
+  border-left: 1px solid gold;
+  color: gold;
+}
+.active{
+  color: gold;
+}
