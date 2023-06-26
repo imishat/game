@@ -1,7 +1,7 @@
 import React from 'react';
-import Banner from '../Needful/Banner';
+import Banner from '../Utilities/Banner';
 import { FaPlus } from 'react-icons/fa';
-import AddGroupStageModal from '../Needful/AddGroupStageModal';
+import AddGroupStageModal from '../Utilities/AddGroupStageModal';
 
 const AddGroupStage = () => {
     return (

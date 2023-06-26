@@ -1,6 +1,6 @@
 import React from 'react';
-import Banner from '../Needful/Banner';
-import AddTournamentModal from '../Needful/AddTournamentModal';
+import Banner from '../Utilities/Banner';
+import AddTournamentModal from '../Utilities/AddTournamentModal';
 import { FaPlus } from 'react-icons/fa';
 
 const AddTournament = () => {

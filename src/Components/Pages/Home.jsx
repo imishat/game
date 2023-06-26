@@ -1,6 +1,6 @@
 import React from 'react';
 import DefaultLayout from '../../Layout/DefaultLayout';
-import Banner from '../Needful/Banner';
+import Banner from '../Utilities/Banner';
 
 const Home = () => {
     return (

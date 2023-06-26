@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaPlus } from 'react-icons/fa';
-import Banner from '../Needful/Banner';
-import AddMatchDetailsModal from '../Needful/AddMatchDetailsModal';
+import Banner from '../Utilities/Banner';
+import AddMatchDetailsModal from '../Utilities/AddMatchDetailsModal';
 
 const AddMatchDetails = () => {
     return (
@@ -15,7 +15,7 @@ const AddMatchDetails = () => {
             </div>
             <div className='w-1/5 '>
             <div className='mt-5'>
-            <label htmlFor="add_match_modal" className="btn-style flex items-center cursor-pointer gap-2 justify-center"> <FaPlus/> Add Group  </label>
+            <label htmlFor="add_match_modal" className="btn-style flex items-center cursor-pointer gap-2 justify-center"> <FaPlus/> Add Match  </label>
             </div>
             <AddMatchDetailsModal/>
             </div>
