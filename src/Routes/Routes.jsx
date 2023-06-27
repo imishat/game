@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Link, createBrowserRouter } from "react-router-dom";
 import AddGroupStage from "../Components/Pages/AddGroupStage";
 import AddTournament from "../Components/Pages/AddTournament";
 import AddMatchDetails from "../Components/Pages/AddMatchDetails";
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
     {
         path: '/addteams',
         element:  <AddTeams/>
+    },
+    {
+        path: '*',  
+        element: <div className="text-4xl font-semibold text-center mt-4 text-red-600"> Oopps  ! This routes not found <Link className="text-blue-500 hover:text-blue-700" to={'/'}> Back Home</Link> </div>
     }
 ])
 export default router
