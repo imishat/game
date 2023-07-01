@@ -2,20 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Banner from '../Utilities/Banner';
 import AddTournamentModal from '../Utilities/AddTournamentModal';
 import { FaPlus } from 'react-icons/fa';
-import ListItems from '../Utilities/ListItems';
+import TournamentListItems from '../Utilities/TournamentListItems';
 import { useQuery } from 'react-query';
+import MatchListItems from '../Utilities/MatchListItems';
 
 const AddTournament = () => {
-    // const [tournaments,setTournaments] = useState([])
-    // useEffect(()=> {
-    //     const FetchTournament = async() => {
-    //      const response = await fetch('http://localhost:8000/tournaments')
-    //      const  data = await response.json() ;
-    //      setTournaments(data)
-    //     }
-    //     FetchTournament()
-    // },[])
-
     
   // fetch data using react query 
     const {data ,error,isLoading, refetch} = useQuery('tournaments',fetchTournament);
@@ -41,10 +32,10 @@ const AddTournament = () => {
         <Banner> 
         <div className='flex justify-around'>
            <div className='w-9/12 '>
-            <div className='w-full border border-dotted h-auto border-gray-700 mt-5 px-4 pt-3 pb-10'>
+            <div className='w-full border border-dotted h-[80vh] overflow-y-scroll border-gray-700 mt-5 px-4 pt-3 pb-10'>
             <h3 className=' font-semibold text-3xl text-neutral-100'> Tournament List : </h3>
         
-              {data?.map((tournament) =>  <ListItems key={tournament._id} tournament={tournament} className='text-white'/>  )}
+              {data?.map((tournament) =>  <MatchListItems key={tournament._id} tournament={tournament} className='text-white'/>  )}
                
             </div>
            </div>

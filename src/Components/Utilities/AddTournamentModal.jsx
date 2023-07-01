@@ -32,7 +32,7 @@ const AddTournamentModal = ({refetch}) => {
 
     return (
         <div>
-       
+          
          <input type="checkbox" id="add_tournament_modal" className="modal-toggle" />
          <div className="modal">
          <div className="modal-box ">

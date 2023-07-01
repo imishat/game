@@ -10,12 +10,12 @@ const router = createBrowserRouter([
         element: <AddTournament/>
         
     },
+        {
+            path: '/tournament/:id',
+            element: <AddGroupStage/>
+        },
     {
-        path: '/addgroup-stage',
-        element: <AddGroupStage/>
-    },
-    {
-        path: '/addmatch-details',
+        path: '/matches/:id',
         element: <AddMatchDetails/>
     },
     {
