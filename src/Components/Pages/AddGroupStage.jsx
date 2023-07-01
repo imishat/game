@@ -4,7 +4,6 @@ import { FaPlus } from 'react-icons/fa';
 import AddGroupStageModal from '../Utilities/AddGroupStageModal';
 import { useParams } from 'react-router';
 import { useQuery } from 'react-query';
-import GroupStageListitems from '../Utilities/GroupStageListitems';
 import MatchListItems from '../Utilities/MatchListItems';
 
 const AddGroupStage = () => {

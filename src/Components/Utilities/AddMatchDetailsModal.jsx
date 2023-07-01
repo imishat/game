@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { toast } from 'react-hot-toast';
 
-const AddMatchDetailsModal = ({stageid}) => {
+const AddMatchDetailsModal = ({stageid,refetch}) => {
   const closeButton = useRef()
   const handleAddMatch = (e) => {
    e.preventDefault();
@@ -25,7 +25,7 @@ const AddMatchDetailsModal = ({stageid}) => {
     if(data.success === true){
      toast.success('Match Details  successfully  added')
      e.target.reset()
-  //    refetch()
+     refetch()
      closeButton.current.click();
     }
    })

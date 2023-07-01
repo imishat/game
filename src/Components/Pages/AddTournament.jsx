@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Banner from '../Utilities/Banner';
 import AddTournamentModal from '../Utilities/AddTournamentModal';
 import { FaPlus } from 'react-icons/fa';
-import TournamentListItems from '../Utilities/TournamentListItems';
 import { useQuery } from 'react-query';
 import MatchListItems from '../Utilities/MatchListItems';
 

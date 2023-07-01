@@ -42,7 +42,7 @@ const AddMatchDetails = () => {
             <div className='mt-5'>
             <label htmlFor="add_match_modal" className="btn-style flex items-center cursor-pointer gap-2 justify-center"> <FaPlus/> Add Match  </label>
             </div>
-            <AddMatchDetailsModal stageid={groupid}/>
+            <AddMatchDetailsModal stageid={groupid} refetch={refetch} />
             </div>
         </div>
        </Banner>
