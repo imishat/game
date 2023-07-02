@@ -21,7 +21,7 @@ const AddGroupStage = () => {
    
      // fetch  Tournament data 
      async function fetchGroupStage()  {
-         const response = await fetch('http://localhost:8000/stages');
+         const response = await fetch(`http://localhost:8000/stages?tournament-id=${id}`);
          if(!response.ok){
              throw new Error('Failed to fetch  groupstage Data')
          }
