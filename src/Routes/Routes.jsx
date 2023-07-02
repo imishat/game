@@ -3,6 +3,7 @@ import AddGroupStage from "../Components/Pages/AddGroupStage";
 import AddTournament from "../Components/Pages/AddTournament";
 import AddMatchDetails from "../Components/Pages/AddMatchDetails";
 import AddTeams from "../Components/Pages/AddTeams";
+import Teams from "../Components/Pages/Teams";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     {
         path: '/addteams',
         element:  <AddTeams/>
+    },
+    {
+        path: '/teams/:id',
+        element:<Teams/>
     },
     {
         path: '*',  

@@ -5,7 +5,7 @@ import AddMatchDetailsModal from '../Utilities/AddMatchDetailsModal';
 import { useParams } from 'react-router';
 import { toast } from 'react-hot-toast';
 import { useQuery } from 'react-query';
-import MatchListItems from '../Utilities/MatchListItems';
+import ListItems from '../Utilities/ListItems';
 
 const AddMatchDetails = () => {
     const {id} = useParams(); //group stage id 
@@ -35,7 +35,7 @@ const AddMatchDetails = () => {
             <div className='w-9/12 '>
              <div className='w-full border border-dotted h-[80vh] overflow-y-scroll border-gray-700 mt-5 px-4 py-3'>
              <h3 className=' font-semibold text-3xl text-neutral-100'> Match List : </h3>
-             {data?.map((matches)=> <MatchListItems key={matches?._id} matches={matches} > </MatchListItems>)}
+             {data?.map((matches)=> <ListItems key={matches?._id} matches={matches} > </ListItems>)}
              </div>
             </div>
             <div className='w-1/5 '>

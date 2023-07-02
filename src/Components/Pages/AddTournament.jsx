@@ -3,7 +3,7 @@ import Banner from '../Utilities/Banner';
 import AddTournamentModal from '../Utilities/AddTournamentModal';
 import { FaPlus } from 'react-icons/fa';
 import { useQuery } from 'react-query';
-import MatchListItems from '../Utilities/MatchListItems';
+import ListItems from '../Utilities/ListItems';
 
 const AddTournament = () => {
     
@@ -34,7 +34,7 @@ const AddTournament = () => {
             <div className='w-full border border-dotted h-[80vh] overflow-y-scroll border-gray-700 mt-5 px-4 pt-3 pb-10'>
             <h3 className=' font-semibold text-3xl text-neutral-100'> Tournament List : </h3>
         
-              {data?.map((tournament) =>  <MatchListItems key={tournament._id} tournament={tournament} className='text-white'/>  )}
+              {data?.map((tournament) =>  <ListItems key={tournament._id} tournament={tournament} className='text-white'/>  )}
                
             </div>
            </div>

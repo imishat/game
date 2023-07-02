@@ -2,7 +2,7 @@ import React from 'react';
 import { FaPen, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const MatchListItems = ({matches,groupStage,tournament}) => {
+const ListItems = ({matches,groupStage,tournament}) => {
     return (
         <div>
              <div className='w-10/12 bg-slate-700 mt-4 grid items-center h-12 text-white rounded-sm px-4'>
@@ -10,8 +10,8 @@ const MatchListItems = ({matches,groupStage,tournament}) => {
              {matches && 
              <div className='grid grid-cols-4 items-center text-xl '>
              {/* <img src={tournament?.logo} className='w-10 h-10 rounded-full ' /> */}
-             <h2 className='' > Match No: <span className='font-bold'> {matches?.matchNo} </span> </h2>
-             <h2 className='' > Map: <span className='font-bold'> {matches?.chooseMap} </span> </h2>              <h2 className=''> Time: <span className="font-bold"> {matches?.time} </span> </h2>
+             <Link to={`/teams/${matches?._id}`} className='' > Match No: <span className='font-bold'> {matches?.matchNo} </span> </Link>
+             <Link to={`/teams/${matches?._id}`} className='' > Map: <span className='font-bold'> {matches?.chooseMap} </span> </Link>              <h2 className=''> Time: <span className="font-bold"> {matches?.time} </span> </h2>
              <div className='flex justify-end'>
                 <button className='mr-4 hover:text-red-400 hover:text-lg'> <FaTrashAlt/> </button>
                 <button className='h-7 w-7 text-center rounded-full hover:bg-gray-500'> <FaPen className='mx-auto hover:text-blue-200  '/> </button>
@@ -52,4 +52,4 @@ const MatchListItems = ({matches,groupStage,tournament}) => {
     );
 };
 
-export default MatchListItems;
+export default ListItems;

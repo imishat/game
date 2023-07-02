@@ -4,7 +4,7 @@ import { FaPlus } from 'react-icons/fa';
 import AddGroupStageModal from '../Utilities/AddGroupStageModal';
 import { useParams } from 'react-router';
 import { useQuery } from 'react-query';
-import MatchListItems from '../Utilities/MatchListItems';
+import ListItems from '../Utilities/ListItems';
 
 const AddGroupStage = () => {
     const {id} = useParams();
@@ -33,7 +33,7 @@ const AddGroupStage = () => {
             <div className='w-9/12 '>
              <div className='w-full border border-dotted h-[80vh] overflow-y-scroll  border-gray-700 mt-5 px-4 pb-10 pt-3'>
              <h3 className=' font-semibold text-3xl text-neutral-100'> Group List : </h3>
-             {data?.map((group) => <MatchListItems key={group?._id} groupStage={group}> </MatchListItems>)}
+             {data?.map((group) => <ListItems key={group?._id} groupStage={group}> </ListItems>)}
              </div>
             </div>
             <div className='w-1/5 '>

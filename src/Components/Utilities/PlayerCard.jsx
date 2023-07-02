@@ -24,7 +24,8 @@ const PlayerCard = ({players}) => {
             </h2>
 
              <div className=''>
-                {players?.players?.map((player,i)=> (<div key={player?._id} className='flex gap-x-3 mt-2'> <img src={player?.playerImg} className='w-10 h-10  rounded-full'/> <span className='text-xl '>Player - {i+1}</span> <span className='text-xl'> {player?.name}</span> </div>))}
+                {players?.players?.map((player,i)=> (<div key={player?._id} className='flex gap-x-3 mt-2'> <img src={player?.playerImg} className='w-10 h-10  rounded-full'/> <span className='text-xl '>Player - {i+1}</span> <span className='text-xl
+                '> {player?.name}</span> </div>))}
              </div>
            
         </div>
