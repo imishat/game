@@ -3,8 +3,15 @@ import Banner from '../Utilities/Banner';
 import ListItems from '../Utilities/ListItems';
 import { FaPlus } from 'react-icons/fa';
 import FindTeamsModal from '../Utilities/FindTeamsModal';
+import { useQuery } from 'react-query';
 
 const Teams = () => {
+const {data, isLoading, error, refetch} = useQuery('teams', async ()  => {
+    const response = await fetch('http://localhost:8000/teams')
+    return response.json()
+    
+})
+// console.log(data)
     return (
         <Banner> 
         <div className='flex justify-around'>
@@ -18,7 +25,7 @@ const Teams = () => {
            <div className='mt-5'>
            <label htmlFor="find_teams_modal" className="btn-style flex items-center cursor-pointer gap-2 justify-center"> <FaPlus/> Find Teams </label>
            </div>
-           <FindTeamsModal/>
+           <FindTeamsModal data={data} isLoading={isLoading}/>
            </div>
        </div>
       </Banner>
