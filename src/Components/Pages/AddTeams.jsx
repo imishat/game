@@ -4,6 +4,7 @@ import DefaultLayout from '../../Layout/DefaultLayout';
 import { FaPlus } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import PlayerCard from '../Utilities/PlayerCard';
+import '../../assets/Style/BackgroundStyle.css'
 
 const AddTeams = () => {
     const {data,isLoading, error, refetch} = useQuery('teams', async () => {
@@ -23,7 +24,7 @@ const AddTeams = () => {
 
     return (
         <DefaultLayout>
-         <section className='px-4 min-h-[50vh] max-h-fit pb-10 ' id='background-style'>
+         <section className='px-4 min-h-[50vh] max-h-fit pb-10' id='animated-background' >
             {/* top section  */}
             <div className='flex justify-between pt-3'>
                 <div>

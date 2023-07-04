@@ -31,7 +31,7 @@ const AddGroupStage = () => {
        <Banner> 
          <div className='flex justify-around'>
             <div className='w-9/12 '>
-             <div className='w-full border border-dotted h-[80vh] overflow-y-scroll  border-gray-700 mt-5 px-4 pb-10 pt-3'>
+             <div className='w-full border border-dotted min-h-[80vh] max-h-fit  border-gray-700 mt-5 px-4 pb-10 pt-3'>
              <h3 className=' font-semibold text-3xl text-neutral-100'> Group List : </h3>
              {data?.map((group) => <ListItems key={group?._id} groupStage={group}> </ListItems>)}
              </div>

@@ -6,7 +6,7 @@ const PlayerCard = ({players}) => {
     console.log(players,'player card ')
     return (
         <div className='text-white  mx-auto '>
-        <div className="card rounded-md animated-background border-yellow-300 border shadow-small h-auto lg:w-96 w-96 md:w-80" >
+        <div className="card rounded-md animated-background border-yellow-300 border shadow-small h-auto lg:w-96 w-96 md:w-80 mt-6" >
          <div className='flex justify-between '>
          <img src={players?.logo} alt="Shoes" className='w-24 h-24 rounded-sm ' />
          <div className='mt-2'>

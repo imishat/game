@@ -10,7 +10,7 @@ const ListItems = ({matches,groupStage,tournament}) => {
              {matches && 
              <div className='grid grid-cols-4 items-center text-xl '>
              {/* <img src={tournament?.logo} className='w-10 h-10 rounded-full ' /> */}
-             <Link to={`/teams/${matches?._id}`} className='' > Match No: <span className='font-bold'> {matches?.matchNo} </span> </Link>
+             <Link to={`/teams/${matches?._id}`} query={{'match-id':matches?._id}} className='' > Match No: <span className='font-bold'> {matches?.matchNo} </span> </Link>
              <Link to={`/teams/${matches?._id}`} className='' > Map: <span className='font-bold'> {matches?.chooseMap} </span> </Link>              <h2 className=''> Time: <span className="font-bold"> {matches?.time} </span> </h2>
              <div className='flex justify-end'>
                 <button className='mr-4 hover:text-red-400 hover:text-lg'> <FaTrashAlt/> </button>

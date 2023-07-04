@@ -1,7 +1,7 @@
 import { React, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
-const FindTeamsModal = ({data,isLoading}) => {
+const FindTeamsModal = ({data,isLoading,matchId}) => {
   const closeButton = useRef();
   const [selectedIds,setSelectedIds] = useState([])
   const [filterdTeam,setFilterdTeam] = useState([])
@@ -14,17 +14,19 @@ const FindTeamsModal = ({data,isLoading}) => {
     }
    
   }
-
+// console.log('teams modal', matchId)
+  console.log(data)
   const handleFindGroup = async(e) => {
    e.preventDefault();
    console.log(selectedIds)
+   const teamId = {'teams':selectedIds, 'match-id':matchId}
    try{
-     const response = await fetch(`http://localhost:8000/tournaments`,{
+     const response = await fetch(`http://localhost:8000/matches/add-team`,{
       method: "Post",
       headers:{
         'Content-type': 'application/json',
       },
-      body:JSON.stringify(selectedIds)
+      body:JSON.stringify(teamId)
     
      })
      if(!response.ok){
