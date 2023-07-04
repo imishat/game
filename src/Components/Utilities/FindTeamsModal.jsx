@@ -1,7 +1,7 @@
 import { React, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
-const FindTeamsModal = ({data,isLoading,matchId}) => {
+const FindTeamsModal = ({data,isLoading,matchId , setRandom }) => {
   const closeButton = useRef();
   const [selectedIds,setSelectedIds] = useState([])
   const [filterdTeam,setFilterdTeam] = useState([])
@@ -12,8 +12,8 @@ const FindTeamsModal = ({data,isLoading,matchId}) => {
     if(isChecked){
       setSelectedIds([...selectedIds,teamsId])
     }
-   
   }
+
 // console.log('teams modal', matchId)
   console.log(data)
   const handleFindGroup = async(e) => {
@@ -32,6 +32,7 @@ const FindTeamsModal = ({data,isLoading,matchId}) => {
      if(!response.ok){
        throw new Error (" Failed to filter teams by id ")
      }
+     else setRandom(Math.random())
      const filterTeamData = await response.json();
      setFilterdTeam(filterTeamData)
    }catch(err){

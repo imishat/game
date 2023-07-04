@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from '../Utilities/Banner';
 import ListItems from '../Utilities/ListItems';
 import { FaPlus } from 'react-icons/fa';
@@ -8,21 +8,28 @@ import { useParams } from 'react-router';
 import TeamKillsCard from '../Utilities/TeamKillsCard';
 
 const Teams = () => {
+const [matches,setMatches] = useState([])
+
+const [random,setRandom]  = useState(Math.random())
 const {id} = useParams()
-const {data, isLoading, error, refetch} = useQuery('teams', async ()  => {
+const {data, isLoading, error} = useQuery('teams', async ()  => {
     const response = await fetch('http://localhost:8000/teams')
     return response.json()
     
 })
 
-// find all matches 
-const {data:matches = [], } = useQuery('matches', async ()  => {
-    const response = await fetch(`http://localhost:8000/matches/${id}`)
-    return response.json()
-    
-})
 
+useEffect(() => {
+    fetch(`http://localhost:8000/matches/${id}`)
+    .then(res => res.json())
+    .then(data => {
+        // console.log(data,'matches data')
+        setMatches(data)
+    })
+}
+,[random])
 
+console.log(matches,'matches')
 
 
 
@@ -38,15 +45,15 @@ const {data:matches = [], } = useQuery('matches', async ()  => {
             </div>
 
           
-           <div className='w-full  grid grid-cols-3  mt-5 px-4 pb-10 pt-3'>
-           {matches?.map((team) => team?.teams?.map((teamData,i) => <TeamKillsCard key={i} team={teamData} > </TeamKillsCard> ))}
+           <div className='w-full  grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5 px-4 pb-10 pt-3'>
+           {matches?.map((team) => team?.teams?.map((teamData,i) => <TeamKillsCard key={i} team={teamData}  matchId={team._id}  > </TeamKillsCard> ))}
            </div>
            
        
 
            <div className='w-1/5 '>
           
-           <FindTeamsModal data={data} isLoading={isLoading} matchId={id} />
+           <FindTeamsModal data={data} isLoading={isLoading} matchId={id} setRandom={setRandom}/>
            </div>
        </div>
       </Banner>

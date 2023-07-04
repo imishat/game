@@ -23,3 +23,12 @@
         background-position:  0 50%;
     }
 }
+
+/*  WWCD background style  */
+#wwcd-background{
+ background-image: url('../images/background/circle.jpg');
+ background-position: fit-content;
+ background-repeat: no-repeat;
+ width: 100%;
+ height: 100vh;
+}
