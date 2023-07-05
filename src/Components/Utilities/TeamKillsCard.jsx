@@ -5,6 +5,39 @@ const TeamKillsCard = ({team, matchId}) => {
     const { logo, name, tag, players} = team ;
     const [kills,setlKills]  = useState({})  
     const [totalKills,setTotalKills] = useState(0);
+    const [rank, setRank] = useState(0)
+    const [totalPoints, setTotalPoints] = useState(0)
+
+ let pointTable = {
+    1: 10,
+    2: 6,
+    3: 5,
+    4: 4,
+    5: 3,
+    6: 2,
+    7: 1,
+    8: 1,
+    9: 0,
+    10: 0,
+    11: 0,
+    12: 0,
+    13: 0,
+    14: 0,
+    15: 0,
+    16: 0,
+    17: 0,
+    18: 0,
+    19: 0,
+    20: 0,
+    21: 0,
+    22: 0,
+    23: 0,
+    24: 0,
+    25: 0,
+
+    "": 0,
+  };
+
 
     // Increase or decrease kills  value  
     useEffect(() => {
@@ -23,6 +56,13 @@ const TeamKillsCard = ({team, matchId}) => {
       // console.log(total)
     },[kills])
 
+    useEffect(() => {
+     const totalKillsNumber = parseInt(totalKills)
+     setTotalPoints(totalKillsNumber + rank)
+    },[totalKills,rank])
+
+    // console.log(typeof(totalKills,'total  '))
+
     // Send kills value in database 
    function sendKills(playerId,kill)  {
       fetch(`http://localhost:8000/matches/kills`, {
@@ -39,14 +79,41 @@ const TeamKillsCard = ({team, matchId}) => {
       
    }   
 
+      // Send rank  value in database 
+      function sendRank(team)  {
+        fetch(`http://localhost:8000/matches/rank`, {
+          method: 'Post',
+          headers :  {
+            'Content-type':  'application/json'
+          },
+          body: JSON.stringify({'match-id':matchId,'team-id':team?._id, rank:rank})
+        })
+        .then(res =>  res.json())
+        .then(data => {
+          console.log(data)
+        })
+        
+     }   
+  
 
-   console.log(players)
+
+   const handleInputNumberChange = (e) => {
+    const inputValue = e.target.value ;
+    setRank(pointTable[Number(inputValue)] || 0 )
+    sendRank()
+   }
+
+   
     return (
         <div className='text-white  mx-auto '>
         <div className="card rounded-md animated-background border-yellow-300 border shadow-small h-auto lg:w-96 w-96 md:w-80 mt-6" >
           {/* top section  */}
           <div className='flex justify-between'>
-          <img src={logo} alt="Shoes" className='w-24 h-24 rounded-sm ' />
+          {/* <img src={logo} alt="Shoes" className='w-24 h-24 rounded-sm ' /> */}
+          <div className='flex'>
+            <div className='h-8 border'>#</div>
+            <input type='number' onChange={handleInputNumberChange} className='w-12 h-8 text-black' />
+          </div>
          <div className='mt-2'>
             <h1 className='text-lg font-medium'> Team  Name: {name} </h1>
             <h1 className='text-lg font-medium'> Team Tag: {tag} </h1>
@@ -94,8 +161,8 @@ const TeamKillsCard = ({team, matchId}) => {
              {/* calculate section   */}
              <div className='text-2xl font-semibold text-center'>
               <h1>Total Kills  = {totalKills} </h1>
-              <h1> Rank Points = 0 </h1>
-              <h1> Total Points = 0 </h1>
+              <h1> Rank Points = {rank} </h1>
+              <h1> Total Points = {totalPoints} </h1>
              </div>
            </div>
          </div>
