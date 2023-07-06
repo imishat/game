@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ListItems = ({matches,groupStage,tournament}) => {
     return (
         <div>
-             <div className='w-10/12 bg-slate-700 mt-4 grid items-center h-12 text-white rounded-sm px-4'>
+             <div className="lg:w-10/12 w-full bg-slate-700 mt-4 grid items-center h-12 text-white rounded-sm px-4">
              {/* Matches list items section  */}
              {matches && 
              <div className='grid grid-cols-4 items-center text-xl '>

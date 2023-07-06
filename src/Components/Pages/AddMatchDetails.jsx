@@ -10,6 +10,7 @@ import ListItems from '../Utilities/ListItems';
 const AddMatchDetails = () => {
     const {id} = useParams(); //group stage id 
     const [groupid,setGroupid] = useState(id)
+    console.log(groupid,'stage-id')
     // get match details data and show it 
     const {data, isLoading, refetch ,error} = useQuery('match', async () => {
         const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/matches?stage-id=${groupid}`);
