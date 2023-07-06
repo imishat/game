@@ -60,8 +60,8 @@ const AddMatchDetailsModal = ({stageid,refetch}) => {
 
               <div className='flex flex-col mt-4'>
                 <label htmlFor=""> Choose  </label>
-                <select type="file" name='chooseMap' placeholder=" Select" className="select select-bordered w-full mt-1 " >
-                  <option  disabled selected  > Choose map ...  </option> 
+                <select type="text" name='chooseMap'  placeholder=" Select" className="select select-bordered w-full mt-1 " >
+                  <option  disabled selected value={''} > Choose map ...  </option> 
                   <option value={'erangel'}> ERANGEL   </option>
                   <option value={'miramar'}> MIRAMAR  </option>
                   <option value={'shenok'}> SHENOK  </option>

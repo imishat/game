@@ -5,6 +5,7 @@ import { FaPlus } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import PlayerCard from '../Utilities/PlayerCard';
 import '../../assets/Style/BackgroundStyle.css'
+import Loading from '../Utilities/Loading';
 
 const AddTeams = () => {
     const {data,isLoading, error, refetch} = useQuery('teams', async () => {
@@ -15,12 +16,12 @@ const AddTeams = () => {
         return response.json()
     })
     if(isLoading){
-        return <div> Loading... </div>
+        return <Loading/>
     }
     if(error){
         return <div> {error.message} </div>
     }
-    console.log(data)
+    // console.log(data)
 
     return (
         <DefaultLayout>

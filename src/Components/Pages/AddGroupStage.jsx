@@ -5,6 +5,7 @@ import AddGroupStageModal from '../Utilities/AddGroupStageModal';
 import { useParams } from 'react-router';
 import { useQuery } from 'react-query';
 import ListItems from '../Utilities/ListItems';
+import Loading from '../Utilities/Loading';
 
 const AddGroupStage = () => {
     const {id} = useParams();
@@ -12,7 +13,7 @@ const AddGroupStage = () => {
       const {data ,error,isLoading, refetch} = useQuery('stages', fetchGroupStage);
 
       if(isLoading){
-         return <div> Loading ... </div>
+         return <Loading/>
       }  
  
       if(error){

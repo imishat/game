@@ -4,6 +4,7 @@ import AddTournamentModal from '../Utilities/AddTournamentModal';
 import { FaPlus } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import ListItems from '../Utilities/ListItems';
+import Loading from '../Utilities/Loading';
 
 const AddTournament = () => {
     
@@ -11,7 +12,7 @@ const AddTournament = () => {
     const {data ,error,isLoading, refetch} = useQuery('tournaments',fetchTournament);
 
      if(isLoading){
-        return <div> Loading ... </div>
+        return <Loading/>
      }  
 
      if(error){

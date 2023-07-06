@@ -1,5 +1,6 @@
 import { React, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import Loading from './Loading';
 
 const FindTeamsModal = ({data,isLoading,matchId , setRandom }) => {
   const closeButton = useRef();
@@ -43,7 +44,7 @@ const FindTeamsModal = ({data,isLoading,matchId , setRandom }) => {
   
   console.log(filterdTeam)
   if(isLoading){
-    return <div> Loading ...  </div>
+    return <Loading/>
   }
 
     return (

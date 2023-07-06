@@ -6,11 +6,12 @@ import { useParams } from 'react-router';
 import { toast } from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import ListItems from '../Utilities/ListItems';
+import Loading from '../Utilities/Loading';
 
 const AddMatchDetails = () => {
     const {id} = useParams(); //group stage id 
     const [groupid,setGroupid] = useState(id)
-    console.log(groupid,'stage-id')
+    // console.log(groupid,'stage-id')
     // get match details data and show it 
     const {data, isLoading, refetch ,error} = useQuery('match', async () => {
         const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/matches?stage-id=${groupid}`);
@@ -21,12 +22,12 @@ const AddMatchDetails = () => {
         
     }) 
    if(isLoading){
-    return <div> Loading ...</div>
+    return <Loading/>
    }
    if(error){
     return <div> {error.message} </div>
    }
-    console.log(data)
+    // console.log(data)
 
 
     return (

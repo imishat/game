@@ -6,11 +6,12 @@ import FindTeamsModal from '../Utilities/FindTeamsModal';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router';
 import TeamKillsCard from '../Utilities/TeamKillsCard';
+import Loading from '../Utilities/Loading';
 
 const Teams = () => {
 const [matches,setMatches] = useState([])
 
-const [random,setRandom]  = useState(Math.random())
+const [random,setRandom]  = useState(Math.random()) // refetch data and update  dom
 const {id} = useParams()
 const {data, isLoading, error} = useQuery('teams', async ()  => {
     const response = await fetch('https://gaming-production-ashrafullislam.vercel.app/teams')
@@ -19,6 +20,7 @@ const {data, isLoading, error} = useQuery('teams', async ()  => {
 })
 
 
+// get match by group id 
 useEffect(() => {
     fetch(`https://gaming-production-ashrafullislam.vercel.app/matches/${id}`)
     .then(res => res.json())
@@ -29,9 +31,11 @@ useEffect(() => {
 }
 ,[random])
 
-console.log(matches,'matches')
+// console.log(matches,'matches')
 
-
+if(isLoading){
+    return <Loading/>
+}
 
 // console.log(data)
     return (
