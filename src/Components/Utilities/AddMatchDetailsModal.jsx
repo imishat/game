@@ -12,7 +12,7 @@ const AddMatchDetailsModal = ({stageid,refetch}) => {
    console.log(match)
    
 
-   fetch(`http://localhost:8000/matches`,{
+   fetch(`https://gaming-production-ashrafullislam.vercel.app/matches`,{
     method: "Post",
     headers: {
       "Content-Type": "application/json"

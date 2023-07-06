@@ -51,7 +51,7 @@ const AddTeamsModal = ({refetch}) => {
     ]}
     // console.log(AddTeam)
   
-    fetch(`http://localhost:8000/teams`,{
+    fetch(`https://gaming-production-ashrafullislam.vercel.app/teams`,{
       method: "Post",
       headers: {
         "Content-Type": "application/json"

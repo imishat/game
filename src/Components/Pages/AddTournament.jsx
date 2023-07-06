@@ -20,7 +20,7 @@ const AddTournament = () => {
   
     // fetch  Tournament data 
     async function fetchTournament()  {
-        const response = await fetch(`http://localhost:8000/tournaments`);
+        const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/tournaments`);
         if(!response.ok){
             throw new Error('Failed to fetch  tournament Data')
         }

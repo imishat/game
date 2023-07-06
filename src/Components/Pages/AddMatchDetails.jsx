@@ -12,7 +12,7 @@ const AddMatchDetails = () => {
     const [groupid,setGroupid] = useState(id)
     // get match details data and show it 
     const {data, isLoading, refetch ,error} = useQuery('match', async () => {
-        const response = await fetch(`http://localhost:8000/matches?stage-id=${groupid}`);
+        const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/matches?stage-id=${groupid}`);
         if(!response.ok){
             throw new Error("Failed to fetch match data ")
         }

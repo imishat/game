@@ -11,7 +11,7 @@ const AddGroupStageModal = ({tournamentId,refetch}) => {
    const groupStage = {name:groupStageName, match:matchNumer , 'tournament-id':tournamentId}
    
 
-   fetch(`http://localhost:8000/stages`,{
+   fetch(`https://gaming-production-ashrafullislam.vercel.app/stages`,{
     method: "Post",
     headers: {
       "Content-Type": "application/json"

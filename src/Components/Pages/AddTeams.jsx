@@ -8,7 +8,7 @@ import '../../assets/Style/BackgroundStyle.css'
 
 const AddTeams = () => {
     const {data,isLoading, error, refetch} = useQuery('teams', async () => {
-        const response = await fetch(`http://localhost:8000/teams`)
+        const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/teams`)
         if(!response.ok){
          throw new  Error('Failed to fetch teams data')
         }

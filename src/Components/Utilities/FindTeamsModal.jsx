@@ -21,7 +21,7 @@ const FindTeamsModal = ({data,isLoading,matchId , setRandom }) => {
    console.log(selectedIds)
    const teamId = {'teams':selectedIds, 'match-id':matchId}
    try{
-     const response = await fetch(`http://localhost:8000/matches/add-team`,{
+     const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/matches/add-team`,{
       method: "Post",
       headers:{
         'Content-type': 'application/json',

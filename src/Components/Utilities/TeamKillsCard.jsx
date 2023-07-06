@@ -65,7 +65,7 @@ const TeamKillsCard = ({team, matchId}) => {
 
     // Send kills value in database 
    function sendKills(playerId,kill)  {
-      fetch(`http://localhost:8000/matches/kills`, {
+      fetch(`https://gaming-production-ashrafullislam.vercel.app/matches/kills`, {
         method: 'Post',
         headers :  {
           'Content-type':  'application/json'
@@ -81,7 +81,7 @@ const TeamKillsCard = ({team, matchId}) => {
 
       // Send rank  value in database 
       function sendRank(team)  {
-        fetch(`http://localhost:8000/matches/rank`, {
+        fetch(`https://gaming-production-ashrafullislam.vercel.app/matches/rank`, {
           method: 'Post',
           headers :  {
             'Content-type':  'application/json'

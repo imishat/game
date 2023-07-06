@@ -13,14 +13,14 @@ const [matches,setMatches] = useState([])
 const [random,setRandom]  = useState(Math.random())
 const {id} = useParams()
 const {data, isLoading, error} = useQuery('teams', async ()  => {
-    const response = await fetch('http://localhost:8000/teams')
+    const response = await fetch('https://gaming-production-ashrafullislam.vercel.app/teams')
     return response.json()
     
 })
 
 
 useEffect(() => {
-    fetch(`http://localhost:8000/matches/${id}`)
+    fetch(`https://gaming-production-ashrafullislam.vercel.app/matches/${id}`)
     .then(res => res.json())
     .then(data => {
         // console.log(data,'matches data')
