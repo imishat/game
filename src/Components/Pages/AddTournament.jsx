@@ -21,7 +21,7 @@ const AddTournament = () => {
   
     // fetch  Tournament data 
     async function fetchTournament()  {
-        const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/tournaments`);
+        const response = await fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/tournaments`);
         if(!response.ok){
             throw new Error('Failed to fetch  tournament Data')
         }
@@ -34,7 +34,7 @@ const AddTournament = () => {
            <div className=' lg:w-9/12 w-full '>
             <div className='w-full border border-dotted min-h-[80vh] max-h-fit  border-gray-700 mt-5 px-4 pt-3 pb-10'>
             <h3 className=' font-semibold text-3xl text-neutral-100'> Tournament List : </h3>
-              {data?.map((tournament) =>  <ListItems key={tournament._id} tournament={tournament} className='text-white'/>  )}
+              {data?.map((tournament) =>  <ListItems key={tournament._id} tournament={tournament} refetch={refetch} className='text-white'/>  )}
             </div>
            </div>
 

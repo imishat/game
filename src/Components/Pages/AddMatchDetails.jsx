@@ -3,7 +3,6 @@ import { FaPlus } from 'react-icons/fa';
 import Banner from '../Utilities/Banner';
 import AddMatchDetailsModal from '../Utilities/AddMatchDetailsModal';
 import { useParams } from 'react-router';
-import { toast } from 'react-hot-toast';
 import { useQuery } from 'react-query';
 import ListItems from '../Utilities/ListItems';
 import Loading from '../Utilities/Loading';
@@ -14,7 +13,7 @@ const AddMatchDetails = () => {
     // console.log(groupid,'stage-id')
     // get match details data and show it 
     const {data, isLoading, refetch ,error} = useQuery('match', async () => {
-        const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/matches?stage-id=${groupid}`);
+        const response = await fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches?stage-id=${groupid}`);
         if(!response.ok){
             throw new Error("Failed to fetch match data ")
         }
@@ -36,7 +35,7 @@ const AddMatchDetails = () => {
             <div className='lg:w-9/12 w-full  '>
              <div className='w-full border border-dotted min-h-[80vh] max-h-fit  border-gray-700 mt-5 px-4 py-3'>
              <h3 className=' font-semibold text-3xl text-neutral-100'> Match List : </h3>
-             {data?.map((matches)=> <ListItems key={matches?._id} matches={matches} > </ListItems>)}
+             {data?.map((matches)=> <ListItems key={matches?._id} matches={matches} refetch={refetch} > </ListItems>)}
              </div>
             </div>
             <div className='lg:w-1/5  w-11/12 mx-auto '>

@@ -51,7 +51,7 @@ const AddTeamsModal = ({refetch}) => {
     ]}
     // console.log(AddTeam)
   
-    fetch(`https://gaming-production-ashrafullislam.vercel.app/teams`,{
+    fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/teams`,{
       method: "Post",
       headers: {
         "Content-Type": "application/json"

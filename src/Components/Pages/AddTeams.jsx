@@ -9,7 +9,7 @@ import Loading from '../Utilities/Loading';
 
 const AddTeams = () => {
     const {data,isLoading, error, refetch} = useQuery('teams', async () => {
-        const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/teams`)
+        const response = await fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/teams`)
         if(!response.ok){
          throw new  Error('Failed to fetch teams data')
         }

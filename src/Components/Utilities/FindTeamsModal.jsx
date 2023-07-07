@@ -16,13 +16,12 @@ const FindTeamsModal = ({data,isLoading,matchId , setRandom }) => {
   }
 
 // console.log('teams modal', matchId)
-  console.log(data)
   const handleFindGroup = async(e) => {
    e.preventDefault();
    console.log(selectedIds)
    const teamId = {'teams':selectedIds, 'match-id':matchId}
    try{
-     const response = await fetch(`https://gaming-production-ashrafullislam.vercel.app/matches/add-team`,{
+     const response = await fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches/add-team`,{
       method: "Post",
       headers:{
         'Content-type': 'application/json',
@@ -42,7 +41,8 @@ const FindTeamsModal = ({data,isLoading,matchId , setRandom }) => {
   
   }
   
-  console.log(filterdTeam)
+  // console.log(filterdTeam)
+
   if(isLoading){
     return <Loading/>
   }

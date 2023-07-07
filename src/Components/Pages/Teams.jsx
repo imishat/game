@@ -14,7 +14,7 @@ const [matches,setMatches] = useState([])
 const [random,setRandom]  = useState(Math.random()) // refetch data and update  dom
 const {id} = useParams()
 const {data, isLoading, error} = useQuery('teams', async ()  => {
-    const response = await fetch('https://gaming-production-ashrafullislam.vercel.app/teams')
+    const response = await fetch('https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/teams')
     return response.json()
     
 })
@@ -22,7 +22,7 @@ const {data, isLoading, error} = useQuery('teams', async ()  => {
 
 // get match by group id 
 useEffect(() => {
-    fetch(`https://gaming-production-ashrafullislam.vercel.app/matches/${id}`)
+    fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches/${id}`)
     .then(res => res.json())
     .then(data => {
         // console.log(data,'matches data')
@@ -50,7 +50,7 @@ if(isLoading){
 
           
            <div className='w-full  grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5 px-4 pb-10 pt-3'>
-           {matches?.map((team) => team?.teams?.map((teamData,i) => <TeamKillsCard key={i} team={teamData}  matchId={team._id}  > </TeamKillsCard> ))}
+           {matches?.map((team) => team?.teams?.map((teamData,i) => <TeamKillsCard key={i} team={teamData}  matchId={team._id}  matches={matches} > </TeamKillsCard> ))}
            </div>
            
        

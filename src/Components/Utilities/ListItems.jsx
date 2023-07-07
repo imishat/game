@@ -1,8 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { FaPen, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const ListItems = ({matches,groupStage,tournament}) => {
+const ListItems = ({matches,groupStage,tournament,refetch}) => {
+   // tournament delete items 
+   const tournamentDeleteHandlar = () => {
+      console.log(tournament?._id)
+      fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/tournaments/${tournament?._id}`,{
+         method: "Delete",
+         
+        })
+        .then(res => res.json())
+        .then(data => {
+         console.log(data)
+         if(data.success === true){
+          toast.success(`${tournament?.name}  hasbeen deleted`)
+         //  e.target.reset()
+          refetch()
+         //  closeButton.current.click();
+         }
+        })
+        .catch(error => {
+         console.error(error)
+        })
+   }
+
+   // Delete group stage handlar 
+   const groupStageDeleteHandlar = () => {
+      fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/stages/${groupStage?._id}`,{
+         method: "Delete",
+         
+        })
+        .then(res => res.json())
+        .then(data => {
+         console.log(data)
+         if(data.success === true){
+          toast.success(`${groupStage?.name}  hasbeen deleted`)
+         //  e.target.reset()
+          refetch()
+         //  closeButton.current.click();
+         }
+        })
+        .catch(error => {
+         console.error(error)
+        })
+   }
+
+ // Delete matches handlar 
+ const matchesDeleteHandlar = () => {
+   fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches/${matches?._id}`,{
+      method: "Delete",
+      
+     })
+     .then(res => res.json())
+     .then(data => {
+      console.log(data)
+      if(data.success === true){
+       toast.success(`${matches?.name}  hasbeen deleted`)
+      //  e.target.reset()
+       refetch()
+      //  closeButton.current.click();
+      }
+     })
+     .catch(error => {
+      console.error(error)
+     })
+}
+
+
+
+
+
     return (
         <div>
              <div className="lg:w-10/12 w-full bg-slate-700 mt-4 grid items-center h-12 text-white rounded-sm px-4">
@@ -13,7 +82,7 @@ const ListItems = ({matches,groupStage,tournament}) => {
              <Link to={`/teams/${matches?._id}`} query={{'match-id':matches?._id}} className='' > Match No: <span className='font-bold'> {matches?.matchNo} </span> </Link>
              <Link to={`/teams/${matches?._id}`} className='' > Map: <span className='font-bold'> {matches?.chooseMap} </span> </Link>              <h2 className=''> Time: <span className="font-bold"> {matches?.time} </span> </h2>
              <div className='flex justify-end'>
-                <button className='mr-4 hover:text-red-400 hover:text-lg'> <FaTrashAlt/> </button>
+                <button className='mr-4 hover:text-red-400 hover:text-lg' onClick={matchesDeleteHandlar}> <FaTrashAlt/> </button>
                 <button className='h-7 w-7 text-center rounded-full hover:bg-gray-500'> <FaPen className='mx-auto hover:text-blue-200  '/> </button>
             </div>
             </div>
@@ -27,7 +96,7 @@ const ListItems = ({matches,groupStage,tournament}) => {
             <h2 className='text-lg col-span-2'> Stage Level: <span className='font-bold'>{groupStage?.name}</span> </h2> 
             <h2 className='text-lg '> Member: <span className='font-bold'> {groupStage?.match}</span> </h2>
             <div className='flex justify-end'>
-               <button className='mr-4 hover:text-red-400 hover:text-lg'> <FaTrashAlt/> </button>
+               <button className='mr-4 hover:text-red-400 hover:text-lg' onClick={groupStageDeleteHandlar}> <FaTrashAlt/> </button>
                 <button className='h-7 w-7 text-center rounded-full hover:bg-gray-500'> <FaPen className='mx-auto hover:text-blue-200  '/> </button>
            </div>
            </div>
@@ -40,7 +109,7 @@ const ListItems = ({matches,groupStage,tournament}) => {
              <img src={tournament?.logo} className='w-10 h-10 rounded-full ' />
              <Link to={`/tournament/${tournament?._id}`} query={{'tournament-id':tournament?._id}}   className='text-xl font-medium cursor-pointer hover:text-blue-400 col-span-2'> {tournament?.name}  </Link>
              <div className='flex justify-end'>
-                <button className='mr-4 hover:text-red-400 hover:text-lg'> <FaTrashAlt/> </button>
+                <button className='mr-4 hover:text-red-400 hover:text-lg'  onClick={tournamentDeleteHandlar}> <FaTrashAlt/> </button>
                  <button className='h-7 w-7 text-center rounded-full hover:bg-gray-500'> <FaPen className='mx-auto hover:text-blue-200  '/> </button>
             </div>
             </div>

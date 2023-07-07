@@ -8,10 +8,10 @@ const AddMatchDetailsModal = ({stageid,refetch}) => {
    const matchNo = e.target.matchNo.value ;
    const time = e.target.matchTime.value ;
    const chooseMap = e.target.chooseMap.value ;
-   const match = {matchNo:matchNo,time:time,chooseMap:chooseMap, 'stage-id':stageid}
+   const match = {matchNo:matchNo,time:time,chooseMap:chooseMap, name:'hello', 'stage-id':stageid}
    
 
-   fetch(`https://gaming-production-ashrafullislam.vercel.app/matches`,{
+   fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches`,{
     method: "Post",
     headers: {
       "Content-Type": "application/json"
