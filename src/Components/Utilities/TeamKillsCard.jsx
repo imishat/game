@@ -10,7 +10,6 @@ const TeamKillsCard = ({team, matchId,matches}) => {
     const [totalKills,setTotalKills] = useState(0);
     const [rank, setRank] = useState(matches[0]?.[team?._id] || 0) 
     const [totalPoints, setTotalPoints] = useState(0)
-      console.log()
 
  let pointTable = {
     1: 10,
@@ -67,7 +66,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
 
     // Send kills value in database 
    function sendKills(playerId,kill)  {
-      fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches/kills`, {
+      fetch(`https://pubg-gaming-backend.onrender.com/matches/kills`, {
         method: 'Post',
         headers :  {
           'Content-type':  'application/json'
@@ -83,8 +82,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
   
    // send player id who is dead
    function sendPlayerDead(dead,matchId,playerId,playerName)  {
-    console.log(dead,matchId,`playerId:${playerId}`,playerName)
-    fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches/dead`, {
+    fetch(`https://pubg-gaming-backend.onrender.com/matches/dead`, {
       method: 'Post',
       headers :  {
         'Content-type':  'application/json'
@@ -103,7 +101,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
 
       // Send rank  value in database 
       function sendRank(rank)  {
-        fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches/rank`, {
+        fetch(`https://pubg-gaming-backend.onrender.com/matches/rank`, {
           method: 'Post',
           headers :  {
             'Content-type':  'application/json'
@@ -117,7 +115,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
         
      }   
 
-  
+  // handle rank input
    const handleInputNumberChange = (e) => {
     const inputValue = e.target.value ;
     setRank(parseInt(inputValue))

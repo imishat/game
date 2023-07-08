@@ -8,7 +8,7 @@ const AddTournamentModal = ({refetch}) => {
    const tournamentName = e.target.tournament_name.value ;
    const tournamentLogo = e.target.tournament_logo_url.value ;
    const Tournament = {name:tournamentName,logo:tournamentLogo}
-   fetch('https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/tournaments',{
+   fetch('https://pubg-gaming-backend.onrender.com/tournaments',{
     method: "Post",
     headers: {
       "Content-Type": "application/json"

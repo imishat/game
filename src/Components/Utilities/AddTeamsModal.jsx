@@ -51,7 +51,7 @@ const AddTeamsModal = ({refetch}) => {
     ]}
     // console.log(AddTeam)
   
-    fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/teams`,{
+    fetch(`https://pubg-gaming-backend.onrender.com/teams`,{
       method: "Post",
       headers: {
         "Content-Type": "application/json"

@@ -14,7 +14,7 @@ const [matches,setMatches] = useState([])
 const [random,setRandom]  = useState(Math.random()) // refetch data and update  dom
 const {id} = useParams()
 const {data, isLoading, error} = useQuery('teams', async ()  => {
-    const response = await fetch('https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/teams')
+    const response = await fetch('https://pubg-gaming-backend.onrender.com/teams')
     return response.json()
     
 })
@@ -22,7 +22,7 @@ const {data, isLoading, error} = useQuery('teams', async ()  => {
 
 // get match by group id 
 useEffect(() => {
-    fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches/${id}`)
+    fetch(`https://pubg-gaming-backend.onrender.com/matches/${id}`)
     .then(res => res.json())
     .then(data => {
         // console.log(data,'matches data')

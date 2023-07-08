@@ -21,7 +21,7 @@ const AddTournament = () => {
   
     // fetch  Tournament data 
     async function fetchTournament()  {
-        const response = await fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/tournaments`);
+        const response = await fetch(`https://pubg-gaming-backend.onrender.com/tournaments`);
         if(!response.ok){
             throw new Error('Failed to fetch  tournament Data')
         }

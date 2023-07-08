@@ -11,7 +11,7 @@ const AddMatchDetailsModal = ({stageid,refetch}) => {
    const match = {matchNo:matchNo,time:time,chooseMap:chooseMap, name:'hello', 'stage-id':stageid}
    
 
-   fetch(`https://gaming-production-aakmk4dvq-ashrafullislam.vercel.app/matches`,{
+   fetch(`https://pubg-gaming-backend.onrender.com/matches`,{
     method: "Post",
     headers: {
       "Content-Type": "application/json"
