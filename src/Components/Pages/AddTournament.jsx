@@ -27,7 +27,7 @@ const AddTournament = () => {
         }
         return response.json() ;
     }
-
+console.log(data,'tournament')
     return (
         <Banner> 
         <div className='flex justify-around lg:flex-row flex-col-reverse  '>

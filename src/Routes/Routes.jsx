@@ -5,6 +5,17 @@ import AddMatchDetails from "../Components/Pages/AddMatchDetails";
 import AddTeams from "../Components/Pages/AddTeams";
 import Teams from "../Components/Pages/Teams";
 import Wwcd from "../Components/Pages/Wwcd";
+import DisplayLayout from "../Layout/DisplayLayout";
+import Signup from "../Components/Shared/Signup";
+import SignIn from "../Components/Shared/SignIn";
+import MVP from "../Components/Pages/MVP";
+import TopFregger from "../Components/Pages/TopFregger";
+import Next from "../Components/Pages/Next";
+import OverAll from "../Components/Pages/OverAll";
+import OverAllMvp from "../Components/Pages/OverAllMvp";
+import Standing from "../Components/Pages/Standing";
+import OverallStanding from "../Components/Pages/OverallStanding";
+import Schediul from "../Components/Pages/Schediul";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +42,50 @@ const router = createBrowserRouter([
     {
         path:  '/wwcd',
         element: <Wwcd/>
+    },
+    {
+        path: '/display',
+        element:  <DisplayLayout/>
+    },
+    {
+        path: '/signup',
+        element:  <Signup/>
+    },
+    {
+        path:  '/signin',
+        element: <SignIn/>
+    },
+    {
+        path: '/mvp',
+        element:  <MVP/>
+    },
+    {
+        path:  '/top-fragger',
+        element: <TopFregger/>  
+    },
+    {
+      path: '/next',
+      element: <Next/>
+    },
+    {
+        path: '/overall',
+        element: <OverAll/>
+    },
+    {
+        path: '/schedul',
+        element: <Schediul/>
+    },
+    {
+        path: '/overall-mvp',
+        element: <OverAllMvp/>
+    },
+    {
+        path: '/standing',
+        element: <Standing/>
+    },
+    {
+        path: '/overall-standing',
+        element: <OverallStanding/>
     },
     
     {

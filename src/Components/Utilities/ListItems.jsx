@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast';
 import { FaPen, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const ListItems = ({matches,groupStage,tournament,refetch}) => {
+const    ListItems = ({matches,groupStage,tournament,refetch}) => {
    // tournament delete items 
    const tournamentDeleteHandlar = () => {
       console.log(tournament?._id)

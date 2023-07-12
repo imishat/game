@@ -40,23 +40,11 @@ const Navbar = () => {
     <ul className="menu menu-horizontal px-1">
     <li><NavLink className={'navlink-style'} to={"/"}> <FaHome/> Home </NavLink></li>
     <li><NavLink className={'navlink-style'} to={"/wwcd"}> WWCD  </NavLink></li>
-    <li><NavLink className={'navlink-style'} to={"/addteams"}> <FaPlus/> Add Teams  </NavLink></li> <li tabIndex={0}>
-        <details>
-          <summary className={'navlink-style '}> Dropdown </summary>
-          <ul className="px-2 py-0  text-slate-50 bg-slate-800 rounded-bl-md rounded-br-md rounded-t-none  ">
-            <li className=' border-solid  border-t-2 border-t-gray-600 '><Link className='hover:text-yellow-400'> <FaPlus/> STANDING</Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> Top Fragger</Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> MVP</Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> Display </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> SCHEDULE </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> Next </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> OverAll </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> OverAll MVP </Link></li>
-            <li className='border-solid  border-t-2 border-t-gray-600'><Link className='hover:text-yellow-400'> <FaPlus/> Overall Standing </Link></li>
-          </ul>
-        </details>
-      </li>
+    <li><NavLink className={'navlink-style'} to={"/display"}> Display  </NavLink></li>
+    <li><NavLink className={'navlink-style'} to={"/addteams"}> <FaPlus/> Add Teams  </NavLink></li>
+      
       <li><button className={'navlink-style'}> <FaSignOutAlt/> Logout </button></li>
+      <li><NavLink className={'navlink-style'} to={'/signup'}> <FaSignOutAlt/> Signup </NavLink></li>
     </ul>
   </div>
  
