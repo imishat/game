@@ -48,6 +48,10 @@ const router = createBrowserRouter([
         element:  <DisplayLayout/>
     },
     {
+        path: '/:id',
+        element: <DisplayLayout/>
+    },
+    {
         path: '/signup',
         element:  <Signup/>
     },
@@ -60,7 +64,7 @@ const router = createBrowserRouter([
         element:  <MVP/>
     },
     {
-        path:  '/top-fragger',
+        path:  '/:id/topfragger',
         element: <TopFregger/>  
     },
     {
@@ -80,7 +84,7 @@ const router = createBrowserRouter([
         element: <OverAllMvp/>
     },
     {
-        path: '/standing',
+        path: '/:id/standing',
         element: <Standing/>
     },
     {

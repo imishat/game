@@ -3,12 +3,14 @@ import { useForm } from 'react-hook-form';
 import DefaultLayout from '../../Layout/DefaultLayout';
 import { Link } from 'react-router-dom';
 import {getAuth} from 'firebase/auth';
-import app from '../../../firebase.config';
+import app from '../../Firebase/firebase.config';
+
 const SignIn = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
     const auth = getAuth(app)
     console.log(auth)
+    
     return (
         <DefaultLayout>
         <div id='signup' className='flex items-center'>
@@ -34,7 +36,7 @@ const SignIn = () => {
      
      <div className='mt-4 mb-5 flex gap-x-6 items-center'>
      <button type="submit" className='  border-none w-40 h-10 text-white bg-gray-800 hover:bg-gray-600 glass' > Submit </button>  
-     <h1 className='text-white text-lg'> You  have no  account  ?  <Link to={'/signup'} className='text-blue-500 hover:text-blue-400 font-semibold'> Create account  </Link> </h1>
+     <h1 className='text-black text-lg'> You  have no  account  ?  <Link to={'/signup'} className='text-blue-500 hover:text-blue-400 font-semibold'> Create account  </Link> </h1>
      </div>
      
    </form>

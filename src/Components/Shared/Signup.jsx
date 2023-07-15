@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import DefaultLayout from '../../Layout/DefaultLayout';
 import '../../assets/Style/style.css';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 
 
 const Signup = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
-  console.log(watch("example"));
+  const {createUser,loading} = useContext(AuthContext)
+  const [error,setError] = useState(null)
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = data => {
+    // console.log(data)
+    const name = data.name ;
+    const email = data.email ;
+    const password = data.password ;
+    const confirmPassword = data.confirmPassword ;
+    console.log(name,email,password,confirmPassword)
+    if(password !== confirmPassword){
+      setError(`Create password and confirm didn't match ` )
+      return ;
+    }else{
+      setError(null)
+    }
+    createUser(email,password)
+    .then(result => {
+      const userData  = result.user ;
+      console.log(result,userData)
+    } )
+    .catch(err => {
+      console.log(err.message)
+    })
+
+  };
+
     return (
        <DefaultLayout>
          <div id='signup' className='flex items-center'>
@@ -41,6 +66,7 @@ const Signup = () => {
       <input placeholder='Enter your password' {...register("confirmPassword", { required: "Confirm password is required" })} className='input w-full border-slate-300  bg-slate-200' />
       {/* errors will return when field validation fails  */}
       {errors.confirmPassword && <p className='text-red-500'> {errors?.confirmPassword?.message} </p>}
+      <p className='text-red-600'> {error} </p>
      </div>
       
       <div className='mt-4 mb-5 flex gap-x-6 items-center'>

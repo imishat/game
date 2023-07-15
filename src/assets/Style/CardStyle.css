@@ -28,3 +28,12 @@
 .shadow-small{
     box-shadow: rgba(192, 188, 188, 0.25) 0px 14px 28px, rgba(231, 225, 225, 0.22) 0px 10px 10px;
 }
+
+
+/* top fragger card style  */
+.fragger-card{
+    width: 350px;
+    height: 500px;
+    clip-path:  polygon(20% 0%, 80% 0%, 97% 0, 100% 80%, 59% 100%, 44% 100%, 0% 80%, 4% 0);
+ 
+}

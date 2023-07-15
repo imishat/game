@@ -7,7 +7,9 @@ const DisplayLayout = ({children}) => {
         <div>
             <Navbar/>
             <DisplayHeader/>
-            {children}
+           <div className='  px-5'>
+           {children}
+           </div>
         </div>
     );
 };

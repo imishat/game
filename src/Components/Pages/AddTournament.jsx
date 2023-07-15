@@ -5,9 +5,10 @@ import { FaPlus } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import ListItems from '../Utilities/ListItems';
 import Loading from '../Utilities/Loading';
+import { useContext } from 'react';
 
 const AddTournament = () => {
-    
+    // const {tournaments} =  useContext()
   // fetch data using react query 
     const {data ,error,isLoading, refetch} = useQuery('tournaments',fetchTournament);
 
@@ -21,13 +22,12 @@ const AddTournament = () => {
   
     // fetch  Tournament data 
     async function fetchTournament()  {
-        const response = await fetch(`https://pubg-gaming-backend.onrender.com/tournaments`);
+        const response = await fetch(`http://localhost:8000/tournaments`);
         if(!response.ok){
             throw new Error('Failed to fetch  tournament Data')
         }
         return response.json() ;
     }
-console.log(data,'tournament')
     return (
         <Banner> 
         <div className='flex justify-around lg:flex-row flex-col-reverse  '>

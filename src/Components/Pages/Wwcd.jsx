@@ -30,6 +30,7 @@ const Wwcd = () => {
            <h1> WWCD </h1>
             <div className='px-4 grid lg:grid-cols-3 mt-5 '>
                 {FakeData.map((player,i) =>   <SingleStylishCard key={i} player={player} /> )}
+                
               
             </div>
            </section>

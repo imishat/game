@@ -1,14 +1,15 @@
+import React from 'react';
 import { initializeApp } from "firebase/app";
+
 const firebaseConfig = {
-  apiKey:REACT.APP.apiKey,
-  authDomain:REACT.APP.authDomain,
-  projectId:REACT.APP.projectId,
-  storageBucket:REACT.APP.storageBucket,
-  messagingSenderId:REACT.APP.messagingSenderId,
-  appId:REACT.APP.appId,
+  apiKey: "AIzaSyALh7wKX0H1GQBkkg7ZJT5uf2oLV5ou9lY",
+  authDomain: "pubg-gamingproduction.firebaseapp.com",
+  projectId: "pubg-gamingproduction",
+  storageBucket: "pubg-gamingproduction.appspot.com",
+  messagingSenderId: "713506897247",
+  appId: "1:713506897247:web:f81671fb041ddb6297caea",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log(app)
 export default app ;
