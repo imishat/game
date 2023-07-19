@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         element:  <MVP/>
     },
     {
-        path:  '/:id/topfragger',
+        path:  '/topfragger',
         element: <TopFregger/>  
     },
     {

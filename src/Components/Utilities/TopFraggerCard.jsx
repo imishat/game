@@ -3,7 +3,7 @@ import '../../assets/Style/CardStyle.css'
 import '../../assets/Style/BackgroundStyle.css'
 const TopFraggerCard = ({fragger}) => {
     return (
-        <div id='animated-background' className='mx-auto px-4 py-3  fragger-card text-black'>
+        <div id='animated-background' className='w-11/12 mx-auto px-1 py-3  fragger-card text-black'>
           
           <img src={fragger?.photo} className='w-full h-60 mt-5' />
           <div className='w-full h-7 bg-style mt-5'>

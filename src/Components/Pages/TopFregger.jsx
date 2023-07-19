@@ -41,7 +41,7 @@ const TopFregger = () => {
            </div>
            </div>
 
-           <div className='grid grid-cols-3  py-5'>
+           <div className='grid grid-cols-3 justify-between py-5'>
                 {Fraggers.map((fragger) => <TopFraggerCard key={fragger?.id} fragger={fragger} > </TopFraggerCard>)}
             </div>
           </div>

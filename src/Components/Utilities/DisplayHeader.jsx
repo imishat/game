@@ -26,7 +26,7 @@ const DisplayHeader = () => {
 
  // fetch  Tournament data 
  async function fetchTournament()  {
-     const response = await fetch(`http://localhost:8000/tournaments`);
+     const response = await fetch(`https://pubg-gaming-backend.onrender.com/tournaments`);
      if(!response.ok){
          throw new Error('Failed to fetch  tournament Data')
      }
@@ -36,7 +36,7 @@ const DisplayHeader = () => {
  // get groupStage by tournamentid  
  useEffect(()=> {
   if(tournamentId){
-    fetch(`http://localhost:8000/stages?tournament-id=${tournamentId}`)
+    fetch(`https://pubg-gaming-backend.onrender.com/stages?tournament-id=${tournamentId}`)
   .then(res => res.json())
   .then(data => {
     setStageData(data)
@@ -47,7 +47,7 @@ const DisplayHeader = () => {
  // get match by stageid  
  useEffect(()=> {
   if(stageId){
-    fetch(`http://localhost:8000/matches?stage-id=${stageId}`)
+    fetch(`https://pubg-gaming-backend.onrender.com/matches?stage-id=${stageId}`)
   .then(res => res.json())
   .then(data => {
     setMatches(data)
@@ -130,7 +130,7 @@ if(error){
 
          <div  className="flex  text-xl px-1 mt-4 justify-center ">
            <NavLink to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  STANDING</NavLink>
-           <NavLink to={'/top-fragger'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  Top Fragger</NavLink>
+           <NavLink to={'/topfragger'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  Top Fragger</NavLink>
            <NavLink to={'/mvp'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  MVP</NavLink>
            <NavLink to={'/display'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  Display </NavLink>
            <NavLink to={'/schedul'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  SCHEDULE </NavLink>

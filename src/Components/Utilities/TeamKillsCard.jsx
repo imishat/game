@@ -46,7 +46,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
     useEffect(() => {
       if(players.length){
         const playerKills = {} 
-        players.forEach((player) => playerKills[player._id] = player[matchId ] || 0)
+        players.forEach((player) => playerKills[player?._id] = player?.kills?.[matchId ] || 0)
         setlKills(playerKills);
       }
     },[players])
@@ -66,7 +66,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
 
     // Send kills value in database 
    function sendKills(playerId,kill)  {
-      fetch(`http://localhost:8000/matches/kills`, {
+      fetch(`https://pubg-gaming-backend.onrender.com/matches/kills`, {
         method: 'Post',
         headers :  {
           'Content-type':  'application/json'
@@ -82,7 +82,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
   
    // send player id who is dead
    function sendPlayerDead(dead,matchId,playerId,playerName)  {
-    fetch(`http://localhost:8000/matches/dead`, {
+    fetch(`https://pubg-gaming-backend.onrender.com/matches/dead`, {
       method: 'Post',
       headers :  {
         'Content-type':  'application/json'
@@ -101,7 +101,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
 
       // Send rank  value in database 
       function sendRank(rank)  {
-        fetch(`http://localhost:8000/matches/rank`, {
+        fetch(`https://pubg-gaming-backend.onrender.com/matches/rank`, {
           method: 'Post',
           headers :  {
             'Content-type':  'application/json'
@@ -123,8 +123,6 @@ const TeamKillsCard = ({team, matchId,matches}) => {
    }
   
   
-
-  console.log(dead)
     return (
         <div className='text-white  mx-auto '>
         <div className="card rounded-md animated-background border-yellow-300 border shadow-small h-auto lg:w-96 w-96 md:w-80 mt-6" >
