@@ -26,7 +26,7 @@ const DisplayHeader = () => {
 
  // fetch  Tournament data 
  async function fetchTournament()  {
-     const response = await fetch(`https://pubg-gaming-backend.onrender.com/tournaments`);
+     const response = await fetch(`http://localhost:8000/tournaments`);
      if(!response.ok){
          throw new Error('Failed to fetch  tournament Data')
      }
@@ -36,7 +36,7 @@ const DisplayHeader = () => {
  // get groupStage by tournamentid  
  useEffect(()=> {
   if(tournamentId){
-    fetch(`https://pubg-gaming-backend.onrender.com/stages?tournament-id=${tournamentId}`)
+    fetch(`http://localhost:8000/stages?tournament-id=${tournamentId}`)
   .then(res => res.json())
   .then(data => {
     setStageData(data)
@@ -47,7 +47,7 @@ const DisplayHeader = () => {
  // get match by stageid  
  useEffect(()=> {
   if(stageId){
-    fetch(`https://pubg-gaming-backend.onrender.com/matches?stage-id=${stageId}`)
+    fetch(`http://localhost:8000/matches?stage-id=${stageId}`)
   .then(res => res.json())
   .then(data => {
     setMatches(data)
@@ -102,7 +102,7 @@ if(error){
                 <option disabled selected> Select Tournament </option>
                 {tournaments?.map((tournament) => <option  key={tournament._id} value={tournament?._id} >
                  {/* <Link to={`/${tournament?._id}`} className='cursor-pointer'> {tournament.name} </Link> */}
-                 {tournament.name}
+                 {tournament?.name}
                   </option> )}
               </select>
             </div>

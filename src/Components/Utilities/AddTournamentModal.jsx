@@ -8,7 +8,7 @@ const AddTournamentModal = ({refetch}) => {
    const tournamentName = e.target.tournament_name.value ;
    const tournamentLogo = e.target.tournament_logo_url.value ;
    const Tournament = {name:tournamentName,logo:tournamentLogo}
-   fetch('https://pubg-gaming-backend.onrender.com/tournaments',{
+   fetch('http://localhost:8000/tournaments',{
     method: "Post",
     headers: {
       "Content-Type": "application/json"

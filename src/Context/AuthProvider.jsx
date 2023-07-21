@@ -66,6 +66,7 @@ useEffect(()=> {
 const [selectedTournamentId,setSelectedTournamentid] = useState(null)
 const [selectedStageId,setSelectedStageId] = useState(null)
 const [selectedMatchId,setSelectedMatchId] = useState(null)
+const [stageData,setStageData] = useState([])
 
 
     
@@ -76,6 +77,8 @@ const [selectedMatchId,setSelectedMatchId] = useState(null)
             setSelectedStageId,
             selectedMatchId,
             setSelectedMatchId,
+            stageData,
+            setStageData,
             loading,
             user,
             createUser,

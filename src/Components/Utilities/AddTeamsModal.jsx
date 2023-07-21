@@ -26,32 +26,32 @@ const AddTeamsModal = ({refetch}) => {
     const AddTeam = {name,tag,logo,players:[
       {
         name:playerOne,
-        kills:[],
+        kills:{},
         playerImg: playerOneImg
       },
       {
         name:playerTwo,
-        kills:[],
+        kills:{},
         playerImg:playerTwoImg
       },
       {
         name: playerThree,
-        kills:[],
+        kills:{},
         playerImg:  playerThreeImg
       },
       {name:playerFour,
-        kills:[],
+        kills:{},
        playerImg:playerFourImg
       },
       {
        name:  playerFive,
-       kills:[],
+       kills:{},
        playerImg: playerFiveImg
       }
     ]}
     // console.log(AddTeam)
   
-    fetch(`https://pubg-gaming-backend.onrender.com/teams`,{
+    fetch(`http://localhost:8000/teams`,{
       method: "Post",
       headers: {
         "Content-Type": "application/json"

@@ -22,7 +22,7 @@ const AddGroupStage = () => {
    
      // fetch  Tournament data 
      async function fetchGroupStage()  {
-         const response = await fetch(`https://pubg-gaming-backend.onrender.com/stages?tournament-id=${id}`);
+         const response = await fetch(`http://localhost:8000/stages?tournament-id=${id}`);
          if(!response.ok){
              throw new Error('Failed to fetch  groupstage Data')
          }
@@ -32,7 +32,7 @@ const AddGroupStage = () => {
        <Banner> 
          <div className='flex justify-around lg:flex-row flex-col-reverse'>
             <div className='lg:w-9/12 w-full '>
-             <div className='w-full border border-dotted min-h-[80vh] max-h-fit  border-gray-700 mt-5 px-4 pb-10 pt-3'>
+             <div className='w-full  min-h-[80vh] max-h-auto  border-gray-700 mt-5 px-4 pb-10 pt-3'>
              <h3 className=' font-semibold text-3xl text-neutral-100'> Group List : </h3>
              {data?.map((group) => <ListItems key={group?._id} groupStage={group} refetch={refetch}> </ListItems>)}
              </div>

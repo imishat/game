@@ -66,7 +66,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
 
     // Send kills value in database 
    function sendKills(playerId,kill)  {
-      fetch(`https://pubg-gaming-backend.onrender.com/matches/kills`, {
+      fetch(`http://localhost:8000/matches/kills`, {
         method: 'Post',
         headers :  {
           'Content-type':  'application/json'
@@ -82,7 +82,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
   
    // send player id who is dead
    function sendPlayerDead(dead,matchId,playerId,playerName)  {
-    fetch(`https://pubg-gaming-backend.onrender.com/matches/dead`, {
+    fetch(`http://localhost:8000/matches/dead`, {
       method: 'Post',
       headers :  {
         'Content-type':  'application/json'
@@ -101,7 +101,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
 
       // Send rank  value in database 
       function sendRank(rank)  {
-        fetch(`https://pubg-gaming-backend.onrender.com/matches/rank`, {
+        fetch(`http://localhost:8000/matches/rank`, {
           method: 'Post',
           headers :  {
             'Content-type':  'application/json'

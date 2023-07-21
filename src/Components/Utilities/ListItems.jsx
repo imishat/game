@@ -7,7 +7,7 @@ const    ListItems = ({matches,groupStage,tournament,refetch}) => {
    // tournament delete items 
    const tournamentDeleteHandlar = () => {
       console.log(tournament?._id)
-      fetch(`https://pubg-gaming-backend.onrender.com/tournaments/${tournament?._id}`,{
+      fetch(`http://localhost:8000/tournaments/${tournament?._id}`,{
          method: "Delete",
          
         })
@@ -28,7 +28,7 @@ const    ListItems = ({matches,groupStage,tournament,refetch}) => {
 
    // Delete group stage handlar 
    const groupStageDeleteHandlar = () => {
-      fetch(`https://pubg-gaming-backend.onrender.com/stages/${groupStage?._id}`,{
+      fetch(`http://localhost:8000/stages/${groupStage?._id}`,{
          method: "Delete",
          
         })
@@ -49,7 +49,7 @@ const    ListItems = ({matches,groupStage,tournament,refetch}) => {
 
  // Delete matches handlar 
  const matchesDeleteHandlar = () => {
-   fetch(`https://pubg-gaming-backend.onrender.com/matches/${matches?._id}`,{
+   fetch(`http://localhost:8000/matches/${matches?._id}`,{
       method: "Delete",
       
      })

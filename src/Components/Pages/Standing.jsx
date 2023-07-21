@@ -13,6 +13,7 @@ const Standing = () => {
     const [tournamentData,setTournamentData] = useState({})
     const [stageData,setStageData] = useState({})
     const [matchData,setMatchData] = useState([])
+    const [teamData,setTeamData] = useState({});
     // get tournament data by tournament id  
     if(selectedTournamentId == null && selectedStageId  == null){
      toast.error("Please  click display then select  tournament and group")
@@ -21,7 +22,7 @@ const Standing = () => {
     if(selectedTournamentId){
       const FetchTournamentById = async () => {
         try{
-          const response = await fetch(`https://pubg-gaming-backend.onrender.com/tournaments/${selectedTournamentId}`)
+          const response = await fetch(`http://localhost:8000/tournaments/${selectedTournamentId}`)
           const result = await response.json();
           setTournamentData(result[0])
           
@@ -39,7 +40,7 @@ const Standing = () => {
     if(selectedStageId){
       const FetchStageById = async () => {
         try{
-          const response = await fetch(`https://pubg-gaming-backend.onrender.com/stages/${selectedStageId}`)
+          const response = await fetch(`http://localhost:8000/stages/${selectedStageId}`)
           const result = await response.json();
           setStageData(result[0])
           
@@ -52,12 +53,12 @@ const Standing = () => {
     },[selectedStageId])
 
 
-    // get stage data by stage id 
+    // get match data by stage id 
     useEffect(()=> {
      if(selectedStageId){
       const FetchMatchById = async () => {
         try{
-          const response = await fetch(`https://pubg-gaming-backend.onrender.com/matches?stage-id=${selectedStageId}`)
+          const response = await fetch(`http://localhost:8000/matches?stage-id=${selectedStageId}`)
           const result = await response.json();
           setMatchData(result)
         }catch(error){
@@ -68,44 +69,25 @@ const Standing = () => {
      }
     },[selectedStageId])
 
-   const standingTeam = [
-    {
-      "name":"Strong",
-      "logo":  " https://d1csarkz8obe9u.cloudfront.net/posterpreviews/pubg-mobile-gaming-logo-template-design-d18731841390bff7cc342330ee0aded5_screen.jpg?ts=1679738033",
-      "inputRank": 1,
-      "place": 8,
-      "totalPoints": 20,
-      "kills":  4,
-      "totalRank": 14
-    },
-    {
-      "name":"Strong",
-      "logo":  " https://d1csarkz8obe9u.cloudfront.net/posterpreviews/pubg-mobile-gaming-logo-template-design-d18731841390bff7cc342330ee0aded5_screen.jpg?ts=1679738033",
-      "inputRank": 1,
-      "place": 8,
-      "totalPoints": 20,
-      "kills":  4,
-      "totalRank": 14
-    },
-    {
-      "name":"Strong",
-      "logo":  " https://d1csarkz8obe9u.cloudfront.net/posterpreviews/pubg-mobile-gaming-logo-template-design-d18731841390bff7cc342330ee0aded5_screen.jpg?ts=1679738033",
-      "inputRank": 1,
-      "place": 8,
-      "totalPoints": 20,
-      "kills":  4,
-      "totalRank": 14
-    },
-    {
-      "name":"Strong",
-      "logo":  " https://d1csarkz8obe9u.cloudfront.net/posterpreviews/pubg-mobile-gaming-logo-template-design-d18731841390bff7cc342330ee0aded5_screen.jpg?ts=1679738033",
-      "inputRank": 1,
-      "place": 8,
-      "totalPoints": 20,
-      "kills":  4,
-      "totalRank": 14
+// get team data by match id 
+useEffect(()=> {
+  if(selectedMatchId){
+    const FetchTeamByMatchId = async () => {
+      try{
+        const response = await fetch(`http://localhost:8000/standings/match?match-id=${selectedMatchId}`)
+        const result = await response.json();
+        setTeamData(result)
+        
+      }catch(error){
+        console.log(error)
+      }
     }
-   ]
+    FetchTeamByMatchId()
+  }
+   
+  },[selectedMatchId])
+
+
     return (
         <DisplayLayout>
             <div className='bg-linear-rose'>
@@ -149,7 +131,7 @@ const Standing = () => {
 
                 {/* Show other team from #2  */}
             <div className='  col-span-2 px-2'>
-                <StandingTable data={standingTeam} />
+                <StandingTable data={teamData}  />
             </div>
           </section>
 

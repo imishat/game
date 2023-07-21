@@ -22,7 +22,7 @@ const AddTournament = () => {
   
     // fetch  Tournament data 
     async function fetchTournament()  {
-        const response = await fetch(`https://pubg-gaming-backend.onrender.com/tournaments`);
+        const response = await fetch(`http://localhost:8000/tournaments`);
         if(!response.ok){
             throw new Error('Failed to fetch  tournament Data')
         }
@@ -32,7 +32,7 @@ const AddTournament = () => {
         <Banner> 
         <div className='flex justify-around lg:flex-row flex-col-reverse  '>
            <div className=' lg:w-9/12 w-full '>
-            <div className='w-full border border-dotted min-h-[80vh] max-h-fit  border-gray-700 mt-5 px-4 pt-3 pb-10'>
+            <div className='w-full  min-h-[80vh] max-h-auto  border-gray-700 mt-5 px-4 pt-3 pb-10'>
             <h3 className=' font-semibold text-3xl text-neutral-100'> Tournament List : </h3>
               {data?.map((tournament) =>  <ListItems key={tournament._id} tournament={tournament} refetch={refetch} className='text-white'/>  )}
             </div>

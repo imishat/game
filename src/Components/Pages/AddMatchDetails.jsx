@@ -13,7 +13,7 @@ const AddMatchDetails = () => {
     // console.log(groupid,'stage-id')
     // get match details data and show it 
     const {data, isLoading, refetch ,error} = useQuery('match', async () => {
-        const response = await fetch(`https://pubg-gaming-backend.onrender.com/matches?stage-id=${groupid}`);
+        const response = await fetch(`http://localhost:8000/matches?stage-id=${groupid}`);
         if(!response.ok){
             throw new Error("Failed to fetch match data ")
         }
@@ -33,7 +33,7 @@ const AddMatchDetails = () => {
         <Banner> 
          <div className='flex justify-around lg:flex-row flex-col-reverse'>
             <div className='lg:w-9/12 w-full  '>
-             <div className='w-full border border-dotted min-h-[80vh] max-h-fit  border-gray-700 mt-5 px-4 py-3'>
+             <div className='w-full  min-h-[80vh] max-h-auto  border-gray-700 mt-5 px-4 py-3'>
              <h3 className=' font-semibold text-3xl text-neutral-100'> Match List : </h3>
              {data?.map((matches)=> <ListItems key={matches?._id} matches={matches} refetch={refetch} > </ListItems>)}
              </div>

@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../assets/Style/style.css'
 const StandingTable = ({data}) => {
+    console.log(data ,'team data')
+    const [teams,setTeams] = useState([])
+    useEffect(()=> {
+     setTeams(Object.keys(data).map((team)=> (data[team]))
+     )
+    },[data])
+  
+    console.log(teams,'teams')
     return (
         <div>
            <table className=" w-full whitespace-nowrap  ">
@@ -18,17 +26,17 @@ const StandingTable = ({data}) => {
                 </thead>
                 <tbody className='border font-semibold body-col    '>
                     {/* row 1 */}
-                    {data?.map((team, index) => (
-                        <tr key={index} className='h-10 border border-sky-400 '>
-                            <th className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> # {team?.inputRank}   </th>
-                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1 w-[400px]'> {team?.name} </td>
-                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> {team?.place} </td>
-                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1 cursor-pointer '> {team?.totalPoints} </td>
-                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> {team?.kills} </td>
-                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> {team?.totalRank} </td>
+                   
+                        <tr key={data?._id} className='h-10 border border-sky-400 '>
+                            <th className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> #   </th>
+                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1 '> {data?.name} </td>
+                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> </td>
+                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1 cursor-pointer '>  </td>
+                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'>  </td>
+                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> </td>
 
                         </tr>
-                    ))}
+                   
 
 
                 </tbody>

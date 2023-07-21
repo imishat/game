@@ -11,7 +11,7 @@ const AddMatchDetailsModal = ({stageid,refetch}) => {
    const match = {matchNo:matchNo,time:time,chooseMap:chooseMap, name:'hello', 'stage-id':stageid}
    
 
-   fetch(`https://pubg-gaming-backend.onrender.com/matches`,{
+   fetch(`http://localhost:8000/matches`,{
     method: "Post",
     headers: {
       "Content-Type": "application/json"
@@ -62,11 +62,11 @@ const AddMatchDetailsModal = ({stageid,refetch}) => {
                 <label htmlFor=""> Choose  </label>
                 <select type="text" name='chooseMap'  placeholder=" Select" className="select select-bordered w-full mt-1 " >
                   <option  disabled selected value={''} > Choose map ...  </option> 
-                  <option value={'erangel'}> ERANGEL   </option>
-                  <option value={'miramar'}> MIRAMAR  </option>
-                  <option value={'shenok'}> SHENOK  </option>
-                  <option value={'vikendi'}> VIKENDI  </option>
-                  <option value={'livik'}> LIVIK  </option>
+                  <option className='' value={'ERANGEL'}> ERANGEL   </option>
+                  <option className='' value={'MIRAMAR'}> MIRAMAR  </option>
+                  <option className='' value={'SHENOK'}> SHENOK  </option>
+                  <option className='' value={'VIKENDI'}> VIKENDI  </option>
+                  <option className='' value={'LIVIK'}> LIVIK  </option>
                  
                 </select>
               </div>
