@@ -1,14 +1,12 @@
 #tournament-banner{
     /* background-image: url('../images/background/bg-slider.png'); */
-    background-image: url('../images/background/bg-2.jpg');
+    background-image: url('../images/background/pubgteam.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size:cover;
     width: 100%;
     min-height: 90vh;
     max-height: auto;
-    
-    
 
 }
 #background-style{

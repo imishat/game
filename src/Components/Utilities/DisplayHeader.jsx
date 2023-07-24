@@ -11,16 +11,21 @@ const DisplayHeader = () => {
   const { 
     setSelectedTournamentid,
     setSelectedStageId,
-    setSelectedMatchId } = useContext(AuthContext);
+    setSelectedMatchId,
+    selectedStageId,
+    selectedMatchId,
+    setSelectedMatchData,
+
+   } = useContext(AuthContext);
   const [tournamentId,setTournamentId] = useState(null)
   const [stageData,setStageData] = useState([]);
   const [stageId, setStageId]  = useState(null)
   const [matches,setMatches] = useState([]);
   const [matchId,setMatchId] = useState(null);
+  const [matchData,setMatchData] = useState([])
   const navigate = useNavigate()
 
   const {data:tournaments ,error,isLoading, refetch} = useQuery('tournaments',fetchTournament); //  tournament data 
-  // const {data:stages } = useQuery('stages', fetchGroupStage); // group data 
 
 
 
@@ -65,7 +70,6 @@ const handleFilterGroup = (e) => {
   setSelectedTournamentid(selectedTournament)
   navigate(`/${e.target.value}`)
 }
-  // console.log(tournamentId)
 
 
 // Select  group handlar 
@@ -83,7 +87,27 @@ const handleMatch = (e) => {
 }
 
 
-// console.log(matches,'')
+  // get match data by stage id 
+  useEffect(()=> {
+    if(selectedStageId){
+     const FetchMatchById = async () => {
+       try{
+         const response = await fetch(`http://localhost:8000/matches?stage-id=${selectedStageId}`)
+         const result = await response.json();
+         setMatchData(result)
+       }catch(error){
+         console.log(error)
+       }
+     }
+     FetchMatchById()
+    }
+   },[selectedStageId])
+
+   function getMatchData (matchData, selectedMatchId) {
+    return matchData?.find((item)  => item?._id === selectedMatchId)
+   }
+   setSelectedMatchData(getMatchData(matchData, selectedMatchId))  
+
 
 if(isLoading){
   return <Loading/>
@@ -120,7 +144,7 @@ if(error){
               <select className='text-xl border hover:cursor-pointer'  value={matchId} onChange={handleMatch}> 
                 <option disabled selected> Select Match  </option>
                 {matches?.map((match) => <option key={match?._id} value={match?._id} > 
-                  <Link to={`/topfragger`}>M.No {match?.matchNo} </Link>
+                  M.No {match?.matchNo} 
                  </option>)}
               </select>
             </div>

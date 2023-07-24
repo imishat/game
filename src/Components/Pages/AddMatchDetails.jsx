@@ -10,7 +10,6 @@ import Loading from '../Utilities/Loading';
 const AddMatchDetails = () => {
     const {id} = useParams(); //group stage id 
     const [groupid,setGroupid] = useState(id)
-    // console.log(groupid,'stage-id')
     // get match details data and show it 
     const {data, isLoading, refetch ,error} = useQuery('match', async () => {
         const response = await fetch(`http://localhost:8000/matches?stage-id=${groupid}`);

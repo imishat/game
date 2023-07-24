@@ -44,7 +44,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
 
     // Increase or decrease kills  value  
     useEffect(() => {
-      if(players.length){
+      if(players?.length){
         const playerKills = {} 
         players.forEach((player) => playerKills[player?._id] = player?.kills?.[matchId ] || 0)
         setlKills(playerKills);
@@ -60,7 +60,8 @@ const TeamKillsCard = ({team, matchId,matches}) => {
    // Set total points 
     useEffect(() => {
      const totalKillsNumber = parseInt(totalKills)
-     setTotalPoints(totalKillsNumber + parseInt(rank))
+     setTotalPoints(totalKillsNumber + pointTable[parseInt(rank)])
+     console.log(totalKillsNumber , rank,'total')
     },[totalKills,rank])
 
 
@@ -114,6 +115,21 @@ const TeamKillsCard = ({team, matchId,matches}) => {
         })
         
      }   
+
+    // send total points 
+   useEffect(()=>{
+    fetch(`http://localhost:8000/matches/points`, {
+      method: 'Post',
+      headers :  {
+        'Content-type':  'application/json'
+      },
+      body: JSON.stringify({'match-id':matchId,'team-id':team?._id, points:totalPoints})
+    })
+    .then(res =>  res.json())
+    .then(data => {
+      console.log(data,'points')
+    })
+   },[totalPoints])
 
   // handle rank input
    const handleInputNumberChange = (e) => {

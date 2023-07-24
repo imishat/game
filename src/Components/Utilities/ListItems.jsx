@@ -74,13 +74,13 @@ const    ListItems = ({matches,groupStage,tournament,refetch}) => {
 
     return (
         <div>
-             <div className="lg:w-10/12 w-full bg-slate-700 mt-4 grid items-center h-12 text-white rounded-sm px-4">
+             <div className="lg:w-10/12 w-full bg-slate-800 mt-4 grid items-center h-12 text-white rounded-sm px-4">
              {/* Matches list items section  */}
              {matches && 
              <div className='grid grid-cols-4 items-center text-xl '>
              {/* <img src={tournament?.logo} className='w-10 h-10 rounded-full ' /> */}
-             <Link to={`/teams/${matches?._id}`} query={{'match-id':matches?._id}} className='' > Match No: <span className='font-bold'> {matches?.matchNo} </span> </Link>
-             <Link to={`/teams/${matches?._id}`} className='' > Map: <span className='font-bold'> {matches?.chooseMap} </span> </Link> <h2 className=''> Time: <span className="font-bold"> {matches?.time} </span> </h2>
+             <Link to={`/teams/${matches?._id}`} query={{'match-id':matches?._id}} className='hover:text-blue-500' > Match No: <span className='font-bold'> {matches?.matchNo} </span> </Link>
+             <Link to={`/teams/${matches?._id}`} className='hover:text-blue-500' > Map: <span className='font-bold'> {matches?.chooseMap} </span> </Link> <h2 className=''> Time: <span className="font-bold"> {matches?.time} </span> </h2>
              <div className='flex justify-end'>
                 <button className='mr-4 hover:text-red-400 hover:text-lg' onClick={matchesDeleteHandlar}> <FaTrashAlt/> </button>
                 <button className='h-7 w-7 text-center rounded-full hover:bg-gray-500'> <FaPen className='mx-auto hover:text-blue-200  '/> </button>

@@ -5,9 +5,9 @@ import DefaultLayout from '../../Layout/DefaultLayout';
 const Banner = ({children}) => {
     return (
        <DefaultLayout>
-         <div id='tournament-banner' >
-           
-            {children}
+         <div id='tournament-banner' className='' >
+           {children}
+            
         </div>
        </DefaultLayout>
     );
