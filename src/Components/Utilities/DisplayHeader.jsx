@@ -151,15 +151,13 @@ if(error){
           </section>
 
 
-
          <div  className="flex  text-xl px-1 mt-4 justify-center ">
            <NavLink to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  STANDING</NavLink>
            <NavLink to={'/topfragger'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  Top Fragger</NavLink>
            <NavLink to={'/mvp'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  MVP</NavLink>
-           <NavLink to={'/display'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  Display </NavLink>
            <NavLink to={'/schedul'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  SCHEDULE </NavLink>
            <NavLink to={'/next'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  Next </NavLink>
-           <NavLink to={'/overall'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  OverAll </NavLink>
+           <NavLink to={'/overall-topfragger'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  OverAll Top Fragger </NavLink>
            <NavLink to={'/overall-mvp'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  OverAll MVP </NavLink>
            <NavLink to={'/overall-standing'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm '>  Overall Standing </NavLink>
          </div>

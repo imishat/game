@@ -74,10 +74,10 @@ useEffect(()=> {
     return (
         <DisplayLayout>
             <div className='bg-orange-100'>
-           <section className='grid grid-cols-4 '>
+           <section className='grid grid-cols-3 '>
             {/* Left side  */}
-          <div className='col-span-3'>
-          <div className='h-17 w-full  bg-style text-white grid  grid-cols-3'>
+          <div className='col-span-3 px-4'>
+          <div className='h-17 w-full mx-auto   bg-style text-white grid  grid-cols-3'>
            <h1 className='text-4xl text-center font-bold uppercase col-span-2'> Star Of the <span className='text-yellow-500'> match </span> </h1>
            
            <div className='h-17 animated-background col-span-1'>
@@ -95,10 +95,7 @@ useEffect(()=> {
            </div>
           </div>
 
-          {/* right side  */}
-          <div className='columns-1  bg-orange-50'>
-
-          </div>
+         
 
            </section>
            

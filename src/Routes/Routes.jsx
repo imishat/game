@@ -11,11 +11,11 @@ import SignIn from "../Components/Shared/SignIn";
 import MVP from "../Components/Pages/MVP";
 import TopFregger from "../Components/Pages/TopFregger";
 import Next from "../Components/Pages/Next";
-import OverAll from "../Components/Pages/OverAll";
 import OverAllMvp from "../Components/Pages/OverAllMvp";
 import Standing from "../Components/Pages/Standing";
 import OverallStanding from "../Components/Pages/OverallStanding";
 import Schediul from "../Components/Pages/Schediul";
+import OverAllTopFragger from "../Components/Pages/OverAllTopFragger";
 
 const router = createBrowserRouter([
     {
@@ -72,8 +72,8 @@ const router = createBrowserRouter([
       element: <Next/>
     },
     {
-        path: '/overall',
-        element: <OverAll/>
+        path: '/overall-topfragger',
+        element: <OverAllTopFragger/>
     },
     {
         path: '/schedul',

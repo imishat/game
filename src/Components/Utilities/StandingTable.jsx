@@ -6,20 +6,51 @@ const StandingTable = ({tournamentData,matchData, stageData,  teamData,  selecte
   const maxPoints = Math.max(...teamArray);
   const bestTeam = teams?.find(x => x?.points[selectedMatchId] === maxPoints)
   
-  // const data = Array.isArray(teamData)&& teamData?.map(team => console.log(team))
-    
+  const sortTeams = teams?.sort((a, b) => b?.points?.[selectedMatchId] - a?.points?.[selectedMatchId] ) 
+
+  let pointTable = {
+    1: 10,
+    2: 6,
+    3: 5,
+    4: 4,
+    5: 3,
+    6: 2,
+    7: 1,
+    8: 1,
+    9: 0,
+    10: 0,
+    11: 0,
+    12: 0,
+    13: 0,
+    14: 0,
+    15: 0,
+    16: 0,
+    17: 0,
+    18: 0,
+    19: 0,
+    20: 0,
+    21: 0,
+    22: 0,
+    23: 0,
+    24: 0,
+    25: 0,
+
+    "": 0,
+  };
+
+
     return (
         <div>
-            <div className='bg-linear-rose pb-3 lg:px-4'>
+            <div className='bg-linear-rose pb-3 lg:px-4  flex lg:flex-col flex-row'>
                 {/* Top section  */}
-              <section className='grid grid-cols-4'>
+              <section className='grid lg:grid-cols-4 grid-cols-1'>
               
-               <div className='col-span-1 border-none mb-2 mt-2 mx-auto'>
+               <div className='col-span-1 border-none mb-2 mt-2 mx-auto '>
                <img src={tournamentData?.logo} className='w-28 h-24  '/>
               </div>
              
                 
-                <div className='col-span-3  px-2'>
+                <div className='lg:col-span-3 col-span-1  px-2'>
                   <div className='flex justify-between flex-row-reverse'>
                   <h1 className='text-4xl text-center font-semibold'> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1>
                   <h1 className='text-4xl text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
@@ -90,11 +121,18 @@ const StandingTable = ({tournamentData,matchData, stageData,  teamData,  selecte
                 </thead>
                 <tbody className='border font-semibold body-col    '>
                     {/* row 1 */}
-                    {Array.isArray(teamData) && teamData?.map((team,i) =>   <tr key={team?._id} className='h-10 border border-sky-400 '>
+                    {Array.isArray(sortTeams) && sortTeams?.map((team) =>   <tr key={team?._id} className='h-10 border border-sky-400 '>
                             <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> # {team?.rank}  </td>
-                            <td className='flex justify-between  items-center h-10 bg-rose border-2 border-slate-300 py-0 text-center m-1'> <img src={team?.logo} className='w-8 h-8 '/> {team?.name} </td>
-                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> </td>
-                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1 cursor-pointer '>  </td>
+                            <td className=' h-10  bg-rose border-2 border-slate-300 py-0 text-center m-1'> 
+                            <td> <img src={team?.logo} className='w-8 h-10 mr-3'/> </td>
+                            <td className=''>  {team?.name} </td>
+                              </td>
+
+                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> {()=> {
+                                const dataArr = team?.players?.reduce((a, b)  => a?.kills?.[selectedMatchId] + b?.kills?.[selectedMatchId],0)
+                                console.log(dataArr,'arr')
+                            }} </td>
+                            <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1 cursor-pointer '> {pointTable[team?.rank] || 0}  </td>
                             <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'>  </td>
                             <td className='h-10 bg-rose border-2 border-slate-300 py-0 text-center px-0  m-1'> {team?.points[selectedMatchId]} </td>
 
@@ -113,3 +151,9 @@ const StandingTable = ({tournamentData,matchData, stageData,  teamData,  selecte
 };
 
 export default StandingTable;
+
+
+// {team?.players?.reduce((a,b)=> {
+//   console.log(a , b )
+//   return a?.kills?.[selectedMatchId] || 0 + b?.kills?.[selectedMatchId] || 0
+// },team?.players?.[0]?.kills?.[selectedMatchId])}

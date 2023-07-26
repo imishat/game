@@ -96,7 +96,6 @@ if(selectedMatchId){
  
 },[selectedMatchId])
 
-console.log(selectedMatchData,'match')
 // console.log(teamData,'teamdata')
 
     return (
