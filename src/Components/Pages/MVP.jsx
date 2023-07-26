@@ -30,7 +30,6 @@ useEffect(()=> {
      
     },[selectedMatchId])
     
-    console.log(tournamentData,'tournament')
   
     return (
        <DisplayLayout>

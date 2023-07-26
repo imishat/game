@@ -1,21 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import DisplayLayout from '../../Layout/DisplayLayout';
 import { useQuery } from 'react-query';
 import { AuthContext } from '../../Context/AuthProvider';
 import Loading from '../Utilities/Loading';
+import MvpCard from '../Utilities/MvpCard';
 
 const OverAllMvp = () => {
-    const {selectedTournamentId} = useContext(AuthContext)
+    const {selectedTournamentId,  selectedMatchId , selectedStageId} = useContext(AuthContext)
     const {data ,error,isLoading, refetch} = useQuery('overall', fetchOverAllData);
-    if(isLoading){
-       return <Loading/>
-    }  
+    const  [bestPlayer,setBestPlayer] = useState([])
   
-    if(error){
-       return <div> Error: {error.message} </div>
-    }
-  
-   // fetch  Tournament data 
+  //  fetch  Tournament data 
    async function fetchOverAllData()  {
        if(selectedTournamentId){
         const response = await fetch(`http://localhost:8000/standings/overall?tournament-id=${selectedTournamentId}`);
@@ -26,11 +21,31 @@ const OverAllMvp = () => {
        return response.json() ;
        }
    }
-  console.log(data)
+  
+ 
+   useEffect(()=>  {
+    if(data){
+        const playersArr = data?.map(player => player?.kills  || 0)
+        const maxKills = Math.max(...playersArr)
+        const BestPlayer = data?.find(x  => x?.kills === maxKills)
+        setBestPlayer(BestPlayer)
+       }
+   },[data])
+    
+
+
+        if(isLoading){
+            return <Loading/>
+        }  
+
+        if(error){
+            return <div> Error: {error.message} </div>
+        }
+
     return (
         <DisplayLayout>  
          <div>
-            <h1 className='text-4xl text-center'> Overal  MVP </h1>
+           <MvpCard BestPlayer={bestPlayer}/>  
          </div>
         </DisplayLayout>
     );
