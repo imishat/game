@@ -16,6 +16,7 @@ import Standing from "../Components/Pages/Standing";
 import OverallStanding from "../Components/Pages/OverallStanding";
 import Schediul from "../Components/Pages/Schediul";
 import OverAllTopFragger from "../Components/Pages/OverAllTopFragger";
+import Table from "../Components/Utilities/Table";
 
 const router = createBrowserRouter([
     {
@@ -90,6 +91,11 @@ const router = createBrowserRouter([
     {
         path: '/overall-standing',
         element: <OverallStanding/>
+    },
+    {
+      path: '/table',
+      element: <Table/>
+
     },
     
     {

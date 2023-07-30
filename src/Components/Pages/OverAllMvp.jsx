@@ -6,14 +6,14 @@ import Loading from '../Utilities/Loading';
 import MvpCard from '../Utilities/MvpCard';
 
 const OverAllMvp = () => {
-    const {selectedTournamentId,  selectedMatchId , selectedStageId} = useContext(AuthContext)
+    const {selectedMatchId , selectedStageId} = useContext(AuthContext)
     const {data ,error,isLoading, refetch} = useQuery('overall', fetchOverAllData);
     const  [bestPlayer,setBestPlayer] = useState([])
   
   //  fetch  Tournament data 
    async function fetchOverAllData()  {
-       if(selectedTournamentId){
-        const response = await fetch(`http://localhost:8000/standings/overall?tournament-id=${selectedTournamentId}`);
+       if(selectedStageId){
+        const response = await fetch(`http://localhost:8000/standings/overall?stage-id=${selectedStageId}`);
        if(!response.ok){
            throw new Error('Failed to fetch  overall data')
        }
@@ -32,7 +32,7 @@ const OverAllMvp = () => {
        }
    },[data])
     
-
+    console.log(data,'best player')
 
         if(isLoading){
             return <Loading/>

@@ -88,7 +88,7 @@ useEffect(()=> {
            </div>
 
            <div>
-            <h1 className='font-bold text-2xl text-center text-red-500'> {noData} </h1>
+            {/* <h1 className='font-bold text-2xl text-center text-red-500'> {noData} </h1> */}
            <div className='grid grid-cols-3 gap-y-6 justify-between py-5'>
                 {bestPlayers?.slice(0,3).map((player) => <TopFraggerCard key={player?._id} player={player} selectedMatchId={selectedMatchId} > </TopFraggerCard>)}
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MvpCard = ({selectedMatchId,bestPlayer, BestPlayer}) => {
+const MvpCard = ({selectedMatchId,bestPlayer, BestPlayer,tournanmentData}) => {
     return (
         <div>
              {bestPlayer && selectedMatchId &&
@@ -8,7 +8,7 @@ const MvpCard = ({selectedMatchId,bestPlayer, BestPlayer}) => {
               {/* left side  */}
             <div className=''>
             <div>
-              <img src='' className='w-16 h-16 bg-blue-500 ml-3 ' alt='Tournament logo' />
+              <img src={tournanmentData?.logo} className='w-16 h-16  ml-3 '  />
               </div>
   
               <div className='leading-none text-start ml-4'>

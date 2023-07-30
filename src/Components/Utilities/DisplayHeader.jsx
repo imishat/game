@@ -27,8 +27,6 @@ const DisplayHeader = () => {
 
   const {data:tournaments ,error,isLoading, refetch} = useQuery('tournaments',fetchTournament); //  tournament data 
 
-
-
  // fetch  Tournament data 
  async function fetchTournament()  {
      const response = await fetch(`http://localhost:8000/tournaments`);
@@ -62,28 +60,55 @@ const DisplayHeader = () => {
   }
 },[stageId])
 
+ 
 
 //  tournament  select handlar 
-const handleFilterGroup = (e) => {
+useEffect(()=> {
+  const  storedTournamentId = localStorage.getItem('tournamentID')
+   if(storedTournamentId){
+    setTournamentId(storedTournamentId)
+    setSelectedTournamentid(storedTournamentId)   
+   }
+},[])
+const handleSelectTournament = (e) => {
   const selectedTournament = (e.target.value) ;
   setTournamentId(selectedTournament)
-  setSelectedTournamentid(selectedTournament)
+  setSelectedTournamentid(selectedTournament)   
   navigate(`/${e.target.value}`)
+  localStorage.setItem('tournamentID',selectedTournament)
+
 }
 
 
 // Select  group handlar 
-const handleFilterMatch = (e) => { 
+useEffect(()=>  {
+  const storedStageId = localStorage.getItem('stageID')
+  if(storedStageId){
+    setStageId(storedStageId)
+  setSelectedStageId(storedStageId)
+  }
+},[])
+const handleSelectStage = (e) => { 
   const selectedGroupId = (e.target.value); 
   setStageId(selectedGroupId)
   setSelectedStageId(selectedGroupId)
+  localStorage.setItem('stageID',selectedGroupId)
+
 }
 
 // select match handlar 
-const handleMatch = (e) => {
+useEffect(()=>  {
+  const storedMatchId = localStorage.getItem('matchID')
+  if(storedMatchId){
+    setMatchId(storedMatchId)
+    setSelectedMatchId(storedMatchId)
+  }
+},[])
+const handleSelectMatch = (e) => {
   const selectedMatch = e.target.value ;
   setMatchId(selectedMatch);
   setSelectedMatchId(selectedMatch)
+  localStorage.setItem('matchID', selectedMatch)
 }
 
 
@@ -119,10 +144,10 @@ if(error){
     return (
         <div className='mt-5 '>
           {/* dropdown section  */}
-          <section className='flex w-full  justify-between px-6'>
-            <div>
-              <label  className='text-2xl  font-semibold'>  Select Tournament: </label>
-              <select className='text-xl border hover:cursor-pointer'  value={tournamentId} onChange={handleFilterGroup}> 
+          <section className='flex w-full h-auto justify-between lg:flex-row lg:gap-y-0 gap-y-4 flex-col px-6'>
+            <div className=''>
+              <label  className='lg:text-2xl  lg:font-semibold font-bold'>  Select Tournament: </label>
+              <select className='lg:text-xl text-lg border hover:cursor-pointer'  value={tournamentId} onChange={handleSelectTournament}> 
                 <option disabled selected> Select Tournament </option>
                 {tournaments?.map((tournament) => <option  key={tournament._id} value={tournament?._id} >
                  {/* <Link to={`/${tournament?._id}`} className='cursor-pointer'> {tournament.name} </Link> */}
@@ -132,16 +157,16 @@ if(error){
             </div>
 
             <div>
-              <label className='text-2xl font-semibold'>  Select Group  </label>
-              <select className='text-xl border hover:cursor-pointer' value={stageId} onChange={handleFilterMatch} > 
+              <label className='lg:text-2xl lg:font-semibold font-bold'>  Select Group  </label>
+              <select className='lg:text-xl text-lg border hover:cursor-pointer' value={stageId} onChange={handleSelectStage} > 
                 <option disabled selected> Select Group </option>
                 {stageData?.map((stage) => <option key={stage?._id} value={stage?._id} > {stage?.name} </option> )} 
               </select>
             </div>
 
             <div>
-              <label className='text-2xl font-semibold'>  Select Match  </label>
-              <select className='text-xl border hover:cursor-pointer'  value={matchId} onChange={handleMatch}> 
+              <label className='lg:text-2xl  lg:font-semibold font-bold'>  Select Match  </label>
+              <select className='lg:text-xl  text-lg border hover:cursor-pointer'  value={matchId} onChange={handleSelectMatch}> 
                 <option disabled selected> Select Match  </option>
                 {matches?.map((match) => <option key={match?._id} value={match?._id} > 
                   M.No {match?.matchNo} 
@@ -151,15 +176,15 @@ if(error){
           </section>
 
 
-         <div  className="flex  text-xl px-1 mt-4 justify-center ">
-           <NavLink to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  STANDING</NavLink>
-           <NavLink to={'/topfragger'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  Top Fragger</NavLink>
-           <NavLink to={'/mvp'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  MVP</NavLink>
-           <NavLink to={'/schedul'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  SCHEDULE </NavLink>
-           <NavLink to={'/next'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  Next </NavLink>
-           <NavLink to={'/overall-topfragger'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  OverAll Top Fragger </NavLink>
-           <NavLink to={'/overall-mvp'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm'>  OverAll MVP </NavLink>
-           <NavLink to={'/overall-standing'} className='text-neutral-50   px-2 py-1 bg-style rounded-sm '>  Overall Standing </NavLink>
+         <div  className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">
+           <NavLink to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  STANDING</NavLink>
+           <NavLink to={'/topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  Top Fragger</NavLink>
+           <NavLink to={'/mvp'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  MVP</NavLink>
+           <NavLink to={'/schedul'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  SCHEDULE </NavLink>
+           <NavLink to={'/next'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  Next </NavLink>
+           <NavLink to={'/overall-topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  OverAll Top Fragger </NavLink>
+           <NavLink to={'/overall-mvp'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  OverAll MVP </NavLink>
+           <NavLink to={'/overall-standing'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm '>  Overall Standing </NavLink>
          </div>
         </div>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 
 const SingleStylishCard = ({player, match}) => {
+    console.log(match,'m')
 return (
  <div className='mx-auto'>
    {player && 

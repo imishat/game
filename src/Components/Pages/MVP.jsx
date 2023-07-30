@@ -3,11 +3,16 @@ import DisplayLayout from '../../Layout/DisplayLayout';
 import { AuthContext } from '../../Context/AuthProvider';
 import '../../assets/Style/style.css'
 import MvpCard from '../Utilities/MvpCard';
+import { connectAuthEmulator } from 'firebase/auth';
 
 const MVP = () => {
-    const {selectedTournamentId,selectedStageId,selectedMatchId,tournamentData,} = useContext(AuthContext)
+    const {selectedTournamentId,selectedStageId,selectedMatchId} = useContext(AuthContext)
     const [bestPlayer,setBestPlayer] = useState([])
     const [noData,setNoData] = useState('');
+    const [tournanmentData,setTournamentData] = useState(null)
+
+
+   
    // get best three players by match id 
 useEffect(()=> {
     if(!selectedMatchId){
@@ -30,10 +35,27 @@ useEffect(()=> {
      
     },[selectedMatchId])
     
+    useEffect(()=> {
+      if(selectedTournamentId){
+        const FetchTournamentById = async () => {
+          try{
+            const response = await fetch(`http://localhost:8000/tournaments/${selectedTournamentId}`)
+            const result = await response.json();
+            setTournamentData(result[0])
+            
+          }catch(error){
+            console.log(error)
+          }
+        }
+        FetchTournamentById()
+      }
+       
+      },[selectedTournamentId])
   
+      console.log(tournanmentData,'tt')
     return (
        <DisplayLayout>
-         <MvpCard selectedMatchId={selectedMatchId} bestPlayer={bestPlayer} />
+         <MvpCard selectedMatchId={selectedMatchId} bestPlayer={bestPlayer} tournanmentData={tournanmentData} />
        </DisplayLayout>
     );
 };

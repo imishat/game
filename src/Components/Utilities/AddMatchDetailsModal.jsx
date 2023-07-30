@@ -2,13 +2,20 @@ import React, { useRef } from 'react';
 import { toast } from 'react-hot-toast';
 
 const AddMatchDetailsModal = ({stageid,refetch}) => {
+  const currentDate = new Date()
+  const  year = currentDate.getFullYear()
+  const month = String(currentDate.getMonth() + 1 ).padStart(2,'0')
+  const day = currentDate.getDate()
+  const formatDate = `${day}-${month}-${year}`
+ 
+
   const closeButton = useRef()
   const handleAddMatch = (e) => {
    e.preventDefault();
    const matchNo = e.target.matchNo.value ;
    const time = e.target.matchTime.value ;
    const chooseMap = e.target.chooseMap.value ;
-   const match = {matchNo:matchNo,time:time,chooseMap:chooseMap, name:'hello', 'stage-id':stageid}
+   const match = {matchNo:matchNo,time:time,chooseMap:chooseMap, name:'hello', 'stage-id':stageid ,date:formatDate}
    
 
    fetch(`http://localhost:8000/matches`,{

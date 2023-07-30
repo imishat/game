@@ -9,6 +9,7 @@ const Schediul = () => {
     const {selectedStageId} = useContext(AuthContext)
     const [noData,setNoData] = useState('');
 
+ 
     // get match details data and show it 
     const {data, isLoading, refetch ,error} = useQuery('match', async () => {
       
@@ -31,11 +32,10 @@ const Schediul = () => {
    if(error){
     return <div> {error.message} </div>
    }
-    console.log(data,'schedule ')
 
     return (
         <DisplayLayout>
-            <div className='bg-linear-rose w-full'>
+            <div className='bg-linear-rose '>
              <h1 className='text-4xl text-center font-semibold '> Schedule </h1>
              <h1>
                 {noData && <span className='font-semibold'> {noData} </span>}
