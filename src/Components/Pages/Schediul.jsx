@@ -38,9 +38,9 @@ const Schediul = () => {
             <div className='bg-linear-rose '>
              <h1 className='text-4xl text-center font-semibold '> Schedule </h1>
              <h1>
-                {noData && <span className='font-semibold'> {noData} </span>}
+                {/* {noData && <span className='font-semibold'> {noData} </span>} */}
              </h1>
-             <div className='grid grid-cols-3 mt-4 gap-x-5 gap-y-8'>
+             <div className='grid lg:grid-cols-3  md:grid-cols-2 grid-cols-1 pb-10  mt-4 gap-x-5 gap-y-8'>
                 {data?.map((match) => <SingleStylishCard key={match?._id} match={match} > </SingleStylishCard>)}
              </div>
             </div>

@@ -61,19 +61,19 @@ const AddTournament = () => {
              {data?.length? 
               <div className=" mt-4 lg:w-10/12">
               <h1 className='text-xl font-bold text-white text-center'> Page  No: {currentPage} </h1>
-             <div className='flex justify-center mt-4'>
+             <div className='flex justify-center mt-4 '>
              <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className="mr-2 px-3 py-2 rounded-lg bg-blue-500 text-white disabled:bg-gray-300"
+                className="mr-2 px-3 py-2 rounded-lg bg-red-800 cursor-pointer text-white disabled:bg-gray-400"
               >
                 Previous
               </button>
+
               <button
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
-                className="px-3 py-2 rounded-lg bg-blue-500 text-white disabled:bg-gray-300"
-          >
+                className="px-5 py-2 rounded-lg bg-red-800 cursor-pointer text-white disabled:bg-gray-400" >
             Next
           </button>
              </div>
@@ -86,7 +86,7 @@ const AddTournament = () => {
 
            <div className='lg:w-1/5 w-11/12 mx-auto '>
            <div className='mt-5'>
-           <label htmlFor="add_tournament_modal" className="btn-style flex items-center cursor-pointer gap-2 justify-center"> <FaPlus/> Add Tournament </label>
+           <label htmlFor="add_tournament_modal" className="btn-style bg-linear-red flex items-center cursor-pointer gap-2 justify-center"> <FaPlus/> Add Tournament </label>
            </div>
            <AddTournamentModal refetch={refetch}/>
            </div>

@@ -74,7 +74,7 @@ const    ListItems = ({matches,groupStage,tournament,refetch}) => {
 
     return (
         <div>
-             <div className="lg:w-10/12 w-full bg-slate-800 mt-4 grid items-center h-12 text-white rounded-sm px-4">
+             <div className="lg:w-10/12 w-full bg-linear-rose  mt-4 grid items-center h-12 text-white rounded-sm px-4">
              {/* Matches list items section  */}
              {matches && 
             

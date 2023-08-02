@@ -177,14 +177,14 @@ if(error){
 
 
          <div  className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">
-           <NavLink to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  STANDING</NavLink>
-           <NavLink to={'/topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  Top Fragger</NavLink>
-           <NavLink to={'/mvp'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  MVP</NavLink>
-           <NavLink to={'/schedul'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  SCHEDULE </NavLink>
-           <NavLink to={'/next'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  Next </NavLink>
-           <NavLink to={'/overall-topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  OverAll Top Fragger </NavLink>
-           <NavLink to={'/overall-mvp'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm'>  OverAll MVP </NavLink>
-           <NavLink to={'/overall-standing'} className='text-neutral-50   px-2 lg:py-1 bg-style rounded-sm '>  Overall Standing </NavLink>
+           <NavLink to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  STANDING</NavLink>
+           <NavLink to={'/topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  Top Fragger</NavLink>
+           <NavLink to={'/mvp'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  MVP</NavLink>
+           <NavLink to={'/schedul'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  SCHEDULE </NavLink>
+           <NavLink to={'/next'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  Next </NavLink>
+           <NavLink to={'/overall-topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  OverAll Top Fragger </NavLink>
+           <NavLink to={'/overall-mvp'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  OverAll MVP </NavLink>
+           <NavLink to={'/overall-standing'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm '>  Overall Standing </NavLink>
          </div>
         </div>
     );

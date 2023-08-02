@@ -68,19 +68,18 @@ useEffect(()=> {
           }
           FetchStageById()
         }
-        },[selectedStageId])
+        },[selectedStageId]) 
 
-        
     return (
         <DisplayLayout>
             <div className='bg-orange-100'>
            <section className='grid grid-cols-3 '>
             {/* Left side  */}
           <div className='col-span-3 px-4'>
-          <div className='h-17 w-full mx-auto   bg-style text-white grid  grid-cols-3'>
+          <div className='h-17 w-full mx-auto   bg-linear-rose text-white grid  grid-cols-3'>
            <h1 className='text-4xl text-center font-bold uppercase col-span-2'> Star Of the <span className='text-yellow-500'> match </span> </h1>
            
-           <div className='h-17 animated-background col-span-1'>
+           <div className='h-17 bg-linear-rose-reverse col-span-1'>
            <h1 className='text-3xl font-bold'> LEAGUE STAGE  </h1>
            <h3 className='text-2xl font-bold'> Match no: {stageData?.match}/{matchData?.length} </h3>
            
@@ -94,8 +93,6 @@ useEffect(()=> {
             </div>
            </div>
           </div>
-
-         
 
            </section>
            

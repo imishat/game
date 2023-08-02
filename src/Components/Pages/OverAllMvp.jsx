@@ -32,7 +32,7 @@ const OverAllMvp = () => {
        }
    },[data])
     
-    console.log(data,'best player')
+    // console.log(data,'best player')
 
         if(isLoading){
             return <Loading/>

@@ -29,8 +29,8 @@ const OverAllTopFragger = () => {
      }
  }
 
- 
- const sortPlayers = data?.sort((a, b) => b?.kills - a?.kills ) 
+//  sort data largest kills to 
+ const sortPlayers = data?.sort((a, b) => b?.points - a?.points ) 
   
 //  console.log(sortPlayers)
 // console.log(data,'')
