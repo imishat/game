@@ -7,7 +7,7 @@ const    ListItems = ({matches,groupStage,tournament,refetch}) => {
    // tournament delete items 
    const tournamentDeleteHandlar = () => {
       console.log(tournament?._id)
-      fetch(`http://localhost:8000/tournaments/${tournament?._id}`,{
+      fetch(`https://pubg-gaming-backend.onrender.com/tournaments/${tournament?._id}`,{
          method: "Delete",
          
         })
@@ -28,7 +28,7 @@ const    ListItems = ({matches,groupStage,tournament,refetch}) => {
 
    // Delete group stage handlar 
    const groupStageDeleteHandlar = () => {
-      fetch(`http://localhost:8000/stages/${groupStage?._id}`,{
+      fetch(`https://pubg-gaming-backend.onrender.com/stages/${groupStage?._id}`,{
          method: "Delete",
          
         })
@@ -49,7 +49,7 @@ const    ListItems = ({matches,groupStage,tournament,refetch}) => {
 
  // Delete matches handlar 
  const matchesDeleteHandlar = () => {
-   fetch(`http://localhost:8000/matches/${matches?._id}`,{
+   fetch(`https://pubg-gaming-backend.onrender.com/matches/${matches?._id}`,{
       method: "Delete",
       
      })
@@ -123,7 +123,7 @@ const    ListItems = ({matches,groupStage,tournament,refetch}) => {
              
              <div className='flex justify-end'>
                 <button className='mr-4 hover:text-red-400 hover:text-lg'  onClick={tournamentDeleteHandlar}> <FaTrashAlt/> </button>
-                 <button className='h-7 w-7 text-center rounded-full hover:bg-gray-500'> <FaPen className='mx-auto hover:text-blue-200  '/> </button>
+                 <label htmlFor='' className='h-7 w-7 text-center rounded-full hover:bg-gray-500'><FaPen className='mx-auto hover:text-blue-200  '/>  </label>
             </div>
             </div>
            

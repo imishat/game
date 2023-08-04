@@ -29,7 +29,7 @@ const DisplayHeader = () => {
 
  // fetch  Tournament data 
  async function fetchTournament()  {
-     const response = await fetch(`http://localhost:8000/tournaments`);
+     const response = await fetch(`https://pubg-gaming-backend.onrender.com/tournaments`);
      if(!response.ok){
          throw new Error('Failed to fetch  tournament Data')
      }
@@ -39,7 +39,7 @@ const DisplayHeader = () => {
  // get groupStage by tournamentid  
  useEffect(()=> {
   if(tournamentId){
-    fetch(`http://localhost:8000/stages?tournament-id=${tournamentId}`)
+    fetch(`https://pubg-gaming-backend.onrender.com/stages?tournament-id=${tournamentId}`)
   .then(res => res.json())
   .then(data => {
     setStageData(data)
@@ -50,7 +50,7 @@ const DisplayHeader = () => {
  // get match by stageid  
  useEffect(()=> {
   if(stageId){
-    fetch(`http://localhost:8000/matches?stage-id=${stageId}`)
+    fetch(`https://pubg-gaming-backend.onrender.com/matches?stage-id=${stageId}`)
   .then(res => res.json())
   .then(data => {
     setMatches(data)
@@ -69,7 +69,8 @@ useEffect(()=> {
     setTournamentId(storedTournamentId)
     setSelectedTournamentid(storedTournamentId)   
    }
-},[])
+},[setSelectedTournamentid])
+
 const handleSelectTournament = (e) => {
   const selectedTournament = (e.target.value) ;
   setTournamentId(selectedTournament)
@@ -87,7 +88,7 @@ useEffect(()=>  {
     setStageId(storedStageId)
   setSelectedStageId(storedStageId)
   }
-},[])
+},[setSelectedStageId])
 const handleSelectStage = (e) => { 
   const selectedGroupId = (e.target.value); 
   setStageId(selectedGroupId)
@@ -103,7 +104,7 @@ useEffect(()=>  {
     setMatchId(storedMatchId)
     setSelectedMatchId(storedMatchId)
   }
-},[])
+},[setSelectedMatchId])
 const handleSelectMatch = (e) => {
   const selectedMatch = e.target.value ;
   setMatchId(selectedMatch);
@@ -117,7 +118,7 @@ const handleSelectMatch = (e) => {
     if(selectedStageId){
      const FetchMatchById = async () => {
        try{
-         const response = await fetch(`http://localhost:8000/matches?stage-id=${selectedStageId}`)
+         const response = await fetch(`https://pubg-gaming-backend.onrender.com/matches?stage-id=${selectedStageId}`)
          const result = await response.json();
          setMatchData(result)
        }catch(error){
@@ -176,7 +177,7 @@ if(error){
           </section>
 
 
-         <div  className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">
+         <div className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">
            <NavLink to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  STANDING</NavLink>
            <NavLink to={'/topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  Top Fragger</NavLink>
            <NavLink to={'/mvp'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  MVP</NavLink>

@@ -21,7 +21,7 @@ useEffect(()=> {
     }else{
         const FetchThreeBestPlayers = async () => {
             try{
-              const response = await fetch(`http://localhost:8000/standings/fragger?match-id=${selectedMatchId}`)
+              const response = await fetch(`https://pubg-gaming-backend.onrender.com/standings/fragger?match-id=${selectedMatchId}`)
               const result = await response.json();
               setBestPlayer(result)
             //   console.log(result,'best players')
@@ -39,7 +39,7 @@ useEffect(()=> {
       if(selectedTournamentId){
         const FetchTournamentById = async () => {
           try{
-            const response = await fetch(`http://localhost:8000/tournaments/${selectedTournamentId}`)
+            const response = await fetch(`https://pubg-gaming-backend.onrender.com/tournaments/${selectedTournamentId}`)
             const result = await response.json();
             setTournamentData(result[0])
             

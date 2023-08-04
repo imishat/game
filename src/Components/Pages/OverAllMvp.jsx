@@ -13,7 +13,7 @@ const OverAllMvp = () => {
   //  fetch  Tournament data 
    async function fetchOverAllData()  {
        if(selectedStageId){
-        const response = await fetch(`http://localhost:8000/standings/overall?stage-id=${selectedStageId}`);
+        const response = await fetch(`https://pubg-gaming-backend.onrender.com/standings/overall?stage-id=${selectedStageId}`);
        if(!response.ok){
            throw new Error('Failed to fetch  overall data')
        }

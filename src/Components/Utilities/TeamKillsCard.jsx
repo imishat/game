@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaCaretDown, FaMinus, FaPen, FaPlus, FaTrashAlt } from 'react-icons/fa';
 
-const TeamKillsCard = ({team, matchId,matches}) => {
+const TeamKillsCard = ({team, matchId,matches , refetch}) => {
     // console.log(team,'team')
     const { logo, name, tag, players, } = team ;
     const {dead} = matches[0] ;
@@ -57,17 +57,18 @@ const TeamKillsCard = ({team, matchId,matches}) => {
       Object.keys(kills).forEach((kill) => total+=kills[kill] )
       setTotalKills(total)
     },[kills])
+
    // Set total points 
     useEffect(() => {
      const totalKillsNumber = parseInt(totalKills)
-     setTotalPoints(totalKillsNumber + pointTable[parseInt(rank)])
-     console.log(totalKillsNumber , rank,'total')
-    },[totalKills,rank])
+     setTotalPoints(totalKillsNumber + parseInt(pointTable[rank] || 0) )
+    //  console.log(totalKillsNumber , rank,'total')
+    },[totalKills,rank, pointTable])
 
 
     // Send kills value in database 
    function sendKills(playerId,kill)  {
-      fetch(`http://localhost:8000/matches/kills`, {
+      fetch(`https://pubg-gaming-backend.onrender.com/matches/kills`, {
         method: 'Post',
         headers :  {
           'Content-type':  'application/json'
@@ -83,7 +84,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
   
    // send player id who is dead
    function sendPlayerDead(dead,matchId,playerId,playerName)  {
-    fetch(`http://localhost:8000/matches/dead`, {
+    fetch(`https://pubg-gaming-backend.onrender.com/matches/dead`, {
       method: 'Post',
       headers :  {
         'Content-type':  'application/json'
@@ -94,15 +95,16 @@ const TeamKillsCard = ({team, matchId,matches}) => {
     .then(data => {
       if(data.success){
         toast(`${playerName} is dead `)
+        refetch()
       }
-      console.log(data)
+      // console.log(data)
     })
     
  }   
 
       // Send rank  value in database 
       function sendRank(rank)  {
-        fetch(`http://localhost:8000/matches/rank`, {
+        fetch(`https://pubg-gaming-backend.onrender.com/matches/rank`, {
           method: 'Post',
           headers :  {
             'Content-type':  'application/json'
@@ -118,7 +120,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
 
     // send total points 
    useEffect(()=>{
-    fetch(`http://localhost:8000/matches/points`, {
+    fetch(`https://pubg-gaming-backend.onrender.com/matches/points`, {
       method: 'Post',
       headers :  {
         'Content-type':  'application/json'
@@ -127,7 +129,7 @@ const TeamKillsCard = ({team, matchId,matches}) => {
     })
     .then(res =>  res.json())
     .then(data => {
-      console.log(data,'points')
+      // console.log(data,'points')
     })
    },[totalPoints])
 
@@ -135,10 +137,12 @@ const TeamKillsCard = ({team, matchId,matches}) => {
    const handleInputNumberChange = (e) => {
     const inputValue = e.target.value ;
     setRank(parseInt(inputValue))
-    sendRank( inputValue) 
+    sendRank(parseInt( inputValue)) 
    }
   
-  
+  //  console.log(typeof(rank))
+   console.log(typeof(totalPoints))
+  //  console.log(typeof(rank) ,'rank ')
     return (
         <div className='text-white  mx-auto '>
         <div className="card rounded-md animated-background border-yellow-300 border shadow-small h-auto lg:w-96 w-96 md:w-80 mt-6" >
@@ -202,9 +206,9 @@ const TeamKillsCard = ({team, matchId,matches}) => {
              <div className='w-full h-[2px]  bg-slate-300'>  </div>
              {/* calculate section   */}
              <div className='text-2xl font-semibold text-center'>
-              <h1>Total Kills  = {totalKills} </h1>
+              <h1>Total Kills  = {totalKills || 0} </h1>
               <h1> Rank Points = {pointTable[rank] || 0} </h1>
-              <h1> Total Points = {totalPoints} </h1>
+              <h1> Total Points = { totalPoints} </h1>
              </div>
            </div>
          </div>

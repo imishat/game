@@ -3,6 +3,7 @@ import DisplayLayout from '../../Layout/DisplayLayout';
 import StandingTable from '../Utilities/StandingTable';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useQuery } from 'react-query';
+import Loading from '../Utilities/Loading';
 
 const OverallStanding = () => {
     const {selectedStageId , selectedMatchId} = useContext(AuthContext)
@@ -10,7 +11,7 @@ const OverallStanding = () => {
   //  fetch  Tournament data 
    async function fetchOverAllData()  {
        if(selectedStageId){
-        const response = await fetch(`http://localhost:8000/standings/overall?stage-id=${selectedStageId}`);
+        const response = await fetch(`https://pubg-gaming-backend.onrender.com/standings/overall?stage-id=${selectedStageId}`);
        if(!response.ok){
            throw new Error('Failed to fetch  overall data')
        }
@@ -18,13 +19,16 @@ const OverallStanding = () => {
        return response.json() ;
        }
    }
+   if(isLoading){
+    return <Loading/>
+   }
 
-   console.log(data)
+   console.log(data,'over')
     return (
        <DisplayLayout>
         <div>
-            <h1 className='text-4xl  text-center '> Overall Standing </h1>
-            {/* <StandingTable/> */}
+            {/* <h1 className='text-4xl  text-center '> Overall Standing </h1> */}
+            <StandingTable teams={data} />
         </div>
        </DisplayLayout>
     );

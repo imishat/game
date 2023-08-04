@@ -20,7 +20,7 @@ const OverAllTopFragger = () => {
 //  fetch  Tournament data 
  async function fetchOverAllData()  {
      if(selectedTournamentId){
-      const response = await fetch(`http://localhost:8000/standings/overall?tournament-id=${selectedTournamentId}`);
+      const response = await fetch(`https://pubg-gaming-backend.onrender.com/standings/overall?stage-id=${selectedStageId}`);
      if(!response.ok){
          throw new Error('Failed to fetch  overall data')
      }
@@ -32,8 +32,8 @@ const OverAllTopFragger = () => {
 //  sort data largest kills to 
  const sortPlayers = data?.sort((a, b) => b?.points - a?.points ) 
   
-//  console.log(sortPlayers)
-// console.log(data,'')
+//  console.log(sortPlayers,'top')
+console.log(data,'')
     return (
       <DisplayLayout>  
           <div className='bg-orange-100'>
@@ -48,7 +48,7 @@ const OverAllTopFragger = () => {
            <div>
             {/* <h1 className='font-bold text-2xl text-center text-red-500'> </h1> */}
            <div className='grid grid-cols-3 gap-y-6 justify-between py-5 w-11/12 mx-auto'>
-                {sortPlayers?.slice(0,3).map((player) => <TopFraggerCard key={player?._id} playerData={player}  > </TopFraggerCard>)}
+                {data?.slice(0,3).map((player) => <TopFraggerCard key={player?._id} playerData={player}  > </TopFraggerCard>)}
             </div>
            </div>
           </div>

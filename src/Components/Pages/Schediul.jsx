@@ -16,7 +16,7 @@ const Schediul = () => {
         if(!selectedStageId){
             setNoData(" Please select tournament and group")
         }else{
-            const response = await fetch(`http://localhost:8000/matches?stage-id=${selectedStageId}`);
+            const response = await fetch(`https://pubg-gaming-backend.onrender.com/matches?stage-id=${selectedStageId}`);
             if(!response.ok){
                 throw new Error("Failed to fetch match data ")
             }

@@ -5,9 +5,10 @@ import '../../assets/Style/Table.css'
 
 const StandingTable = ({tournamentData, matchData, stageData,  teamData,  selectedMatchId, selectedStageId, teams,selectedMatchData}) => {
   // get maxpoints team 
-  const teamArray = teams?.map(item => item?.points[selectedMatchId])
+  const teamArray = teams?.map(item => item?.points[selectedMatchId] || item?.points)
   const maxPoints = Math.max(...teamArray);
-  const bestTeam = teams?.find(x => x?.points[selectedMatchId] === maxPoints)
+  const bestTeam = teams?.find(x => x?.points[selectedMatchId] === maxPoints || x?.points === maxPoints)
+  
   
   
   // sort data by points max to  min 
@@ -62,38 +63,32 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
     }
   }
 
-  
-
-
-const number  = [ 10, 20, 20, 40, 50]
-const calculate = (numbers) => {
-  return numbers?.reduce((a , b) => a + b  ,  0)
-} 
-const [sum , setSum ] = useState(calculate(number))
-
+  console.log(teams,'teams')
     return (
         <div>
-            <div className='bg-linear-rose h-auto pb-3 lg:px-4 '>
+            <div className='bg-linear-rose h-auto pb-6 pt-3 lg:px-4 '>
                 {/* Top section  */}
+             {tournamentData &&
               <section className='grid lg:grid-cols-4 grid-cols-1'>
               
-               <div className='col-span-1 border-none mb-2 mt-2 mx-auto flex lg:gap-x-0 gap-x-4'>
-               <img src={tournamentData?.logo} className='lg:w-28 lg:h-24 w-20  h-20 '/>
-               <div className='lg:hidden flex flex-col-reverse items-start'>
-                  <h1 className='lg:text-4xl text-2xl text-center font-semibold '> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1>
-                  <h1 className='lg:text-4xl text-2xl  text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
-                  </div>
-              </div>
-             
-                
-                <div className='lg:col-span-3 col-span-1  px-2'>
-                  <div className='lg:flex xl:flex hidden lg:justify-between justify-around flex-row-reverse'>
-                  <h1 className='lg:text-4xl text-2xl text-center font-semibold '> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1>
-                  <h1 className='lg:text-4xl text-2xl  text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
-                  </div>
-                  <h1 className='lg:text-5xl text-3xl  font-bold uppercase text-white lg:text-start text-center lg:mb-0 mb-2'> Match Standing  </h1>
-                </div>
-              </section>
+              <div className='col-span-1 border-none mb-2 mt-2 mx-auto flex lg:gap-x-0 gap-x-4'>
+              <img src={tournamentData?.logo} className='lg:w-28 lg:h-24 w-20  h-20 '/>
+              <div className='lg:hidden flex flex-col-reverse items-start'>
+                 <h1 className='lg:text-4xl text-2xl text-center font-semibold '> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1>
+                 <h1 className='lg:text-4xl text-2xl  text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
+                 </div>
+             </div>
+            
+               
+               <div className='lg:col-span-3 col-span-1  px-2'>
+                 <div className='lg:flex xl:flex hidden lg:justify-between justify-around flex-row-reverse'>
+                 <h1 className='lg:text-4xl text-2xl text-center font-semibold '> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1>
+                 <h1 className='lg:text-4xl text-2xl  text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
+                 </div>
+                 <h1 className='lg:text-5xl text-3xl  font-bold uppercase text-white lg:text-start text-center lg:mb-0 mb-2'> Match Standing  </h1>
+               </div>
+             </section>
+             }
               
               {/* best  Team section left side   */}
               <section className='grid lg:grid-cols-3  lg:gap-x-4'>
@@ -130,8 +125,8 @@ const [sum , setSum ] = useState(calculate(number))
                     style={{height:"67px",fontfamily:"teko", zIndex: 10,fontWeight:"600",display:"flex",justifyContent:"space-between",alignItems:'center',clipPath:" polygon(0% 0%, 100% 0%, 100% 88.75%, 79.49% 88.86%, 76.92% 100%, 3.63% 100%, 0% 76.97%)"}}>
                     <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}>Place <span className='text-2xl'> 0 </span> </h2> 
                     <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Rank Pts <span className='text-2xl'> 0 </span>  </h2> 
-                    <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Elims <span className='text-2xl'> 0 </span> </h2> 
-                    <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Total Pts <span className='text-2xl'> {bestTeam?.points[selectedMatchId]} </span> </h2> 
+                    <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Elims <span className='text-2xl'> {bestTeam?.kills[selectedMatchId] || bestTeam?.kills} </span> </h2> 
+                    <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Total Pts <span className='text-2xl'> {bestTeam?.points[selectedMatchId] || bestTeam?.points} </span> </h2> 
                 </div>
                </div>
              </div>
@@ -159,10 +154,10 @@ const [sum , setSum ] = useState(calculate(number))
 				<tr key={team?._id} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
 					<td className="border-grey-light border hover:bg-gray-100 p-3"> # {team?.rank} </td>
 					<td className="border-grey-light border hover:bg-gray-100 px-3 h-8 flex justify-between items-center"> <img src={team?.logo}  className='h-8 w-8' /> {team?.name} </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3">J </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3">J </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3 "></td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3 "> {team?.points[selectedMatchId]} </td>
+					<td className="border-grey-light border hover:bg-gray-100 p-3">0 </td>
+					<td className="border-grey-light border hover:bg-gray-100 p-3">0   </td>
+					<td className="border-grey-light border hover:bg-gray-100 p-3 "> {team?.kills} </td>
+					<td className="border-grey-light border hover:bg-gray-100 p-3 "> {team?.points[selectedMatchId] || team?.points } </td>
 				</tr>
       )}
 			

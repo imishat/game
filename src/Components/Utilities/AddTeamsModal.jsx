@@ -51,7 +51,7 @@ const AddTeamsModal = ({refetch}) => {
     ]}
     // console.log(AddTeam)
   
-    fetch(`http://localhost:8000/teams`,{
+    fetch(`https://pubg-gaming-backend.onrender.com/teams`,{
       method: "Post",
       headers: {
         "Content-Type": "application/json"

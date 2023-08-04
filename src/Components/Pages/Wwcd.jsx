@@ -4,22 +4,17 @@ import '../../assets/Style/BackgroundStyle.css'
 const Wwcd = () => {
   
 
-
-
-
     return (
-      
     <DefaultLayout>
     {/* background section  */}
-    <section  className=' h-[85vh] w-full bg-orange-100' >
+    <section  className=' h-[90vh] w-full bg-orange-100' >
         {/* Inner  section  */}
         <div className=' h-full grid grid-cols-12 items-center w-full  '>
           
          {/* Left side live section start  */}
-         <section className='col-span-10 flex justify-center items-end bg-orange-300 h-full'>
+         <section className='col-span-10 flex justify-center items-end bg-orange-100 h-full'>
            <div
-            className=' h-36 w-80 p-4 gap-x-3 bg-orange-600 flex  items-center'
-            >
+            className=' h-36 w-80 p-4 gap-x-3 bg-orange-400 flex  items-center' >
             <img src='https://i.pinimg.com/originals/11/09/52/1109528a8206ea6b777b84bc5bdaaec6.jpg' className='w-24  h-28' />
             <div className='bg-orange-400 w-60 h-24 '>
               <h1 className='font-bold  text-xl bg-white p-2'>  Grand Final   </h1>
@@ -29,11 +24,9 @@ const Wwcd = () => {
          </section>
          {/* Left side live section start  */}
 
-
           {/* Right side alive status section start here  */}
         <div className='h-[50vh]  bg-deep-rose col-span-2 rounded-tl-xl rounded-bl-xl'>
         <h1 className='text-2xl  font-bold text-white text-center py-3 '> Alive status </h1>
-
         <div className='h-[60vh] w-48  bg-rose rounded-tl-xl rounded-bl-xl float-right '>
             <div className='bg-yellow  w-full bg-white flex justify-between py-1 border font-semibold'>
                 <h1> Team  </h1>
@@ -58,11 +51,8 @@ const Wwcd = () => {
         </div>
            {/* Right side alive status section end here  */}
              
-          
         </div>
     
-        
-       
     </section>
     </DefaultLayout>
     );

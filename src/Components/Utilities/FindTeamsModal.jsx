@@ -21,7 +21,7 @@ const FindTeamsModal = ({data,isLoading,matchId , setRandom }) => {
    console.log(selectedIds)
    const teamId = {'teams':selectedIds, 'match-id':matchId}
    try{
-     const response = await fetch(`http://localhost:8000/matches/add-team`,{
+     const response = await fetch(`https://pubg-gaming-backend.onrender.com/matches/add-team`,{
       method: "Post",
       headers:{
         'Content-type': 'application/json',
@@ -35,6 +35,7 @@ const FindTeamsModal = ({data,isLoading,matchId , setRandom }) => {
      else setRandom(Math.random())
      const filterTeamData = await response.json();
      setFilterdTeam(filterTeamData)
+     closeButton.current.click()
    }catch(err){
     console.error(err)
    }
@@ -67,7 +68,7 @@ const FindTeamsModal = ({data,isLoading,matchId , setRandom }) => {
             </div>  
            
             <div className="modal-action">
-            <label ref={closeButton} htmlFor="find_teams_modal" className="bg-rose-500 text-white px-4 py-1 rounded-md hover:bg-rose-600 cursor-pointer"> Close </label>
+            <label   ref={closeButton}  htmlFor="find_teams_modal" className="bg-rose-500 text-white px-4 py-1 rounded-md hover:bg-rose-600 cursor-pointer"> Close </label>
              <input type='submit' value={'Submit'} className='px-4 py-1 border rounded-md bg-blue-500 hover:bg-blue-600 text-white cursor-pointer' />
             </div>
             </form>

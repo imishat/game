@@ -21,7 +21,7 @@ useEffect(()=> {
     }else{
         const FetchThreeBestPlayers = async () => {
             try{
-              const response = await fetch(`http://localhost:8000/standings/fragger?match-id=${selectedMatchId}`)
+              const response = await fetch(`https://pubg-gaming-backend.onrender.com/standings/fragger?match-id=${selectedMatchId}`)
               const result = await response.json();
               setBestPlayers(result)
             //   console.log(result,'best players')
@@ -41,7 +41,7 @@ useEffect(()=> {
      if(selectedStageId){
       const FetchMatchById = async () => {
         try{
-          const response = await fetch(`http://localhost:8000/matches?stage-id=${selectedStageId}`)
+          const response = await fetch(`https://pubg-gaming-backend.onrender.com/matches?stage-id=${selectedStageId}`)
           const result = await response.json();
           setMatchData(result)
         }catch(error){
@@ -58,7 +58,7 @@ useEffect(()=> {
         if(selectedStageId){
           const FetchStageById = async () => {
             try{
-              const response = await fetch(`http://localhost:8000/stages/${selectedStageId}`)
+              const response = await fetch(`https://pubg-gaming-backend.onrender.com/stages/${selectedStageId}`)
               const result = await response.json();
               setStageData(result[0])
               

@@ -11,7 +11,7 @@ const AddGroupStageModal = ({tournamentId,refetch}) => {
    const groupStage = {name:groupStageName, match:matchNumer , 'tournament-id':tournamentId}
    
 
-   fetch(`http://localhost:8000/stages`,{
+   fetch(`https://pubg-gaming-backend.onrender.com/stages`,{
     method: "Post",
     headers: {
       "Content-Type": "application/json"
