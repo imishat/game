@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaCaretDown, FaMinus, FaPen, FaPlus, FaTrashAlt } from 'react-icons/fa';
+import { sendPayload, } from '../../socket-connection';
 
 const TeamKillsCard = ({team, matchId,matches , refetch}) => {
     // console.log(team,'team')
@@ -68,6 +69,13 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
 
     // Send kills value in database 
    function sendKills(playerId,kill)  {
+    // sends via web socket...
+    sendPayload({
+      flag: 'SEND_KILLS',
+      matchId: matchId,
+      playerId: playerId,
+      kills: kills,
+    });
       fetch(`https://pubg-gaming-backend.onrender.com/matches/kills`, {
         method: 'Post',
         headers :  {
@@ -84,6 +92,14 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
   
    // send player id who is dead
    function sendPlayerDead(dead,matchId,playerId,playerName)  {
+    // sends via web socket...
+    sendPayload({
+      flag: 'SEND_PLAYER_DEAD',
+      matchId: matchId,
+      playerId: playerId,
+      isDead: dead,
+    });
+
     fetch(`https://pubg-gaming-backend.onrender.com/matches/dead`, {
       method: 'Post',
       headers :  {
@@ -104,6 +120,14 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
 
       // Send rank  value in database 
       function sendRank(rank)  {
+        // sends via web socket...
+        sendPayload({
+          flag: 'SEND_RANK',
+          matchId: matchId,
+          teamId: team?._id,
+          rank: rank,
+        });
+
         fetch(`https://pubg-gaming-backend.onrender.com/matches/rank`, {
           method: 'Post',
           headers :  {

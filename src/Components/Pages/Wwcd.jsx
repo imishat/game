@@ -1,8 +1,29 @@
 import { useState } from 'react';
 import DefaultLayout from '../../Layout/DefaultLayout';
 import '../../assets/Style/BackgroundStyle.css'
+import { useEffect } from 'react';
+import { addWebsocketEventListener, } from '../../socket-connection';
+
 const Wwcd = () => {
   
+  // data received from the web socket can be used here...
+  const onPayloadReceivedAsync = async payload => {
+    const { flag, } = payload;
+
+    if (flag === 'SEND_KILLS') {
+
+    } else if (flag === 'SEND_PLAYER_DEAD') {
+
+    } else if (flag === 'SEND_RANK') {
+
+    }
+
+    console.log(payload);
+  };
+
+  useEffect(() => {
+    addWebsocketEventListener(onPayloadReceivedAsync);
+  }, []);
 
     return (
     <DefaultLayout>
