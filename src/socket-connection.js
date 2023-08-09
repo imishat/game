@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
 const WEB_SOCKET_EVENT_NAME = "$$_WEBSOCKET_EVENT_7263_$$";
-const webSocketUrl = 'http://localhost:4000';
+const webSocketUrl = 'http://localhost:8000';
 
 const socketConnection = io(webSocketUrl, {
   autoConnect: true,

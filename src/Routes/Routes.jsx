@@ -61,11 +61,11 @@ const router = createBrowserRouter([
         element: <SignIn/>
     },
     {
-        path: '/mvp',
+        path: '/:id/mvp',
         element:  <MVP/>
     },
     {
-        path:  '/topfragger',
+        path:  '/:id/topfragger',
         element: <TopFregger/>  
     },
     {
@@ -84,6 +84,7 @@ const router = createBrowserRouter([
         path: '/overall-mvp',
         element: <OverAllMvp/>
     },
+ 
     {
         path: '/:id/standing',
         element: <Standing/>

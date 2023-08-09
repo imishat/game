@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "icon": "./src/assets/images/icon1.png",
+    "title": "FINISHES",
+    "result": "5"
+  },
+  {
+    "id": 2,
+    "icon": "./src/assets/images/icon2.png",
+    "title": "finish CONTRIBUTION",
+    "result": "41.67%"
+  },
+  {
+    "id": 3,
+    "icon": "./src/assets/images/icon3.png",
+    "title": "OVERALL MVP RANK",
+    "result": "#1"
+  }
+]

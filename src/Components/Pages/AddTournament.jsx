@@ -15,7 +15,7 @@ const AddTournament = () => {
   
     // fetch  Tournament data 
     async function fetchTournament()  {
-        const response = await fetch(`https://pubg-gaming-backend.onrender.com/tournaments`);
+        const response = await fetch(`http://localhost:8000/tournaments`);
         if(!response.ok){
             throw new Error('Failed to fetch  tournament Data')
         }

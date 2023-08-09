@@ -13,8 +13,8 @@ const OverAllMvp = () => {
   //  fetch  Tournament data 
    async function fetchOverAllData()  {
        if(selectedStageId){
-        const response = await fetch(`https://pubg-gaming-backend.onrender.com/standings/overall?stage-id=${selectedStageId}`);
-       if(!response.ok){
+        const response = await fetch(`http://localhost:8000/standings/overall-topfragger?groupId=${selectedStageId}`)
+        if(!response.ok){
            throw new Error('Failed to fetch  overall data')
        }
        refetch()
@@ -25,9 +25,9 @@ const OverAllMvp = () => {
  
    useEffect(()=>  {
     if(data){
-        const playersArr = data?.map(player => player?.kills  || 0)
+        const playersArr = data?.map(player => player?.totalsKills  || 0)
         const maxKills = Math.max(...playersArr)
-        const BestPlayer = data?.find(x  => x?.kills === maxKills)
+        const BestPlayer = data?.find(x  => x?.totalKills === maxKills)
         setBestPlayer(BestPlayer)
        }
    },[data])
@@ -45,7 +45,7 @@ const OverAllMvp = () => {
     return (
         <DisplayLayout>  
          <div>
-           <MvpCard BestPlayer={bestPlayer}/>  
+           <MvpCard OverallBestPlayer={bestPlayer}/>  
          </div>
         </DisplayLayout>
     );

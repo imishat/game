@@ -63,7 +63,7 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
     }
   }
 
-  console.log(teams,'teams')
+  console.log(teams,'teams') 
     return (
         <div>
             <div className='bg-linear-rose h-auto pb-6 pt-3 lg:px-4 '>
@@ -73,10 +73,7 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
               
               <div className='col-span-1 border-none mb-2 mt-2 mx-auto flex lg:gap-x-0 gap-x-4'>
               <img src={tournamentData?.logo} className='lg:w-28 lg:h-24 w-20  h-20 '/>
-              <div className='lg:hidden flex flex-col-reverse items-start'>
-                 <h1 className='lg:text-4xl text-2xl text-center font-semibold '> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1>
-                 <h1 className='lg:text-4xl text-2xl  text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
-                 </div>
+            
              </div>
             
                
@@ -91,49 +88,12 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
              }
               
               {/* best  Team section left side   */}
-              <section className='grid lg:grid-cols-3  lg:gap-x-4'>
-                {/* Who is best team in the match  */}
-                <div className='col-span-1'>
-                <div className='mx-auto w-full relative' >
-                         
-                <div className='bg-thin-rose lg:w-full lg:h-96 bottom-0 w-11/12 mx-auto'
-                    style={{clipPath:"polygon(49% 5%, 74% 5%, 79% 0%, 96% 0%, 100% 4%, 100% 33%, 98% 34%, 98% 98%, 100% 100%, 0% 100%, 2% 99%, 1% 35%, 0% 33%, 0% 3%, 3% 0%, 21% 0%, 26% 5%)",}}>
-                  <div className='h-[40vh]  flex  '>
-                {/* { teamData.sort(a, b)=> }    */}
-                
-                {(bestTeam?.players?.slice(0,4)?.map((img) => <div key={img?._id}
-                className='w-full lg:h-[20vh] h-[20vh] mt-20'
-                >
-                <img key={img?._id}
-                     style={{position:"absolute",zIndex:1}}
-                      className='w-28 h-[25vh] '
-                      src={img?.playerImg}
-                      alt="" />
-                </div>))}
-                 
-                 </div>
-
-                 <div className='lg:h-[10vh] h-[8vh] '>
-                   <div style={{fontFamily:'teko'}} className='text-3xl font-bold  h-full flex justify-around items-center bg-rose'> <img src={bestTeam?.logo} className='w-10 h-10 rounded-lg' />  {bestTeam?.name} </div>
-                 </div>
-                    {/* <h1 className='text-white'> {teamData?.[1]?.points[selectedMatchId]} </h1> */}
-
-                  
-                </div>
-                 
-                <div className='bg-thin-rose px-2 py-1 lg:w-full w-11/12 mx-auto mt-[1px]'
-                    style={{height:"67px",fontfamily:"teko", zIndex: 10,fontWeight:"600",display:"flex",justifyContent:"space-between",alignItems:'center',clipPath:" polygon(0% 0%, 100% 0%, 100% 88.75%, 79.49% 88.86%, 76.92% 100%, 3.63% 100%, 0% 76.97%)"}}>
-                    <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}>Place <span className='text-2xl'> 0 </span> </h2> 
-                    <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Rank Pts <span className='text-2xl'> 0 </span>  </h2> 
-                    <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Elims <span className='text-2xl'> {bestTeam?.kills[selectedMatchId] || bestTeam?.kills} </span> </h2> 
-                    <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Total Pts <span className='text-2xl'> {bestTeam?.points[selectedMatchId] || bestTeam?.points} </span> </h2> 
-                </div>
-               </div>
-             </div>
+              <section className=' w-full'>
+             
 
 
                 {/* Show other team in  table   */}
-           <div className='  lg:col-span-2 col-span-1 px-2'>
+           <div className='  w-full px-2'>
        <div className="hidden lg:flex items-center justify-center">
 	<div className="container">
 		<table className="w-full flex flex-row flex-no-wrap sm:bg-white sm:hidden rounded-lg overflow-hidden sm:shadow-lg my-5">
@@ -164,7 +124,7 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
       </tbody>
      </table>
          {sortTeams?.length? 
-              <div className=" mt-4 lg:w-10/12">
+              <div className=" mt-4 full">
               <h1 className='text-xl font-bold text-white text-center'> Page  No: {currentPage} </h1>
              <div className='flex justify-center mt-4'>
              <button
@@ -172,14 +132,14 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
                 disabled={currentPage === 1}
                 className="mr-2 px-3 py-2 rounded-lg bg-rose cursor-pointer disabled:hover:text-white hover:text-slate-300 text-white disabled:bg-gray-400"
               >
-                Previous
+                Standing 1
               </button>
               <button
                 onClick={nextPageHandlar}
                 disabled={currentPage === totalPages}
                 className="px-6 py-2 rounded-lg hover:text-slate-300 disabled:hover:text-white bg-rose cursor-pointer text-white disabled:bg-gray-400"
           >
-            Next
+            Standing 2
           </button>
              </div>
             </div>
@@ -191,29 +151,7 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
         {/* large device table show end  */}
 
 
-        {/* small device show table  */}
-        {Array.isArray(currentData) && currentData?.map((team) => 
-         <div key={team?._id} className=' lg:hidden w-full rounded-lg bg-rose mx-auto grid grid-cols-3 mt-6'>
-          <div className='col-span-1'>
-            <div className=' w-full border bg-rose text-white text-start h-10 px-3 rounded-tl-lg'> Rank  </div>
-            <div className=' w-full border bg-rose text-white text-start h-10 px-3'> Team Name </div>
-            <div className=' w-full border bg-rose text-white text-start h-10 px-3'> Place  </div>
-            <div className=' w-full border bg-rose text-white text-start h-10 px-3'> Rank  Pts  </div>
-            <div className=' w-full border bg-rose text-white text-start h-10 px-3'> Elims  </div>
-            <div className=' w-full border bg-rose text-white text-start h-10 px-3 rounded-bl-lg'> Total Pts   </div>
-          </div>
-          
-          <div className='col-span-2 '>
-            <div className='w-full border bg-slate-50 text-slate-900 font-semibold text-start h-10 px-3 rounded-tr-lg'>  {team?.rank} </div>
-            <div className='w-full border bg-slate-50 text-slate-900 font-semibold text-start h-10 px-3'>  {team?.name} </div>
-            <div className='w-full border bg-slate-50 text-slate-900 font-semibold text-start h-10 px-3'>  0 </div>
-            <div className='w-full border bg-slate-50 text-slate-900 font-semibold text-start h-10 px-3'>  0 </div>
-            <div className='w-full border bg-slate-50 text-slate-900 font-semibold text-start h-10 px-3'>  0  </div>
-            <div className='w-full border bg-slate-50 text-slate-900 font-semibold text-start h-10 px-3 rounded-br-lg'>  {team?.points[selectedMatchId]} </div>
-            
-          </div>
-         </div>
-        )}
+       
              </div>
            </section>
            </div>

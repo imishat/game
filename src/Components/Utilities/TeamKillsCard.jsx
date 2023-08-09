@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaCaretDown, FaMinus, FaPen, FaPlus, FaTrashAlt } from 'react-icons/fa';
-import { sendPayload, } from '../../socket-connection';
+import { addWebsocketEventListener, sendPayload, } from '../../socket-connection';
 
-const TeamKillsCard = ({team, matchId,matches , refetch}) => {
+const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  setPlayerDead}) => {
     // console.log(team,'team')
-    const { logo, name, tag, players, } = team ;
+    const { logo, name, tag, players, _id } = team ;
     const {dead} = matches[0] ;
     const [kills,setlKills]  = useState({})  
     const [totalKills,setTotalKills] = useState(0);
     const [rank, setRank] = useState(matches[0]?.[team?._id] || 0) 
     const [totalPoints, setTotalPoints] = useState(0)
+    const [teamData,setTeamData] = useState({})
 
+ 
  let pointTable = {
     1: 10,
     2: 6,
@@ -43,11 +45,30 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
   };
 
 
+    // data received from the web socket can be used here...
+  const onPayloadReceivedAsync = async payload => {
+    const { flag, } = payload;
+
+    if (flag === 'SEND_KILLS') {
+
+    } else if (flag === 'SEND_PLAYER_DEAD') {
+
+    } else if (flag === 'SEND_RANK') {
+
+    }
+
+    console.log(payload);
+  };
+
+  useEffect(() => {
+    addWebsocketEventListener(onPayloadReceivedAsync);
+  }, []);
+
     // Increase or decrease kills  value  
     useEffect(() => {
       if(players?.length){
         const playerKills = {} 
-        players.forEach((player) => playerKills[player?._id] = player?.kills?.[matchId ] || 0)
+        players?.forEach((player) => playerKills[player?._id] = player?.kills?.[matchId ] || 0)
         setlKills(playerKills);
       }
     },[players])
@@ -74,9 +95,9 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
       flag: 'SEND_KILLS',
       matchId: matchId,
       playerId: playerId,
-      kills: kills,
+      kills: kill,
     });
-      fetch(`https://pubg-gaming-backend.onrender.com/matches/kills`, {
+      fetch(`http://localhost:8000/matches/kills`, {
         method: 'Post',
         headers :  {
           'Content-type':  'application/json'
@@ -100,7 +121,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
       isDead: dead,
     });
 
-    fetch(`https://pubg-gaming-backend.onrender.com/matches/dead`, {
+    fetch(`http://localhost:8000/matches/dead`, {
       method: 'Post',
       headers :  {
         'Content-type':  'application/json'
@@ -128,7 +149,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
           rank: rank,
         });
 
-        fetch(`https://pubg-gaming-backend.onrender.com/matches/rank`, {
+        fetch(`http://localhost:8000/matches/rank`, {
           method: 'Post',
           headers :  {
             'Content-type':  'application/json'
@@ -144,7 +165,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
 
     // send total points 
    useEffect(()=>{
-    fetch(`https://pubg-gaming-backend.onrender.com/matches/points`, {
+    fetch(`http://localhost:8000/matches/points`, {
       method: 'Post',
       headers :  {
         'Content-type':  'application/json'
@@ -164,9 +185,27 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
     sendRank(parseInt( inputValue)) 
    }
   
-  //  console.log(typeof(rank))
-   console.log(typeof(totalPoints))
-  //  console.log(typeof(rank) ,'rank ')
+  //  Deleate team  kills card 
+  const deleteKillsCard = () => {
+    const singleTeamId = teamData?._id ;
+    const teamName = teamData?.name ;
+    const shouldDelete = window.confirm(`Are you sure you want to delete ${teamName}`)
+    console.log(singleTeamId,'team id')
+  //  if(shouldDelete){
+  //    fetch(`http://localhost:8000/matches/${id}`,{
+  //     method:'Delete',
+  //     headers: {
+  //       "content-type":  'application/json'
+  //     },
+
+  //   })
+  //   .then(res => res.json())
+  //   .then(result => {
+  //     console.log(result)
+  //   })
+  //  } 
+  }
+
     return (
         <div className='text-white  mx-auto '>
         <div className="card rounded-md animated-background border-yellow-300 border shadow-small h-auto lg:w-96 w-96 md:w-80 mt-6" >
@@ -182,7 +221,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch}) => {
             <h1 className='text-lg font-medium'> Team Tag: {tag} </h1>
          </div>
           <div className='p-2 flex flex-col'>
-            <button className='w-8 h-8 border rounded-full hover:bg-gray-600 hover:text-red-500  '> <FaTrashAlt className='mx-auto'/> </button>
+            <button onClick={() => deleteKillsCard (setTeamData(team))} className='w-8 h-8 border rounded-full hover:bg-gray-600 hover:text-red-500  '> <FaTrashAlt className='mx-auto'/> </button>
             <button className='w-8 h-8 border rounded-full hover:bg-gray-600 hover:text-blue-500 mt-2'> <FaPen className='mx-auto'/> </button>
           </div>
           </div>

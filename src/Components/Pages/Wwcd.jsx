@@ -5,18 +5,33 @@ import { useEffect } from 'react';
 import { addWebsocketEventListener, } from '../../socket-connection';
 
 const Wwcd = () => {
-  
+  const [state, setState] = useState({});
+  const [kills, setKills] = useState(0);
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
+  const updateState = newState => {
+    setState({
+      ...state,
+      ...newState,
+    });
+  };
+
   // data received from the web socket can be used here...
   const onPayloadReceivedAsync = async payload => {
     const { flag, } = payload;
 
     if (flag === 'SEND_KILLS') {
-
+      
     } else if (flag === 'SEND_PLAYER_DEAD') {
 
     } else if (flag === 'SEND_RANK') {
 
     }
+
+    updateState(payload);
 
     console.log(payload);
   };
@@ -27,6 +42,7 @@ const Wwcd = () => {
 
     return (
     <DefaultLayout>
+      <h1>{kills}</h1>
     {/* background section  */}
     <section  className=' h-[90vh] w-full bg-orange-100' >
         {/* Inner  section  */}

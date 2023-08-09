@@ -1,4 +1,5 @@
 import React from 'react';
+import  bg from '../../assets/images/images/bg.png'
 
 const SingleStylishCard = ({player, match}) => {
     console.log(match,'m')
@@ -8,7 +9,6 @@ return (
     <div style={{width:"400px" ,position:"relative"}}
     className='mx-auto'
     >
-         
         <img 
            style={{position:"absolute",zIndex:1}}
             className='h-96'
@@ -30,8 +30,6 @@ return (
     <div style={{ position:"relative"}}
     className='mx-auto ' >
          
-        
-
         <div className='bg-rose'
             style={{height:"300px",width:"350px",clipPath:"polygon(49% 5%, 74% 5%, 79% 0%, 96% 0%, 100% 4%, 100% 33%, 98% 34%, 98% 98%, 100% 100%, 0% 100%, 2% 99%, 1% 35%, 0% 33%, 0% 3%, 3% 0%, 21% 0%, 26% 5%)",}}>
            <div className='py-4 flex flex-col bg-thin-rose text-3xl font-semibold text-center text-slate-100'>
@@ -43,7 +41,7 @@ return (
             <img 
            style={{position:"absolute",zIndex:1}}
             className='w-full h-full '
-            src={'https://w0.peakpx.com/wallpaper/517/634/HD-wallpaper-pubg-team-with-rifles-pubg.jpg'}
+            src={bg}
             alt="" />
             </div>
         </div>

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "sébastien debs",
+    "image": "../src/assets/images/user1.png",
+    "finishes": 4,
+    "congratulation": "41.67"
+  },
+  {
+    "id": 2,
+    "name": "sébastien debs",
+    "image": "../src/assets/images/user1.png",
+    "finishes": 4,
+    "congratulation": "41.67"
+  },
+  {
+    "id": 3,
+    "name": "sébastien debs",
+    "image": "../src/assets/images/user1.png",
+    "finishes": 4,
+    "congratulation": "41.67"
+  }
+]
