@@ -98,7 +98,7 @@ if(selectedMatchId){
 
 // console.log(teamData,'teamdata')
 
-
+console.log(teams,'teams')
     return (
         <DisplayLayout>
           <StandingTable 

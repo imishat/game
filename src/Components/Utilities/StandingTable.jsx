@@ -132,14 +132,23 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
                 disabled={currentPage === 1}
                 className="mr-2 px-3 py-2 rounded-lg bg-rose cursor-pointer disabled:hover:text-white hover:text-slate-300 text-white disabled:bg-gray-400"
               >
-                Standing 1
+                {selectedMatchId ?
+                <span> Standing 1 </span>
+                :
+                <span>Overall  Standing 1 </span>
+                }
               </button>
               <button
                 onClick={nextPageHandlar}
                 disabled={currentPage === totalPages}
                 className="px-6 py-2 rounded-lg hover:text-slate-300 disabled:hover:text-white bg-rose cursor-pointer text-white disabled:bg-gray-400"
           >
-            Standing 2
+            {selectedMatchId ?
+            <span> Standing 2 </span>
+            :
+            <span>  Overall  Standing 2 </span>
+              
+            }
           </button>
              </div>
             </div>

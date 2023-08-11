@@ -7,6 +7,12 @@ const socketConnection = io(webSocketUrl, {
   autoConnect: true,
 });
 
+const randomId = Math.random() * 1000;
+
+export const getRandomId = () => {
+  return randomId;
+}
+
 /**
  * @param {Object} payload 
  */

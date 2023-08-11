@@ -7,6 +7,19 @@ import {
   QueryClientProvider,
 } from 'react-query'
 import AuthProvider from './Context/AuthProvider.jsx'
+import { addWebsocketEventListener, getRandomId } from './socket-connection.js'
+
+const onPayloadReceivedAsync = payload => {
+  console.log(payload);
+
+  if ("URL_CHANGE" !== payload.flag) { return; }
+  // if (payload.isLoggedIn) { return; }
+
+
+  window.location.href = payload.url;
+};
+
+addWebsocketEventListener(onPayloadReceivedAsync);
 
 const queryClient = new QueryClient()
 

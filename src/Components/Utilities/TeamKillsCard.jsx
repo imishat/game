@@ -12,7 +12,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
     const [rank, setRank] = useState(matches[0]?.[team?._id] || 0) 
     const [totalPoints, setTotalPoints] = useState(0)
     const [teamData,setTeamData] = useState({})
-
+    const [contribution,setContribution] = useState(0)
  
  let pointTable = {
     1: 10,
@@ -89,7 +89,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
 
 
     // Send kills value in database 
-   function sendKills(playerId,kill)  {
+   function sendKills(playerId,kill )  {
     // sends via web socket...
     sendPayload({
       flag: 'SEND_KILLS',
@@ -102,7 +102,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
         headers :  {
           'Content-type':  'application/json'
         },
-        body: JSON.stringify({'match-id':matchId,'player-id':playerId, kills:kill})
+        body: JSON.stringify({'match-id':matchId,'player-id':playerId, kills:kill })
       })
       .then(res =>  res.json())
       .then(data => {
@@ -111,6 +111,34 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
       
    }   
   
+   
+    // Send kills value in database 
+    function sendContribution( matchId, kill , totalKills ,teamID)  {
+      const contribution = kill  / totalKills * 100 
+      console.log(contribution,matchId,'')
+
+      sendPayload({
+        flag: 'SEND_CONTRIBUTION',
+        matchId: matchId,
+        teamId:teamID ,
+        contribution:contribution
+      });
+        fetch(`http://localhost:8000/matches/contribution`, {
+          method: 'Post',
+          headers :  {
+            'Content-type':  'application/json'
+          },
+          body: JSON.stringify({'match-id':matchId, 'team-id':teamID, contribution:contribution})
+        })
+        .then(res =>  res.json())
+        .then(data => {
+          console.log(data,'data')
+         })
+        
+     }   
+
+
+   
    // send player id who is dead
    function sendPlayerDead(dead,matchId,playerId,playerName)  {
     // sends via web socket...
@@ -190,7 +218,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
     const singleTeamId = teamData?._id ;
     const teamName = teamData?.name ;
     const shouldDelete = window.confirm(`Are you sure you want to delete ${teamName}`)
-    console.log(singleTeamId,'team id')
+   
   //  if(shouldDelete){
   //    fetch(`http://localhost:8000/matches/${id}`,{
   //     method:'Delete',
@@ -239,16 +267,17 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
 
                   <button className='border  h-6 hover:text-rose-500 ' disabled={dead?.find(x => x === player?._id)} onClick={()=> {
                     const oldKills = structuredClone(kills)
-                    oldKills[player._id] -=1
+                    oldKills[player?._id] -=1
                     setlKills(oldKills) 
-                    sendKills (player._id,kills[player._id] -1)
+                    sendKills (player?._id,kills[player?._id] -1)
+                    sendContribution(team?._id)
                    }}> <FaMinus/> </button>
-                   <span className='w-10 h-6  bg-white text-black text-center'> { kills[player._id]} </span> 
+                   <span className='w-10 h-6  bg-white text-black text-center'> { kills[player?._id]} </span> 
                    <button className="border h-6 hover:text-blue-400 " disabled={dead?.find(x => x === player?._id)} onClick={()=> {
                     const oldKills = structuredClone(kills)
-                    oldKills[player._id] +=1
+                    oldKills[player?._id] +=1
                     setlKills(oldKills) 
-                     sendKills (player._id,kills[player._id] +1)
+                     sendKills (player?._id,kills[player?._id] +1, totalKills + 1)
                    } }> <FaPlus/> </button>
 
                    </div>

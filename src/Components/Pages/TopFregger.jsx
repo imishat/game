@@ -90,6 +90,7 @@ useEffect(()=> {
   }
    
   },[selectedTournamentId])
+
     return (
         <DisplayLayout>
         

@@ -6,6 +6,7 @@ import { useQuery } from 'react-query';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
+import { getRandomId, sendPayload } from '../../socket-connection';
 
 const DisplayHeader = () => {
   const { 
@@ -15,7 +16,7 @@ const DisplayHeader = () => {
     selectedStageId,
     selectedMatchId,
     setSelectedMatchData,
-
+    user,
    } = useContext(AuthContext);
   const [tournamentId,setTournamentId] = useState(null)
   const [stageData,setStageData] = useState([]);
@@ -24,6 +25,7 @@ const DisplayHeader = () => {
   const [matchId,setMatchId] = useState(null);
   const [matchData,setMatchData] = useState([])
   const navigate = useNavigate()
+  const isLoggedIn = !!user;
 
   const {data:tournaments ,error,isLoading, refetch} = useQuery('tournaments',fetchTournament); //  tournament data 
 
@@ -142,6 +144,22 @@ if(error){
   return <div> Error: {error.message} </div>
 }
 
+const onNavigate = event => {
+  if (typeof event.target?.href !== "string") { return; }
+
+  const url = event.target.href;
+
+  console.log(isLoggedIn);
+
+  if (!isLoggedIn) { return; }
+
+  sendPayload({
+    flag: "URL_CHANGE",
+    url: url,
+    isLoggedIn: isLoggedIn,
+  });
+};
+
     return (
         <div className='mt-5 '>
           {/* dropdown section  */}
@@ -167,7 +185,7 @@ if(error){
 
             <div>
               <label className='lg:text-2xl  lg:font-semibold font-bold'>  Select Match  </label>
-              <select className='lg:text-xl  text-lg border hover:cursor-pointer'  value={matchId} onChange={handleSelectMatch}> 
+              <select className='lg:text-xl  text-lg border hover:cursor-pointer'  value={matchId} onChange={handleSelectMatch} defaultValue={null}> 
                 <option disabled selected> Select Match  </option>
                 {matches?.map((match) => <option key={match?._id} value={match?._id} > 
                   M.No {match?.matchNo} 
@@ -176,17 +194,17 @@ if(error){
             </div>
           </section>
 
-
-         <div className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">
-           <NavLink to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  STANDING</NavLink>
-           <NavLink to={`/${tournamentId}/topfragger`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  Top Fragger</NavLink>
-           <NavLink to={`/${tournamentId}/mvp`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  MVP</NavLink>
-           <NavLink to={'/schedul'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  SCHEDULE </NavLink>
-           <NavLink to={'/next'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  Next </NavLink>
-           <NavLink to={'/overall-topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  OverAll Top Fragger </NavLink>
-           <NavLink to={'/overall-mvp'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  OverAll MVP </NavLink>
-           <NavLink to={'/overall-standing'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm '>  Overall Standing </NavLink>
-         </div>
+        
+        {isLoggedIn && <div className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">
+           <NavLink onClick={onNavigate} to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  STANDING</NavLink>
+           <NavLink onClick={onNavigate} to={`/${tournamentId}/topfragger`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  Top Fragger</NavLink>
+           <NavLink onClick={onNavigate} to={`/${tournamentId}/mvp`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  MVP</NavLink>
+           <NavLink onClick={onNavigate} to={'/schedul'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  SCHEDULE </NavLink>
+           <NavLink onClick={onNavigate} to={'/next'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  Next </NavLink>
+           <NavLink onClick={onNavigate} to={'/overall-topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  OverAll Top Fragger </NavLink>
+           <NavLink onClick={onNavigate} to={'/overall-mvp'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  OverAll MVP </NavLink>
+           <NavLink onClick={onNavigate} to={'/overall-standing'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm '>  Overall Standing </NavLink>
+         </div>}
         </div>
     );
 };
