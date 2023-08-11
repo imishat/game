@@ -161,9 +161,9 @@ const onNavigate = event => {
 };
 
     return (
-        <div className='mt-5 '>
+       <div className='mt-5 '>
           {/* dropdown section  */}
-          <section className='flex w-full h-auto justify-between lg:flex-row lg:gap-y-0 gap-y-4 flex-col px-6'>
+          {isLoggedIn &&  <section className='flex w-full h-auto justify-between lg:flex-row lg:gap-y-0 gap-y-4 flex-col px-6'>
             <div className=''>
               <label  className='lg:text-2xl  lg:font-semibold font-bold'>  Select Tournament: </label>
               <select className='lg:text-xl text-lg border hover:cursor-pointer'  value={tournamentId} onChange={handleSelectTournament}> 
@@ -192,7 +192,7 @@ const onNavigate = event => {
                  </option>)}
               </select>
             </div>
-          </section>
+          </section>}
 
         
         {isLoggedIn && <div className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">

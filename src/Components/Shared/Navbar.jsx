@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FaDesktop, FaHome, FaPlus, FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
+import { AuthContext } from '../../Context/AuthProvider';
 const Navbar = () => {
 
-
+const {user}=useContext(AuthContext)
     const menu = <>
     <li><NavLink className={''} to={"/home"}> <FaHome/> Home </NavLink></li>
     <li><NavLink to={"/wwcd"}> WWCD  </NavLink></li>
@@ -39,8 +40,8 @@ const Navbar = () => {
     <li><NavLink className={'navlink-style'} to={"/display"}> <FaDesktop/> Display  </NavLink></li>
     <li><NavLink className={'navlink-style'} to={"/addteams"}> <FaPlus/> Add Teams  </NavLink></li>
       
-      <li><button className={'navlink-style'}> <FaSignOutAlt/> Logout </button></li>
-      <li><NavLink className={'navlink-style'} to={'/signup'}> <FaSignOutAlt/> Signup </NavLink></li>
+     {   user?.email ? <li><button className={'navlink-style'}> <FaSignOutAlt/> Logout </button></li> : <li><NavLink className={'navlink-style'} to={'/signup'}> <FaSignOutAlt/> Signup </NavLink></li> }
+  
     </ul>
   </div>
  
