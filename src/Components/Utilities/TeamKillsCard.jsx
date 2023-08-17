@@ -57,7 +57,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
 
     }
 
-    console.log(payload);
+   
   };
 
   useEffect(() => {
@@ -89,12 +89,13 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
 
 
     // Send kills value in database 
-   function sendKills(playerId,kill )  {
+   function sendKills(playerId,kill ,player)  {
     // sends via web socket...
     sendPayload({
       flag: 'SEND_KILLS',
       matchId: matchId,
       playerId: playerId,
+      player,
       kills: kill,
     });
       fetch(`http://localhost:8000/matches/kills`, {
@@ -106,7 +107,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
       })
       .then(res =>  res.json())
       .then(data => {
-        console.log(data)
+        
       })
       
    }   
@@ -115,7 +116,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
     // Send kills value in database 
     function sendContribution( matchId, kill , totalKills ,teamID)  {
       const contribution = kill  / totalKills * 100 
-      console.log(contribution,matchId,'')
+    
 
       sendPayload({
         flag: 'SEND_CONTRIBUTION',
@@ -186,7 +187,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
         })
         .then(res =>  res.json())
         .then(data => {
-          console.log(data)
+         
         })
         
      }   
@@ -269,7 +270,7 @@ const TeamKillsCard = ({team, matchId,matches , refetch , PlayerDead  , mID,  se
                     const oldKills = structuredClone(kills)
                     oldKills[player?._id] -=1
                     setlKills(oldKills) 
-                    sendKills (player?._id,kills[player?._id] -1)
+                    sendKills (player?._id,kills[player?._id] -1 ,player.name)
                     sendContribution(team?._id)
                    }}> <FaMinus/> </button>
                    <span className='w-10 h-6  bg-white text-black text-center'> { kills[player?._id]} </span> 

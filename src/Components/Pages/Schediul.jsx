@@ -1,15 +1,45 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import DisplayLayout from '../../Layout/DisplayLayout';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useQuery } from 'react-query';
 import Loading from '../Utilities/Loading';
 import SingleStylishCard from '../Utilities/SingleStylishCard';
 import '../../assets/Style/style.css'
+import { useSearchParams } from 'react-router-dom';
 const Schediul = () => {
-    const {selectedStageId} = useContext(AuthContext)
+    const {selectedStageId,setSelectedTournamentid, setSelectedStageId, setSelectedMatchId} = useContext(AuthContext)
     const [noData,setNoData] = useState('');
+    const [searchParams] = useSearchParams();
+
+
+    useEffect(() => {
+      const tournamentId = searchParams.get('tournamentId');
+      const stageId = searchParams.get('stageId');
+      const matchId = searchParams.get('matchId');
+
+      setSelectedTournamentid(tournamentId);
+      setSelectedStageId(stageId);
+      setSelectedMatchId(matchId);
+    
+
+      // set on localstorage
+      localStorage.setItem('tournamentId', tournamentId);
+      localStorage.setItem('stageId', stageId);
+      localStorage.setItem('matchId', matchId);
+
+    }, [])
 
  
+
+
+
+
+
+
+
+
+
+
     // get match details data and show it 
     const {data, isLoading, refetch ,error} = useQuery('match', async () => {
       

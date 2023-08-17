@@ -7,7 +7,7 @@ import {
   QueryClientProvider,
 } from 'react-query'
 import AuthProvider from './Context/AuthProvider.jsx'
-import { addWebsocketEventListener} from './socket-connection.js'
+import { addWebsocketEventListener } from './socket-connection.js'
 
 const onPayloadReceivedAsync = payload => {
   console.log(payload);
@@ -24,12 +24,12 @@ addWebsocketEventListener(onPayloadReceivedAsync);
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <QueryClientProvider client={queryClient}>
-      {/* <React.StrictMode> */}
-       <AuthProvider>
-           <App />
-       </AuthProvider>
-      {/* </React.StrictMode>, */}
-    </QueryClientProvider>
+  <QueryClientProvider client={queryClient}>
+    {/* <React.StrictMode> */}
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+    {/* </React.StrictMode>, */}
+  </QueryClientProvider>
 
 )

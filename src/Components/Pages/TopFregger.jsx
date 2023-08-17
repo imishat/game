@@ -5,14 +5,51 @@ import '../../assets/Style/style.css';
 import  '../../assets/Style/BackgroundStyle.css'
 import { AuthContext } from '../../Context/AuthProvider';
 import LogoSection from '../Utilities/LogoSection';
+import { useSearchParams } from 'react-router-dom';
 
 const TopFregger = () => {
-    const {selectedMatchId,selectedStageId,selectedTournamentId} = useContext(AuthContext)
+    const {selectedMatchId,selectedStageId,selectedTournamentId,setSelectedTournamentid, setSelectedStageId, setSelectedMatchId} = useContext(AuthContext)
     const [bestPlayers,setBestPlayers] = useState([])
     const [noData,setNoData] = useState('');
     const [matchData,setMatchData] = useState([]) ;
     const [stageData,setStageData] = useState({})
     const [tournamentData,setTournamentData]  = useState()
+
+
+    const [searchParams] = useSearchParams();
+
+    // required code for live update
+    useEffect(() => {
+      const tournamentId = searchParams.get('tournamentId');
+      const stageId = searchParams.get('stageId');
+      const matchId = searchParams.get('matchId');
+
+      setSelectedTournamentid(tournamentId);
+      setSelectedStageId(stageId);
+      setSelectedMatchId(matchId);
+    
+
+      // set on localstorage
+      localStorage.setItem('tournamentId', tournamentId);
+      localStorage.setItem('stageId', stageId);
+      localStorage.setItem('matchId', matchId);
+
+    }, [])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // get best three players by match id 

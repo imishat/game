@@ -4,7 +4,17 @@ import { FaDesktop, FaHome, FaPlus, FaSignInAlt, FaSignOutAlt } from 'react-icon
 import { AuthContext } from '../../Context/AuthProvider';
 const Navbar = () => {
 
-const {user}=useContext(AuthContext)
+const {user,LogOutUser }=useContext(AuthContext)
+
+const signOut = () => {
+  LogOutUser ()
+  .then(() => { })
+  .catch(err => console.log(err));
+};
+
+
+
+
     const menu = <>
     <li><NavLink className={''} to={"/home"}> <FaHome/> Home </NavLink></li>
     <li><NavLink to={"/wwcd"}> WWCD  </NavLink></li>
@@ -40,7 +50,7 @@ const {user}=useContext(AuthContext)
     <li><NavLink className={'navlink-style'} to={"/display"}> <FaDesktop/> Display  </NavLink></li>
     <li><NavLink className={'navlink-style'} to={"/addteams"}> <FaPlus/> Add Teams  </NavLink></li>
       
-     {   user?.email ? <li><button className={'navlink-style'}> <FaSignOutAlt/> Logout </button></li> : <li><NavLink className={'navlink-style'} to={'/signup'}> <FaSignOutAlt/> Signup </NavLink></li> }
+     {   user?.email ? <li><button className={'navlink-style'}  onClick={signOut}> <FaSignOutAlt/> Logout </button></li> : <li><NavLink className={'navlink-style'} to={'/signup'}> <FaSignOutAlt/> Signup </NavLink></li> }
   
     </ul>
   </div>

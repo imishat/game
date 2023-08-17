@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 const auth = getAuth(app)
 const AuthProvider = ({children}) => {
     const [loading,setLoading] = useState(true)
-    const [user,setUser] = useState({})
+    const [user,setUser] = useState(null)
 
     // create user by  email  and password 
     const createUser = (email,password) => {
@@ -42,7 +42,8 @@ const AuthProvider = ({children}) => {
 useEffect(()=> {
     const unsubscribe = onAuthStateChanged(auth, currentUser=>{
         setLoading(false)
-        setUser(currentUser)
+        setUser( currentUser)
+        // setLoading(true)
 
         // the condition work  properly to verify user and access  to login 
 

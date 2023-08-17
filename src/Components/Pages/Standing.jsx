@@ -5,16 +5,39 @@ import { AuthContext } from '../../Context/AuthProvider';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-hot-toast';
 import StandingTable from '../Utilities/StandingTable';
+import { useSearchParams } from 'react-router-dom';
 
 const Standing = () => {
   const navigate = useNavigate()
     //const  tournamentId = 64a9811459adef7a8d9fc300 
-    const {selectedTournamentId,selectedStageId,selectedMatchId,selectedMatchData} = useContext(AuthContext)
+    // required code for live update
+    const {selectedTournamentId,selectedStageId,selectedMatchId,selectedMatchData, setSelectedTournamentid, setSelectedStageId, setSelectedMatchId} = useContext(AuthContext)
     const [stageData,setStageData] = useState({})
     const [matchData,setMatchData] = useState([])
     const [teamData,setTeamData] = useState({});    
     const [teams,setTeams] = useState([])
     const [tournamentData,setTournamentData] = useState({})
+
+    // required code for live update
+    const [searchParams] = useSearchParams();
+
+    // required code for live update
+    useEffect(() => {
+      const tournamentId = searchParams.get('tournamentId');
+      const stageId = searchParams.get('stageId');
+      const matchId = searchParams.get('matchId');
+
+      setSelectedTournamentid(tournamentId);
+      setSelectedStageId(stageId);
+      setSelectedMatchId(matchId);
+    
+
+      // set on localstorage
+      localStorage.setItem('tournamentId', tournamentId);
+      localStorage.setItem('stageId', stageId);
+      localStorage.setItem('matchId', matchId);
+
+    }, [])
 
     useEffect(()=> {
      setTeams(Object.keys(teamData).map((team)=> (teamData[team]))    // set  Team data as a array 
@@ -100,19 +123,24 @@ if(selectedMatchId){
 
 console.log(teams,'teams')
     return (
-        <DisplayLayout>
-          <StandingTable 
-          selectedMatchId={selectedMatchId}
-          selectedStageId={selectedStageId}
-          selectedTournamentId={selectedTournamentId}
-          teams={teams}
-          tournamentData={tournamentData}
-          matchData={matchData}
-          stageData={stageData}
-          teamData={teamData}
-          selectedMatchData={selectedMatchData}
-          />
-        </DisplayLayout>
+        <>
+
+          {/* {JSON.stringify(matchData)} */}
+
+          <DisplayLayout>
+            <StandingTable 
+              selectedMatchId={selectedMatchId}
+              selectedStageId={selectedStageId}
+              selectedTournamentId={selectedTournamentId}
+              teams={teams}
+              tournamentData={tournamentData}
+              matchData={matchData}
+              stageData={stageData}
+              teamData={teamData}
+              selectedMatchData={selectedMatchData}
+            />
+          </DisplayLayout>
+        </>
     );
 };
 

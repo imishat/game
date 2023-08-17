@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import DefaultLayout from '../../Layout/DefaultLayout';
 import { Link } from 'react-router-dom';
-import {getAuth} from 'firebase/auth';
-import app from '../../Firebase/firebase.config';
+
+import  { AuthContext } from '../../Context/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const SignIn = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
-    const auth = getAuth(app)
-    console.log(auth)
+  const {LoginUser}=useContext(AuthContext)
+    const { register, handleSubmit, watch,reset, formState: { errors } } = useForm();
+    // const onSubmit = data => console.log(data);
+    // const auth = getAuth(app)
+    const [loginError, setLoginError] = useState("");
+
+    
+  const  onSubmit = (data) => {
+    
+    LoginUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+    
+        toast.success("Login Successfully");
+        reset();
+      })
+      .catch((err) => {
+   
+        // setLoginError(err.code);
+        toast.error(err.message)
+      });
+  };
     
     return (
         <DefaultLayout>

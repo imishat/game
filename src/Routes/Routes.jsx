@@ -104,4 +104,4 @@ const router = createBrowserRouter([
         element: <div className="text-4xl font-semibold text-center mt-4 text-red-600"> Oopps  ! This routes not found <Link className="text-blue-500 hover:text-blue-700" to={'/'}> Back Home</Link> </div>
     }
 ])
-export default router
+export default router;

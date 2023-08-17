@@ -3,11 +3,13 @@ import '../../assets/Style/style.css'
 import '../../assets/Style/Table.css'
 
 
-const StandingTable = ({tournamentData, matchData, stageData,  teamData,  selectedMatchId, selectedStageId, teams,selectedMatchData}) => {
+const StandingTable = ({tournamentData, matchData, stageData,  teamData,  selectedMatchId, selectedStageId, teams, selectedMatchData}) => {
   // get maxpoints team 
   const teamArray = teams?.map(item => item?.points[selectedMatchId] || item?.points)
   const maxPoints = Math.max(...teamArray);
   const bestTeam = teams?.find(x => x?.points[selectedMatchId] === maxPoints || x?.points === maxPoints)
+
+  console.log("Match data from stading table: ", matchData);
   
   
   
@@ -63,9 +65,14 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
     }
   }
 
+  console.log("currentData", currentData);
+
   console.log(teams,'teams') 
     return (
         <div>
+
+          
+
             <div className='bg-linear-rose h-auto pb-6 pt-3 lg:px-4 '>
                 {/* Top section  */}
              {tournamentData &&

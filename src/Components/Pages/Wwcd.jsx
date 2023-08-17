@@ -19,9 +19,15 @@ const Wwcd = () => {
     });
   };
 
-  // data received from the web socket can be used here...
+  // data received from the web socket can be used here..
+ const array=[]
   const onPayloadReceivedAsync = async payload => {
-    const { flag, } = payload;
+
+   
+    // const { flag, } = payload;
+    console.log(payload)
+    array.push(payload)
+    
 
     if (flag === 'SEND_KILLS') {
       
@@ -32,9 +38,12 @@ const Wwcd = () => {
     }
 
     updateState(payload);
+    
 
-    console.log(payload);
+   
   };
+  console.log(array,'arr')
+  // console.log(array,"array");
 
   useEffect(() => {
     addWebsocketEventListener(onPayloadReceivedAsync);
