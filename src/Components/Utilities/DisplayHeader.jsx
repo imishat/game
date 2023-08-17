@@ -164,6 +164,7 @@ const DisplayHeader = () => {
     });
   };
   // http://localhost:2000/overall-topfragger?tournamentId=adfasdfasdf&stageId=asdfasdfa&matchId=adfasdf
+  const baseUrl="http://localhost:5173"
 
   const copyLinkHanlder = () => {
     const sharableLink = `${baseUrl}${location.pathname}?tournamentId=${tournamentId}&stageId=${stageId}&matchId=${matchId}`;

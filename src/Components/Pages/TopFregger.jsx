@@ -38,20 +38,6 @@ const TopFregger = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // get best three players by match id 
 useEffect(()=> {
     if(!selectedMatchId){

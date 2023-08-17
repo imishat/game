@@ -4,11 +4,35 @@ import { useQuery } from 'react-query';
 import { AuthContext } from '../../Context/AuthProvider';
 import Loading from '../Utilities/Loading';
 import MvpCard from '../Utilities/MvpCard';
+import { useSearchParams } from 'react-router-dom';
 
 const OverAllMvp = () => {
-    const {selectedMatchId , selectedStageId} = useContext(AuthContext)
+    const {selectedMatchId , selectedStageId,setSelectedTournamentid, setSelectedStageId, setSelectedMatchId} = useContext(AuthContext)
     const {data ,error,isLoading, refetch} = useQuery('overall', fetchOverAllData);
     const  [bestPlayer,setBestPlayer] = useState([])
+
+
+
+    const [searchParams] = useSearchParams();
+
+    // required code for live update
+    useEffect(() => {
+      const tournamentId = searchParams.get('tournamentId');
+      const stageId = searchParams.get('stageId');
+      const matchId = searchParams.get('matchId');
+
+      setSelectedTournamentid(tournamentId);
+      setSelectedStageId(stageId);
+      setSelectedMatchId(matchId);
+    
+
+      // set on localstorage
+      localStorage.setItem('tournamentId', tournamentId);
+      localStorage.setItem('stageId', stageId);
+      localStorage.setItem('matchId', matchId);
+
+    }, [])
+
   
   //  fetch  Tournament data 
    async function fetchOverAllData()  {
@@ -45,7 +69,7 @@ const OverAllMvp = () => {
     return (
         <DisplayLayout>  
          <div>
-           <MvpCard OverallBestPlayer={bestPlayer}/>  
+          {data&& <MvpCard OverallBestPlayer={bestPlayer}/>}
          </div>
         </DisplayLayout>
     );

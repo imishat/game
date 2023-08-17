@@ -5,10 +5,35 @@ import Loading from '../Utilities/Loading';
 import { useQuery } from 'react-query';
 import TopFraggerCard from '../Utilities/TopFraggerCard';
 import LogoSection from '../Utilities/LogoSection';
+import { useSearchParams } from 'react-router-dom';
 
 const OverAllTopFragger = () => {
-  const {selectedTournamentId,  selectedMatchId , selectedStageId} = useContext(AuthContext)
+  const {selectedTournamentId,  selectedMatchId , selectedStageId,setSelectedTournamentid, setSelectedStageId,
+    setSelectedMatchId} = useContext(AuthContext)
   const {data ,error,isLoading, refetch} = useQuery('overall', fetchOverAllData);
+
+
+  
+  const [searchParams] = useSearchParams();
+
+  // required code for live update
+  useEffect(() => {
+    const tournamentId = searchParams.get('tournamentId');
+    const stageId = searchParams.get('stageId');
+    const matchId = searchParams.get('matchId');
+
+    setSelectedTournamentid(tournamentId);
+    setSelectedStageId(stageId);
+    setSelectedMatchId(matchId);
+  
+
+    // set on localstorage
+    localStorage.setItem('tournamentId', tournamentId);
+    localStorage.setItem('stageId', stageId);
+    localStorage.setItem('matchId', matchId);
+
+  }, [])
+
 
 //  fetch  Tournament data 
  async function fetchOverAllData()  {
