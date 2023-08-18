@@ -6,6 +6,9 @@ import Loading from '../Utilities/Loading';
 import SingleStylishCard from '../Utilities/SingleStylishCard';
 import '../../assets/Style/style.css'
 import { useSearchParams } from 'react-router-dom';
+
+
+
 const Schediul = () => {
     const {selectedStageId,setSelectedTournamentid, setSelectedStageId, setSelectedMatchId} = useContext(AuthContext)
     const [noData,setNoData] = useState('');

@@ -5,6 +5,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 import { useQuery } from 'react-query';
 import Loading from '../Utilities/Loading';
 import { useSearchParams } from 'react-router-dom';
+import OverAllStandingTable from '../Utilities/overAllStandingTable';
 
 const OverallStanding = () => {
     const {selectedStageId , selectedMatchId,setSelectedTournamentid, setSelectedStageId,
@@ -64,8 +65,9 @@ const OverallStanding = () => {
         <div>
             {/* <h1 className='text-4xl  text-center '> Overall Standing </h1> */}
            {
-            data && <StandingTable teams={data} />
+             data &&   <OverAllStandingTable teams={data} />
            }
+        
         </div>
        </DisplayLayout>
     );

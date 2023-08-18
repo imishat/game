@@ -5,11 +5,12 @@ import { AuthContext } from '../../Context/AuthProvider';
 import Loading from '../Utilities/Loading';
 import MvpCard from '../Utilities/MvpCard';
 import { useSearchParams } from 'react-router-dom';
+import OverAllMVPCard from '../Utilities/OverAllMVPCard';
 
 const OverAllMvp = () => {
     const {selectedMatchId , selectedStageId,setSelectedTournamentid, setSelectedStageId, setSelectedMatchId} = useContext(AuthContext)
     const {data ,error,isLoading, refetch} = useQuery('overall', fetchOverAllData);
-    const  [bestPlayer,setBestPlayer] = useState([])
+    const  [bestPlayer,setBestPlayer] = useState({})
 
 
 
@@ -49,13 +50,14 @@ const OverAllMvp = () => {
  
    useEffect(()=>  {
     if(data){
-        const playersArr = data?.map(player => player?.totalsKills  || 0)
+        const playersArr = data?.map(player => player?.totalKills  )
         const maxKills = Math.max(...playersArr)
         const BestPlayer = data?.find(x  => x?.totalKills === maxKills)
         setBestPlayer(BestPlayer)
        }
    },[data])
     
+
     // console.log(data,'best player')
 
         if(isLoading){
@@ -69,7 +71,7 @@ const OverAllMvp = () => {
     return (
         <DisplayLayout>  
          <div>
-          {data&& <MvpCard OverallBestPlayer={bestPlayer}/>}
+          { <OverAllMVPCard OverallBestPlayer={bestPlayer} /> }
          </div>
         </DisplayLayout>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlayer}) => {
+const OverAllMVPCard = ({ tournanmentData,  OverallBestPlayer}) => {
   console.log(OverallBestPlayer,'overall best  ')
     return (
         <div>
@@ -50,7 +50,7 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
                 {/* title */}
                 <div className='flex justify-around gap-x-6 font-semibold'>
                   
-                  <h2 className="uppercase text-[40px]">   <span className='text-blue-700'> {bestPlayer?.at(0)?.kills?.[selectedMatchId]} </span>
+                  <h2 className="uppercase text-[40px]">   <span className='text-blue-700'> {OverallBestPlayer?.at(0)?.totalKills} </span>
                    Finished  </h2>
                 </div>
                 {/* result */}
@@ -94,7 +94,7 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
             {/* Player imgage  */}
             <div className="  absolute top-0   right-0 h-full">
               <img
-                src={bestPlayer?.at(0)?.playerImg}
+                src={OverallBestPlayer?.at(0)?.playerImg}
                 className=" w-11/12 float-right h-full z-1"
                 alt=""
               />
@@ -108,4 +108,4 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
     );
 };
 
-export default MvpCard;
+export default OverAllMVPCard;
