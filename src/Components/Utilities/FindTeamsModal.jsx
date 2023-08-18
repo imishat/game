@@ -4,28 +4,78 @@ import Loading from "./Loading";
 const FindTeamsModal = ({ data, isLoading, matchId, setRandom }) => {
   const closeButton = useRef();
   const [selectedIds, setSelectedIds] = useState([]);
+  const [selectedTeams, setSelectedTeams] = useState([]);
   const [filterdTeam, setFilterdTeam] = useState([]);
+
+  // const handleCheckbox = (e) => {
+  //   const teamsId = e.target.value;
+  //   const isChecked = e.target.checked;
+  //   if (isChecked) {
+  //     setSelectedIds([...selectedIds, teamsId]);
+  //   }
+  // };
+
+  console.log("Data: ", data);
 
   const handleCheckbox = (e) => {
     const teamsId = e.target.value;
     const isChecked = e.target.checked;
-    if (isChecked) {
-      setSelectedIds([...selectedIds, teamsId]);
-    }
+
+    setSelectedIds((previousState) => {
+      if (isChecked) {
+        if (previousState.includes(teamsId)) {
+          return previousState.filter((item) => item !== teamsId);
+        } else {
+          return [...previousState, teamsId];
+        }
+      } else {
+        return previousState.filter((item) => item !== teamsId);
+      }
+    });
   };
+
+  // handle seleted teams
+  const handleSelectedTeams = (team) => {
+    setSelectedTeams((previousState) => {
+      const isTeamExist = previousState.find((item) => item._id === team._id);
+      if (isTeamExist) {
+        return previousState.filter((item) => item._id !== team._id);
+      } else {
+        return [...previousState, team];
+      }
+    });
+  };
+
+  console.log("Seleted Teams: ", selectedTeams);
+  console.log("Seleted Teams IDs: ", selectedIds);
+
+  console.log("Team data: ", data);
 
   // console.log('teams modal', matchId)
   const handleFindGroup = async (e) => {
     e.preventDefault();
     console.log(selectedIds);
     const teamId = { teams: selectedIds, "match-id": matchId };
+
     try {
       const response = await fetch(`http://localhost:8000/matches/add-team`, {
         method: "Post",
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify(teamId),
+        body: JSON.stringify({
+          teamsPayload: teamId,
+          teams: selectedTeams?.map((item) => {
+            return {
+              _id: item._id,
+              name: item.name,
+              logo: item.logo,
+              status: 4,
+              totalKills: 0,
+              players: item?.players,
+            };
+          }),
+        }),
       });
       if (!response.ok) {
         throw new Error(" Failed to filter teams by id ");
@@ -64,9 +114,15 @@ const FindTeamsModal = ({ data, isLoading, matchId, setRandom }) => {
                 {data?.map((teams) => (
                   <div key={teams?._id}>
                     <input
-                      onChange={handleCheckbox}
+                      onChange={(e) => {
+                        handleCheckbox(e);
+                        handleSelectedTeams(teams);
+                      }}
                       type="checkbox"
-                      checked={selectedIds.includes(teams._id)}
+                      // checked={selectedIds.includes(teams._id)}
+                      checked={selectedTeams?.find(
+                        (item) => item?._id === teams?._id
+                      )}
                       value={teams?._id}
                       className=""
                     />
