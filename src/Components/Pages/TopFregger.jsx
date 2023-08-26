@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import DisplayLayout from '../../Layout/DisplayLayout';
-import TopFraggerCard from '../Utilities/TopFraggerCard';
-import '../../assets/Style/style.css';
-import  '../../assets/Style/BackgroundStyle.css'
-import { AuthContext } from '../../Context/AuthProvider';
-import LogoSection from '../Utilities/LogoSection';
 import { useSearchParams } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
+import DisplayLayout from '../../Layout/DisplayLayout';
+import '../../assets/Style/BackgroundStyle.css';
+import '../../assets/Style/style.css';
+import LogoSection from '../Utilities/LogoSection';
+import TopFraggerCard from '../Utilities/TopFraggerCard';
 
 const TopFregger = () => {
     const {selectedMatchId,selectedStageId,selectedTournamentId,setSelectedTournamentid, setSelectedStageId, setSelectedMatchId} = useContext(AuthContext)
@@ -34,7 +34,7 @@ const TopFregger = () => {
       localStorage.setItem('stageId', stageId);
       localStorage.setItem('matchId', matchId);
 
-    }, [])
+    }, [searchParams,setSelectedMatchId,setSelectedStageId,setSelectedTournamentid])
 
 
 

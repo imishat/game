@@ -1,9 +1,14 @@
 import React from 'react';
 
 const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlayer}) => {
+
+
+  const sortPlayers = bestPlayer?.sort((a, b) => b?.kills[selectedMatchId] - a?.kills[selectedMatchId] )
+
   console.log(bestPlayer,'overall best  ')
 
   const sortPlayers = bestPlayer?.sort((a, b) => b?.kills[selectedMatchId] - a?.kills[selectedMatchId] ) 
+
     return (
         <div>
             
