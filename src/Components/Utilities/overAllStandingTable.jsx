@@ -94,7 +94,7 @@ const OverAllStandingTable = ({tournamentData,  stageData,  teamData,  selectedS
 				<tr className="bg-rose flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
 					<th className="p-3 text-left"> Rank  </th>
 					<th className="p-3 text-left">  Team Name </th>
-					<th className="p-3 text-left">  Place  </th>
+					{/* <th className="p-3 text-left">  Place  </th> */}
 					<th className="p-3 text-left">  Rank Pts </th>
 					<th className="p-3 text-left" > Elims </th>
 					<th className="p-3 text-left" > Total Pts </th>
@@ -102,11 +102,11 @@ const OverAllStandingTable = ({tournamentData,  stageData,  teamData,  selectedS
 			</thead>
 
 			<tbody className="flex-1 sm:flex-none text-slate-700 font-semibold">
-      {Array.isArray(currentData) && currentData?.map((team) => 
+      {Array.isArray(currentData) && currentData?.map((team,i) => 
 				<tr key={team?._id} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-					<td className="border-grey-light border hover:bg-gray-100 p-3"> # {team?.rank} </td>
+					<td className="border-grey-light border hover:bg-gray-100 p-3"> # {i+1} </td>
 					<td className="border-grey-light border hover:bg-gray-100 px-3 h-8 flex justify-between items-center"> <img src={team?.logo}  className='h-8 w-8' /> {team?.name} </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3">0 </td>
+					{/* <td className="border-grey-light border hover:bg-gray-100 p-3">0 </td> */}
 					<td className="border-grey-light border hover:bg-gray-100 p-3"> {pointTable[team?.rank]}  </td>
 					<td className="border-grey-light border hover:bg-gray-100 p-3 "> {team?.kills} </td>
 					<td className="border-grey-light border hover:bg-gray-100 p-3 "> {team?.points } </td>

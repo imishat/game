@@ -1,7 +1,9 @@
 import React from 'react';
 
 const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlayer}) => {
-  console.log(OverallBestPlayer,'overall best  ')
+  console.log(bestPlayer,'overall best  ')
+
+  const sortPlayers = bestPlayer?.sort((a, b) => b?.kills[selectedMatchId] - a?.kills[selectedMatchId] ) 
     return (
         <div>
             
@@ -10,7 +12,7 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
            
            <div className="w-full relative h-[100vh] mx-auto">
         {/* bg frame right */}
-     
+      
         {/* bg image */}
         <div
           className={` z-10 p-11 !pr-14 h-auto`}
