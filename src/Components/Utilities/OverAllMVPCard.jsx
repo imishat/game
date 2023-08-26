@@ -1,7 +1,7 @@
 import React from 'react';
 
-const OverAllMVPCard = ({ tournanmentData,  OverallBestPlayer}) => {
-  console.log(OverallBestPlayer,'overall best  ')
+const OverAllMVPCard = ({ tournanmentData,tournament, OverallBestPlayer}) => {
+ 
     return (
         <div>
             
@@ -22,13 +22,13 @@ const OverAllMVPCard = ({ tournanmentData,  OverallBestPlayer}) => {
                 {/* tournament logo  */}
                 <div className="relative ">
                   <img
-                    src={tournanmentData?.logo}
+                    src={tournament?.logo}
                     className="-z-10 w-36  h-36"
                     alt=""
                   />
                 </div>
                 <div className="text-[64px]   ">
-                  <span className='font-rubik'> {tournanmentData?.name} </span>
+                  <span className='font-rubik'> {tournament?.name} </span>
                   <h2 className='text-[55px] font-rubik text-blue-500'>MVP OF THE MATCH</h2>
                 </div>
               </div>

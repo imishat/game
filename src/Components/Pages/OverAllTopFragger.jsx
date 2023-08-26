@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState} from 'react';
-import DisplayLayout from '../../Layout/DisplayLayout';
-import { AuthContext } from '../../Context/AuthProvider';
-import Loading from '../Utilities/Loading';
+import React, { useContext, useEffect } from 'react';
 import { useQuery } from 'react-query';
-import TopFraggerCard from '../Utilities/TopFraggerCard';
-import LogoSection from '../Utilities/LogoSection';
 import { useSearchParams } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
+import DisplayLayout from '../../Layout/DisplayLayout';
+import Loading from '../Utilities/Loading';
+import LogoSection from '../Utilities/LogoSection';
+import TopFraggerCard from '../Utilities/TopFraggerCard';
 
 const OverAllTopFragger = () => {
   const {selectedTournamentId,  selectedMatchId , selectedStageId,setSelectedTournamentid, setSelectedStageId,
@@ -32,7 +32,7 @@ const OverAllTopFragger = () => {
     localStorage.setItem('stageId', stageId);
     localStorage.setItem('matchId', matchId);
 
-  }, [])
+  }, [searchParams,setSelectedMatchId,setSelectedStageId,setSelectedTournamentid])
 
 
 //  fetch  Tournament data 
