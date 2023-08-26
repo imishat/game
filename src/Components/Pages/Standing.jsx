@@ -25,6 +25,10 @@ const Standing = () => {
   const [teams, setTeams] = useState([]);
   const [tournamentData, setTournamentData] = useState({});
 
+
+  console.log(teams,"teams")
+
+
   // required code for live update
   const [searchParams] = useSearchParams();
 
