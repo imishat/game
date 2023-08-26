@@ -53,7 +53,7 @@ useEffect(()=> {
               const response = await fetch(`http://localhost:8000/standings/fragger?match-id=${selectedMatchId}`)
               const result = await response.json();
               setBestPlayer(result)
-            //   console.log(result,'best players')
+           console.log(result,'best players')
               
             }catch(error){
               console.log(error)
