@@ -35,7 +35,7 @@ console.log(tournament)
       localStorage.setItem('matchId', matchId);
 
       // get all best players
-      axios.get(`http://localhost:8000/standings/overall-topfragger?groupId=${selectedStageId}`)
+     if(selectedStageId){ axios.get(`http://localhost:8000/standings/overall-topfragger?groupId=${selectedStageId}`)
       .then(res=>{
       return  setBestPlayer(res.data)
       })
@@ -44,7 +44,10 @@ console.log(tournament)
       axios.get(`http://localhost:8000/tournaments/${selectedTournamentId}`)
       .then(res=>{
         return setTournament(res.data[0])
-      })
+      })}
+      else {
+        return 
+      }
 
     }, [searchParams,setSelectedStageId,selectedStageId,setSelectedTournamentid,setSelectedMatchId,selectedTournamentId])
 
