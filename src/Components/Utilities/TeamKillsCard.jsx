@@ -22,9 +22,12 @@ const TeamKillsCard = ({
   mID,
   setPlayerDead,
   matchData,
-  setMatchData
+  setMatchData,
+  totalsKills,
+  setTotalsKills,
+  
 }) => {
-  // console.log(team,'team')
+  console.log(matchData,'teamKIlss')
   const { logo, name, tag, players, _id } = team;
   const { dead } = matches[0];
   const [kills, setlKills] = useState({});
@@ -64,6 +67,16 @@ const TeamKillsCard = ({
     "": 0,
   };
 
+useEffect(()=>{
+
+setTotalsKills(state=>{
+  const perviecsKills=structuredClone(state)
+  perviecsKills[team?._id]=totalKills
+  return perviecsKills
+})
+
+},[totalKills])
+
   // data received from the web socket can be used here...
   const onPayloadReceivedAsync = async (payload) => {
     const { flag } = payload;
@@ -76,11 +89,14 @@ const TeamKillsCard = ({
 
   useEffect(() => {
     async function main() {
-      const {data, error} = await supabase.from('teams').upsert({matchId: matchData?.matchId, teams: matchData}, {onConflict: 'matchId'})
+      
+      const {data, error} = await supabase.from('teams').upsert({matchId: matchData?.matchId, teams: matchData,totalNumber:totalsKills}, {onConflict: 'matchId'})
+      // console.log(error``)
     }
 
     main()
-  }, [matchData])
+  }, [matchData,totalsKills])
+  // console.log(matchData,"meatchdata")
 
   useEffect(() => {
     addWebsocketEventListener(onPayloadReceivedAsync);
@@ -255,20 +271,9 @@ const TeamKillsCard = ({
       `Are you sure you want to delete ${teamName}`
     );
 
-    //  if(shouldDelete){
-    //    fetch(`http://localhost:8000/matches/${id}`,{
-    //     method:'Delete',
-    //     headers: {
-    //       "content-type":  'application/json'
-    //     },
-
-    //   })
-    //   .then(res => res.json())
-    //   .then(result => {
-    //     console.log(result)
-    //   })
-    //  }
+   
   };
+  //
 
   return (
     <div className="text-white  mx-auto ">
@@ -345,13 +350,19 @@ const TeamKillsCard = ({
                     disabled={dead?.find((x) => x === player?._id)}
                     onClick={() => {
                       const oldKills = structuredClone(kills);
+                      const obj = structuredClone(matchData)
+
                       oldKills[player?._id] += 1;
+                    
+                    
+                      
                       setlKills(oldKills);
                       sendKills(
                         player?._id,
                         kills[player?._id] + 1,
                         totalKills + 1,
                         "increase"
+
                       );
                     }}
                   >
@@ -359,7 +370,7 @@ const TeamKillsCard = ({
                     <FaPlus />{" "}
                   </button>
                 </div>
-                <div className=" flex  items-center gap-x-2">
+                <div className=" flex  items-center gap-x-5 ml-10 ">
                   {" "}
                   <input
                     type="checkbox"

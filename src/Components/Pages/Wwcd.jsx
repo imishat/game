@@ -12,9 +12,11 @@ const Wwcd = () => {
   const {id} = useParams()
   const [state, setState] = useState({});
   const [kills, setKills] = useState(0);
-  const [data, setData] = useState({})
+  const [data, setData] = useState([])
   const [dead, setDead] = useState([])
-
+  const [showBackdrop, setShowBackdrop] = useState(false);
+  const [datevalue,setDatevalue]=useState(0)
+console.log( dead,"dead")
   useEffect(() => {
     async function main() {
       const { data } = await supabase
@@ -23,16 +25,24 @@ const Wwcd = () => {
         .eq('matchId', id)
       setData(data?.at(0))
     }
+    
 
     main()
   }, [])
+  
 
   useEffect(() => {
     const arr = []
+
     data?.teams?.teams?.forEach(i => {
+      console.log(i.points,"data")
       let count = 0
+      
       i?.players.forEach(j => j.dead && count++)
-      arr.push({teamId: i?._id, dead: count})
+      i.kills=i.points
+
+      // i?.players?.forEach(j=>killsCount+=Number(j?.kills?.[id])||0)
+      arr.push({teamId: i?._id, dead: count,teamName:i?.name,temeLogo:i?.logo, tolal:i?.kills})
     })
     setDead(arr)
   }, [data])
@@ -56,17 +66,17 @@ const Wwcd = () => {
   };
 
   useEffect(() => {
-    console.log("use effect");
+  
     socketConnection.on("UPDATE_KILLS", (data) => {
       console.log(data, "kills teams");
     });
   }, []);
 
   // data received from the web socket can be used here..
-  const array = [];
+ 
   const onPayloadReceivedAsync = async (payload) => {
     // const { flag, } = payload;
-    console.log(payload);
+    
     array.push(payload);
 
     if (flag === "SEND_KILLS") {
@@ -76,23 +86,40 @@ const Wwcd = () => {
 
     updateState(payload);
   };
-  console.log(array, "arr");
+ 
   // console.log(array,"array");
 
   useEffect(() => {
     addWebsocketEventListener(onPayloadReceivedAsync);
   }, []);
 
+
+  useEffect(() => {
+    if (dead.count === 4) {
+      setShowBackdrop(true);
+      console.log("work")
+
+      const timeout = setTimeout(() => {
+        setShowBackdrop(false);
+      }, 3000); // 3 seconds
+
+      // Clear the timeout if the component unmounts or dead value changes
+      return () => clearTimeout(timeout);
+    }
+  }, [dead]);
+
+  
+
   return (
     <DefaultLayout>
-      <h1>{kills}</h1>
+      
       {/* background section  */}
       <section className=" h-[90vh] w-full bg-orange-100">
         {/* Inner  section  */}
         <div className=" h-full grid grid-cols-12 items-center w-full  ">
           {/* Left side live section start  */}
-          <section className="col-span-10 flex justify-center items-end bg-orange-100 h-full">
-            <div className=" h-36 w-80 p-4 gap-x-3 bg-orange-400 flex  items-center">
+          <section className="col-span-10 flex justify-center items-end bg-orange-100 h-full ">
+           {showBackdrop&& <div className=" h-36 w-80 p-4 gap-x-3 bg-orange-400 flex  items-center">
               <img
                 src="https://i.pinimg.com/originals/11/09/52/1109528a8206ea6b777b84bc5bdaaec6.jpg"
                 className="w-24  h-28"
@@ -107,59 +134,73 @@ const Wwcd = () => {
                   Match 3{" "}
                 </h1>
               </div>
-            </div>
+            </div>}
           </section>
           {/* Left side live section start  */}
 
           {/* Right side alive status section start here  */}
-          <div className="h-[50vh]  bg-deep-rose col-span-2 rounded-tl-xl rounded-bl-xl">
+          <div className="h-[50vh]  bg-deep-rose col-span-2 mr-6 rounded-xl">
             <h1 className="text-2xl  font-bold text-white text-center py-3 ">
               {" "}
               Alive status{" "}
             </h1>
-            <div className="h-[60vh] w-48  bg-rose rounded-tl-xl rounded-bl-xl float-right ">
-              <div className="bg-yellow  w-full bg-white flex justify-between py-1 border font-semibold">
+            <div className="h-[60vh] w-72  bg-rose rounded-xl p-4  mr-6 float-right ">
+              <div className="bg-yellow  w-full bg-white flex justify-between py-1  px-2 border font-semibold">
                 <h1> Team </h1>
                 <h1> Status </h1>
                 <h1> Finish </h1>
               </div>
               <ul className="  ">
-                <li className="text-start px-2 w-full  h-8 bg-thin-rose mt-1 border border-yellow-300 text-white  font-bold flex  justify-between items-center gap-4">
-                  {" "}
-                  Winners <div className="h-3 rounded-md w-2 bg-white">
-                    {" "}
-                  </div> 1{" "}
-                </li>
-                <li className="text-start px-2 w-full  h-8 bg-thin-rose mt-1 border border-yellow-300 text-white  font-bold flex  justify-between items-center gap-4">
-                  {" "}
-                  Winners <div className="h-3 rounded-md w-2 bg-white">
-                    {" "}
-                  </div> 2{" "}
-                </li>
-                <li className="text-start px-2 w-full  h-8 bg-thin-rose mt-1 border border-yellow-300 text-white  font-bold flex  justify-between items-center gap-4">
-                  {" "}
-                  Winners <div className="h-3 rounded-md w-2 bg-white">
-                    {" "}
-                  </div> 3{" "}
-                </li>
-                <li className="text-start px-2 w-full  h-8 bg-thin-rose mt-1 border border-yellow-300 text-white  font-bold flex  justify-between items-center gap-4">
-                  {" "}
-                  Winners <div className="h-3 rounded-md w-2 bg-white">
-                    {" "}
-                  </div> 4{" "}
-                </li>
-                <li className="text-start px-2 w-full  h-8 bg-thin-rose mt-1 border border-yellow-300 text-white  font-bold flex  justify-between items-center gap-4">
-                  {" "}
-                  Winners <div className="h-3 rounded-md w-2 bg-white">
-                    {" "}
-                  </div> 5{" "}
-                </li>
-                <li className="text-start px-2 w-full  h-8 bg-thin-rose mt-1 border border-yellow-300 text-white  font-bold flex  justify-between items-center gap-4">
-                  {" "}
-                  Winners <div className="h-3 rounded-md w-2 bg-white">
-                    {" "}
-                  </div> 6{" "}
-                </li>
+                {
+                  dead?.map(deadData=>{
+                    return  <li className={`text-start px-2 w-full h-8 bg-thin-rose mt-1 border border-yellow-300 text-white font-bold flex justify-between items-center gap-4 relative`}>
+                      <span className={` ${deadData.dead===4 && 'absolute z-50 w-full left-0 top-0 h-full backdrop-blur-sm   backdrop-opacity-90'}`}></span>
+                     <div  className="flex items-center justify-between w-full">
+                      
+                 {deadData?.teamName  || "NO Name"}
+                    {deadData.dead === 0 ? (
+                      <div className="flex gap-1 items-center">
+                        <div className="h-3 rounded-md w-2 bg-white"></div>
+                        <div className="h-3 rounded-md w-2 bg-white"></div>
+                        <div className="h-3 rounded-md w-2 bg-white"></div>
+                        <div className="h-3 rounded-md w-2 bg-white"></div>
+                      </div>
+                    ) : deadData.dead === 1 ? (
+                      <div className="flex items-center gap-1">
+                        <div className="h-3 rounded-md w-2 bg-white"></div>
+                        <div className="h-3 rounded-md w-2 bg-white"></div>
+                        <div className="h-3 rounded-md w-2 bg-white"></div>
+                        <div className="h-3 rounded-md w-2 bg-orange-500"></div>
+                      </div>
+                    ) : deadData.dead === 2 ? (
+                      <div className="flex items-center gap-1">
+                        <div className="h-3 rounded-md w-2 bg-white"></div>
+                        <div className="h-3 rounded-md w-2 bg-white"></div>     <div className="h-3 rounded-md w-2 bg-orange-500"></div>     
+                        
+                        <div className="h-3 rounded-md w-2 bg-orange-500"></div>
+                      </div>
+                    ) : deadData.dead === 3 ? (
+                       <div className="flex items-center gap-1">
+                        <div className="h-3 rounded-md w-2 bg-white"></div>     <div className="h-3 rounded-md w-2 bg-orange-500"></div>
+
+                        <div className="h-3 rounded-md w-2 bg-orange-500"></div>
+                        <div className="h-3 rounded-md w-2 bg-orange-500"></div>
+                      </div>
+                    ) : (
+                       <div className="flex gap-1 items-center" onClick={()=>setDatevalue(4)}>
+                       <div className="h-3 rounded-md w-2 bg-orange-500"></div>
+                        <div className="h-3 rounded-md w-2 bg-orange-500"></div>
+                        <div className="h-3 rounded-md w-2 bg-orange-500"></div>
+                        <div className="h-3 rounded-md w-2 bg-orange-500"></div>
+                   </div>
+                    )}
+                    {deadData.p}
+
+                     </div>
+                  </li>
+                  })
+                }
+            
               </ul>
               <div className="flex h-8 w-full  bg-slate-900  justify-around">
                 <h1 className="text-white flex items-center gap-x-1 ">

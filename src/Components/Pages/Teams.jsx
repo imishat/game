@@ -8,12 +8,15 @@ import { useParams } from 'react-router';
 import TeamKillsCard from '../Utilities/TeamKillsCard';
 import Loading from '../Utilities/Loading';
 import supabase from '../../../config/supabase-client';
+import { toast } from 'react-hot-toast';
 
 const Teams = () => {
 const [matches,setMatches] = useState([])
 const [random,setRandom]  = useState(Math.random()) // refetch data and update  dom
 const [teamData,setTeamData] = useState({matchId:'',teams:[]})
 const [playerDead,setPlayerDead] = useState({})
+const [totalsKills,setTotalsKills]=useState({})
+console.log(teamData,"toto")
 const {id} = useParams()
 const {data, isLoading, refetch, error} = useQuery('teams', async ()  => {
     const response = await fetch('http://localhost:8000/teams')
@@ -67,6 +70,16 @@ if(isLoading){
     return <Loading/>
 }
 
+
+//copy url function 
+const copyLinkHanlder = () => {
+    const sharableLink = `http://localhost:5173/wwcd/${id}`;
+    navigator.clipboard.writeText(sharableLink);
+
+    toast.success("Link has been copied!")
+
+  }
+
 // console.log(data)
     return (
         <Banner> 
@@ -76,7 +89,7 @@ if(isLoading){
             <div className='mt-2'>
             <label htmlFor="find_teams_modal" className="btn-style flex items-center cursor-pointer gap-2 justify-center"> <FaPlus/> Find Teams </label>
 
-            <button className='btn btn-primary text-white cursor-pointer '> Start Match </button>
+            <button className='btn btn-primary text-white cursor-pointer ' onClick={copyLinkHanlder }> Live Match </button>
             </div>
             </div>
 
@@ -94,6 +107,8 @@ if(isLoading){
                 playerDead={playerDead} 
                 setPlayerDead={setPlayerDead}
                  mID = {id}
+                 totalsKills={totalsKills}
+                 setTotalsKills={setTotalsKills}
                   > </TeamKillsCard>
            } ))}
            </div>
