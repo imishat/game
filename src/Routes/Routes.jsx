@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         element:<Teams/>
     },
     {
-        path:  '/wwcd',
+        path:  '/wwcd/:id',
         element: <Wwcd/>
     },
     {

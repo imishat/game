@@ -11,6 +11,7 @@ import {
   addWebsocketEventListener,
   sendPayload,
 } from "../../socket-connection";
+import supabase from "../../../config/supabase-client";
 
 const TeamKillsCard = ({
   team,
@@ -20,6 +21,8 @@ const TeamKillsCard = ({
   PlayerDead,
   mID,
   setPlayerDead,
+  matchData,
+  setMatchData
 }) => {
   // console.log(team,'team')
   const { logo, name, tag, players, _id } = team;
@@ -70,6 +73,14 @@ const TeamKillsCard = ({
     } else if (flag === "SEND_RANK") {
     }
   };
+
+  useEffect(() => {
+    async function main() {
+      const {data, error} = await supabase.from('teams').upsert({matchId: matchData?.matchId, teams: matchData}, {onConflict: 'matchId'})
+    }
+
+    main()
+  }, [matchData])
 
   useEffect(() => {
     addWebsocketEventListener(onPayloadReceivedAsync);
@@ -356,6 +367,17 @@ const TeamKillsCard = ({
                     id={player?._id}
                     defaultChecked={dead?.find((x) => x === player?._id)}
                     onChange={(e) => {
+                      const obj = structuredClone(matchData)
+                      obj.teams = matchData?.teams?.map(i => {
+                        const newI = structuredClone(i)
+                        newI.players = i?.players?.map(j => {
+                          if(j?._id===player?._id) j.dead = e.target.checked
+                          return j 
+                        })
+                        return newI
+                      })
+                      setMatchData(obj)
+
                       if (e.target.checked) {
                         sendPlayerDead(
                           true,

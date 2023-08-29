@@ -5,10 +5,44 @@ import {
   addWebsocketEventListener,
   socketConnection,
 } from "../../socket-connection";
+import { useParams } from "react-router";
+import supabase from "../../../config/supabase-client";
 
 const Wwcd = () => {
+  const {id} = useParams()
   const [state, setState] = useState({});
   const [kills, setKills] = useState(0);
+  const [data, setData] = useState({})
+  const [dead, setDead] = useState([])
+
+  useEffect(() => {
+    async function main() {
+      const { data } = await supabase
+        .from('teams')
+        .select()
+        .eq('matchId', id)
+      setData(data?.at(0))
+    }
+
+    main()
+  }, [])
+
+  useEffect(() => {
+    const arr = []
+    data?.teams?.teams?.forEach(i => {
+      let count = 0
+      i?.players.forEach(j => j.dead && count++)
+      arr.push({teamId: i?._id, dead: count})
+    })
+    setDead(arr)
+  }, [data])
+
+  supabase.channel('teams').on('postgres_changes', {
+    event: '*',
+    schema: 'public'
+  },
+    res => res.new?.matchId === id && setData(res.new)
+  ).subscribe()
 
   useEffect(() => {
     console.log(state);

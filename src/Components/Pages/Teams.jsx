@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router';
 import TeamKillsCard from '../Utilities/TeamKillsCard';
 import Loading from '../Utilities/Loading';
+import supabase from '../../../config/supabase-client';
 
 const Teams = () => {
 const [matches,setMatches] = useState([])
@@ -19,7 +20,15 @@ const {data, isLoading, refetch, error} = useQuery('teams', async ()  => {
     return response.json()
     
 })
+    const [matchData, setMatchData] = useState({
+        matchId: id,
+        teams: matches?.at(0)?.teams?.map(i => {
+            const newI = structuredClone(i)
+            return newI
+        })
+    })
 
+    // console.log(matches?.at(0), 'asd')
 
 // get match by group id 
 useEffect(() => {
@@ -38,7 +47,19 @@ useEffect(()  => {
 const teams = structuredClone(teamData)
 teams.matchId = matches?.at(0)?._id ;
 teams.teams = matches?.at(0)?.teams ;
-console.log(teams ,'teams')
+setMatchData({
+        matchId: id,
+        teams: matches?.at(0)?.teams?.map(i => {
+            const newI = structuredClone(i)
+            newI.players = i?.players?.map(j => {
+                const obj = structuredClone(j)
+                console.log(j?._id, matches?.at(0)?.dead)
+                obj.dead = matches?.at(0)?.dead?.includes(j?._id)
+                return obj
+            })
+            return newI
+        })
+    })
 },[matches])
 
 
@@ -61,7 +82,11 @@ if(isLoading){
 
           
            <div className='w-full  grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5 px-4 pb-10 pt-3'>
-           {matches?.map((team) => team?.teams?.map((teamData,i) => <TeamKillsCard key={i}
+           {matches?.map((team) => team?.teams?.map((teamData,i) => {
+            // console.log(teamData)
+            return <TeamKillsCard key={i}
+            matchData={matchData}
+            setMatchData={setMatchData}
             team={teamData} 
              matchId={team._id} 
               matches={matches}
@@ -69,7 +94,8 @@ if(isLoading){
                 playerDead={playerDead} 
                 setPlayerDead={setPlayerDead}
                  mID = {id}
-                  > </TeamKillsCard> ))}
+                  > </TeamKillsCard>
+           } ))}
            </div>
            
        
