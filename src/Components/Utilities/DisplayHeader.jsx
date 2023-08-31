@@ -80,6 +80,8 @@ const DisplayHeader = () => {
 
   const handleSelectTournament = (e) => {
     const selectedTournament = (e.target.value);
+
+    console.log(selectedTournament,"selectedTournament")
     setTournamentId(selectedTournament)
     setSelectedTournamentid(selectedTournament)
     navigate(`/${e.target.value}`)
@@ -97,7 +99,8 @@ const DisplayHeader = () => {
     }
   }, [setSelectedStageId])
   const handleSelectStage = (e) => {
-    const selectedGroupId = (e.target.value);
+    const selectedGroupId =(e.target.value);
+    console.log( selectedGroupId,"gropid")
     setStageId(selectedGroupId)
     setSelectedStageId(selectedGroupId)
     localStorage.setItem('stageID', selectedGroupId)
@@ -114,6 +117,7 @@ const DisplayHeader = () => {
   }, [setSelectedMatchId])
   const handleSelectMatch = (e) => {
     const selectedMatch = e.target.value;
+    console.log(selectedMatch,"match")
     setMatchId(selectedMatch);
     setSelectedMatchId(selectedMatch)
     localStorage.setItem('matchID', selectedMatch)
@@ -163,7 +167,7 @@ const DisplayHeader = () => {
       isLoggedIn: isLoggedIn,
     });
   };
-  // http://localhost:2000/overall-topfragger?tournamentId=adfasdfasdf&stageId=asdfasdfa&matchId=adfasdf
+
   const baseUrl="http://localhost:5173"
 
   const copyLinkHanlder = () => {
@@ -180,8 +184,8 @@ const DisplayHeader = () => {
       {isLoggedIn && <section className='flex w-full h-auto justify-between lg:flex-row lg:gap-y-0 gap-y-4 flex-col px-6'>
         <div className=''>
           <label className='lg:text-2xl  lg:font-semibold font-bold'>  Select Tournament: </label>
-          <select className='lg:text-xl text-lg border hover:cursor-pointer' value={tournamentId} onChange={handleSelectTournament}>
-            <option disabled selected> Select Tournament </option>
+          <select className='lg:text-xl text-lg border hover:cursor-pointer' value={tournamentId} onChange={handleSelectTournament} >
+            <option  disabled selected> Select Tournament </option>
             {tournaments?.map((tournament) => <option key={tournament._id} value={tournament?._id} >
               {/* <Link to={`/${tournament?._id}`} className='cursor-pointer'> {tournament.name} </Link> */}
               {tournament?.name}
@@ -192,16 +196,16 @@ const DisplayHeader = () => {
 
         <div>
           <label className='lg:text-2xl lg:font-semibold font-bold'>  Select Group  </label>
-          <select className='lg:text-xl text-lg border hover:cursor-pointer' value={stageId} onChange={handleSelectStage} >
-            <option disabled selected> Select Group </option>
+          <select className='lg:text-xl text-lg border hover:cursor-pointer' value={stageId} onChange={handleSelectStage} defaultValue={stageId} >
+            <option  disabled selected> Select Group </option>
             {stageData?.map((stage) => <option key={stage?._id} value={stage?._id} > {stage?.name} </option>)}
           </select>
         </div>
 
         <div>
           <label className='lg:text-2xl  lg:font-semibold font-bold'>  Select Match  </label>
-          <select className='lg:text-xl  text-lg border hover:cursor-pointer' value={matchId} onChange={handleSelectMatch} defaultValue={null}>
-            <option disabled selected> Select Match  </option>
+          <select className='lg:text-xl  text-lg border hover:cursor-pointer' value={matchId} onChange={handleSelectMatch} defaultValue={matchId}>
+            <option  disabled selected> Select Match  </option>
             {matches?.map((match) => <option key={match?._id} value={match?._id} >
               M.No {match?.matchNo}
             </option>)}
@@ -210,7 +214,7 @@ const DisplayHeader = () => {
       </section>}
 
 
-      {isLoggedIn && <div className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">
+      {user && <div className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">
         <Link onClick={onNavigate}to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  STANDING</Link>
         <NavLink onClick={onNavigate}to={`/${tournamentId}/topfragger`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  Top Fragger</NavLink>
         <NavLink onClick={onNavigate}to={`/${tournamentId}/mvp`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  MVP</NavLink>

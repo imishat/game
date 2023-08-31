@@ -15,7 +15,6 @@ const TopFregger = () => {
     const [stageData,setStageData] = useState({})
     const [tournamentData,setTournamentData]  = useState()
 
-
     const [searchParams] = useSearchParams();
 
     // required code for live update

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DefaultLayout from "../../Layout/DefaultLayout";
 import "../../assets/Style/BackgroundStyle.css";
 import {
@@ -7,16 +7,19 @@ import {
 } from "../../socket-connection";
 import { useParams } from "react-router";
 import supabase from "../../../config/supabase-client";
+import { AuthContext } from "../../Context/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const Wwcd = () => {
+  const {deadname}=useContext(AuthContext)
   const {id} = useParams()
   const [state, setState] = useState({});
   const [kills, setKills] = useState(0);
   const [data, setData] = useState([])
   const [dead, setDead] = useState([])
   const [showBackdrop, setShowBackdrop] = useState(false);
-  const [datevalue,setDatevalue]=useState(0)
-console.log( dead,"dead")
+  const [datevalue,setDatevalue]=useState({})
+console.log(dead,"dead")
   useEffect(() => {
     async function main() {
       const { data } = await supabase
@@ -35,7 +38,7 @@ console.log( dead,"dead")
     const arr = []
 
     data?.teams?.teams?.forEach(i => {
-      console.log(i.points,"data")
+      // console.log(i.points,"data")
       let count = 0
       
       i?.players.forEach(j => j.dead && count++)
@@ -75,16 +78,17 @@ console.log( dead,"dead")
   // data received from the web socket can be used here..
  
   const onPayloadReceivedAsync = async (payload) => {
-    // const { flag, } = payload;
+    const { flag, playerName } = payload;
+    toast.error(`${playerName} is dead `);
     
-    array.push(payload);
+    // array.push(payload);
 
-    if (flag === "SEND_KILLS") {
-    } else if (flag === "SEND_PLAYER_DEAD") {
-    } else if (flag === "SEND_RANK") {
-    }
+    // if (flag === "SEND_KILLS") {
+    // } else if (flag === "SEND_PLAYER_DEAD") {
+    // } else if (flag === "SEND_RANK") {
+    // }
 
-    updateState(payload);
+    // updateState(payload);
   };
  
   // console.log(array,"array");
@@ -146,7 +150,8 @@ console.log( dead,"dead")
             </h1>
             <div className="h-[60vh] w-72  bg-rose rounded-xl p-4  mr-6 float-right ">
               <div className="bg-yellow  w-full bg-white flex justify-between py-1  px-2 border font-semibold">
-                <h1> Team </h1>
+                <h1> logo</h1>
+                <h1>team </h1>
                 <h1> Status </h1>
                 <h1> Finish </h1>
               </div>
@@ -156,6 +161,11 @@ console.log( dead,"dead")
                     return  <li className={`text-start px-2 w-full h-8 bg-thin-rose mt-1 border border-yellow-300 text-white font-bold flex justify-between items-center gap-4 relative`}>
                       <span className={` ${deadData.dead===4 && 'absolute z-50 w-full left-0 top-0 h-full backdrop-blur-sm   backdrop-opacity-90'}`}></span>
                      <div  className="flex items-center justify-between w-full">
+                     <div className="avatar">
+    <div className="w-12">
+      <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+    </div>
+  </div>
                       
                  {deadData?.teamName  || "NO Name"}
                     {deadData.dead === 0 ? (
@@ -187,14 +197,14 @@ console.log( dead,"dead")
                         <div className="h-3 rounded-md w-2 bg-orange-500"></div>
                       </div>
                     ) : (
-                       <div className="flex gap-1 items-center" onClick={()=>setDatevalue(4)}>
+                       <div className="flex gap-1 items-center">
                        <div className="h-3 rounded-md w-2 bg-orange-500"></div>
                         <div className="h-3 rounded-md w-2 bg-orange-500"></div>
                         <div className="h-3 rounded-md w-2 bg-orange-500"></div>
                         <div className="h-3 rounded-md w-2 bg-orange-500"></div>
                    </div>
                     )}
-                    {deadData.p}
+                  <p>{deadData.dead}</p>
 
                      </div>
                   </li>

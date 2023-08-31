@@ -16,7 +16,7 @@ const [random,setRandom]  = useState(Math.random()) // refetch data and update  
 const [teamData,setTeamData] = useState({matchId:'',teams:[]})
 const [playerDead,setPlayerDead] = useState({})
 const [totalsKills,setTotalsKills]=useState({})
-console.log(teamData,"toto")
+
 const {id} = useParams()
 const {data, isLoading, refetch, error} = useQuery('teams', async ()  => {
     const response = await fetch('http://localhost:8000/teams')
@@ -56,7 +56,7 @@ setMatchData({
             const newI = structuredClone(i)
             newI.players = i?.players?.map(j => {
                 const obj = structuredClone(j)
-                console.log(j?._id, matches?.at(0)?.dead)
+                // console.log(j?._id, matches?.at(0)?.dead)
                 obj.dead = matches?.at(0)?.dead?.includes(j?._id)
                 return obj
             })

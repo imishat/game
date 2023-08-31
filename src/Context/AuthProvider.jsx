@@ -68,6 +68,8 @@ const [selectedTournamentId,setSelectedTournamentid] = useState(null)
 const [selectedStageId,setSelectedStageId] = useState(null)
 const [selectedMatchId,setSelectedMatchId] = useState(null)
 const [selectedMatchData,setSelectedMatchData] = useState({})
+const [deadname,setDeadname]=useState('')
+console.log(deadname,"deadname")
 
 
     
@@ -86,7 +88,9 @@ const [selectedMatchData,setSelectedMatchData] = useState({})
             LoginUser,
             GoogleLogin,
             LogOutUser,
-            UpdateUser
+            UpdateUser,
+            deadname,
+            setDeadname
         }
 
     return (
