@@ -31,8 +31,9 @@ const TopFraggerCard = ({bestPlayers,selectedMatchId,playerData,team,  players})
                       <p> {bestPlayer?.kills[selectedMatchId] || 0  }  </p>
                   </div>
                   <div  className="text-[25px] flex justify-between px-2 bg-gradient-to-r from-[#141EF2] text-white py-3 to-[#0F1316]">
-                      <p>CONTRIBUTION%</p>
-                      <p>41.67%</p>
+                  <p>CONGRATULATION</p>
+                  <p>{bestPlayer?.contribution ? bestPlayer.contribution.toFixed(2) : 0}%</p>
+
                   </div>
               </div>
               )
@@ -55,8 +56,9 @@ const TopFraggerCard = ({bestPlayers,selectedMatchId,playerData,team,  players})
                     <p> {bestPlayer?.totalKills || 0  }  </p>
                 </div>
                 <div  className="text-[25px] flex justify-between px-2 bg-gradient-to-r from-[#141EF2] text-white py-3 to-[#0F1316]">
-                    <p>CONGRATULATION%</p>
-                    <p>41.67%</p>
+                    <p>CONGRATULATION</p>
+                    <p>{bestPlayer?.contribution ? bestPlayer.contribution.toFixed(2) : 0}%</p>
+
                 </div>
             </div>
             )

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import {
   FaCaretDown,
@@ -11,6 +11,8 @@ import {
   addWebsocketEventListener,
   sendPayload,
 } from "../../socket-connection";
+import supabase from "../../../config/supabase-client";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const TeamKillsCard = ({
   team,
@@ -20,8 +22,13 @@ const TeamKillsCard = ({
   PlayerDead,
   mID,
   setPlayerDead,
+  matchData,
+  setMatchData,
+  totalsKills,
+  setTotalsKills,
+  
 }) => {
-  // console.log(team,'team')
+  console.log(matchData,'teamKIlss')
   const { logo, name, tag, players, _id } = team;
   const { dead } = matches[0];
   const [kills, setlKills] = useState({});
@@ -30,6 +37,7 @@ const TeamKillsCard = ({
   const [totalPoints, setTotalPoints] = useState(0);
   const [teamData, setTeamData] = useState({});
   const [contribution, setContribution] = useState(0);
+  const { setDeadname}=useContext(AuthContext)
 
   let pointTable = {
     1: 10,
@@ -61,6 +69,16 @@ const TeamKillsCard = ({
     "": 0,
   };
 
+useEffect(()=>{
+
+setTotalsKills(state=>{
+  const perviecsKills=structuredClone(state)
+  perviecsKills[team?._id]=totalKills
+  return perviecsKills
+})
+
+},[totalKills])
+
   // data received from the web socket can be used here...
   const onPayloadReceivedAsync = async (payload) => {
     const { flag } = payload;
@@ -70,6 +88,17 @@ const TeamKillsCard = ({
     } else if (flag === "SEND_RANK") {
     }
   };
+
+  useEffect(() => {
+    async function main() {
+      
+      const {data, error} = await supabase.from('teams').upsert({matchId: matchData?.matchId, teams: matchData,totalNumber:totalsKills}, {onConflict: 'matchId'})
+      // console.log(error``)
+    }
+
+    main()
+  }, [matchData,totalsKills])
+  // console.log(matchData,"meatchdata")
 
   useEffect(() => {
     addWebsocketEventListener(onPayloadReceivedAsync);
@@ -96,20 +125,16 @@ const TeamKillsCard = ({
   // Set total points
   useEffect(() => {
     const totalKillsNumber = parseInt(totalKills);
+    console.log('totalsKills',totalKillsNumber)
     setTotalPoints(totalKillsNumber + parseInt(pointTable[rank] || 0));
     //  console.log(totalKillsNumber , rank,'total')
   }, [totalKills, rank, pointTable]);
 
   // Send kills value in database
-  function sendKills(playerId, kill, player, type) {
+  function sendKills(playerId, kill,  totalKills, type,) {
     // sends via web socket...
-    sendPayload({
-      flag: "SEND_KILLS",
-      matchId: matchId,
-      playerId: playerId,
-      player,
-      kills: kill,
-    });
+    const contribution = (kill / totalKills) * 100;
+    console.log( contribution , type,"contribution")
     fetch(`http://localhost:8000/matches/kills`, {
       method: "Post",
       headers: {
@@ -118,9 +143,10 @@ const TeamKillsCard = ({
       body: JSON.stringify({
         "match-id": matchId,
         "player-id": playerId,
-        kills: totalKills,
+        kills: kill,
         teamId: team?._id,
         type: type,
+        contribution:contribution
       }),
     })
       .then((res) => res.json())
@@ -131,12 +157,6 @@ const TeamKillsCard = ({
   function sendContribution(matchId, kill, totalKills, teamID) {
     const contribution = (kill / totalKills) * 100;
 
-    sendPayload({
-      flag: "SEND_CONTRIBUTION",
-      matchId: matchId,
-      teamId: teamID,
-      contribution: contribution,
-    });
     fetch(`http://localhost:8000/matches/contribution`, {
       method: "Post",
       headers: {
@@ -157,11 +177,10 @@ const TeamKillsCard = ({
   // send player id who is dead
   function sendPlayerDead(dead, matchId, playerId, playerName) {
     // sends via web socket...
+ 
     sendPayload({
-      flag: "SEND_PLAYER_DEAD",
-      matchId: matchId,
-      playerId: playerId,
-      isDead: dead,
+     
+      playerName: playerName
     });
 
     fetch(`http://localhost:8000/matches/dead`, {
@@ -179,6 +198,7 @@ const TeamKillsCard = ({
       .then((data) => {
         if (data.success) {
           toast(`${playerName} is dead `);
+        
           refetch();
         }
         // console.log(data)
@@ -188,12 +208,7 @@ const TeamKillsCard = ({
   // Send rank  value in database
   function sendRank(rank) {
     // sends via web socket...
-    sendPayload({
-      flag: "SEND_RANK",
-      matchId: matchId,
-      teamId: team?._id,
-      rank: rank,
-    });
+   
 
     fetch(`http://localhost:8000/matches/rank`, {
       method: "Post",
@@ -244,20 +259,9 @@ const TeamKillsCard = ({
       `Are you sure you want to delete ${teamName}`
     );
 
-    //  if(shouldDelete){
-    //    fetch(`http://localhost:8000/matches/${id}`,{
-    //     method:'Delete',
-    //     headers: {
-    //       "content-type":  'application/json'
-    //     },
-
-    //   })
-    //   .then(res => res.json())
-    //   .then(result => {
-    //     console.log(result)
-    //   })
-    //  }
+   
   };
+  //
 
   return (
     <div className="text-white  mx-auto ">
@@ -316,8 +320,8 @@ const TeamKillsCard = ({
                       sendKills(
                         player?._id,
                         kills[player?._id] - 1,
-                        player.name,
-                        "decrease"
+                        totalKills - 1,
+                        "dic"
                       );
                       sendContribution(team?._id);
                     }}
@@ -334,13 +338,19 @@ const TeamKillsCard = ({
                     disabled={dead?.find((x) => x === player?._id)}
                     onClick={() => {
                       const oldKills = structuredClone(kills);
+                      const obj = structuredClone(matchData)
+
                       oldKills[player?._id] += 1;
+                    
+                    
+                      
                       setlKills(oldKills);
                       sendKills(
                         player?._id,
                         kills[player?._id] + 1,
                         totalKills + 1,
                         "increase"
+
                       );
                     }}
                   >
@@ -348,7 +358,7 @@ const TeamKillsCard = ({
                     <FaPlus />{" "}
                   </button>
                 </div>
-                <div className=" flex  items-center gap-x-2">
+                <div className=" flex  items-center gap-x-5 ml-4">
                   {" "}
                   <input
                     type="checkbox"
@@ -356,13 +366,26 @@ const TeamKillsCard = ({
                     id={player?._id}
                     defaultChecked={dead?.find((x) => x === player?._id)}
                     onChange={(e) => {
+                      const obj = structuredClone(matchData)
+                      obj.teams = matchData?.teams?.map(i => {
+                        const newI = structuredClone(i)
+                        newI.players = i?.players?.map(j => {
+                          if(j?._id===player?._id) j.dead = e.target.checked
+                          return j 
+                        })
+                        return newI
+                      })
+                      setMatchData(obj)
+
                       if (e.target.checked) {
                         sendPlayerDead(
                           true,
                           matchId,
                           player?._id,
                           player?.name
+
                         );
+                        setDeadname(player?.name)
                       } else {
                         sendPlayerDead(
                           false,

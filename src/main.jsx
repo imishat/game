@@ -10,7 +10,7 @@ import AuthProvider from './Context/AuthProvider.jsx'
 import { addWebsocketEventListener } from './socket-connection.js'
 
 const onPayloadReceivedAsync = payload => {
-  console.log(payload);
+ 
 
   if ("URL_CHANGE" !== payload.flag) { return; }
   // if (payload.isLoggedIn) { return; }

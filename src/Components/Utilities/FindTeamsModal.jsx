@@ -15,7 +15,7 @@ const FindTeamsModal = ({ data, isLoading, matchId, setRandom }) => {
   //   }
   // };
 
-  console.log("Data: ", data);
+  // console.log("Data: ", data);
 
   const handleCheckbox = (e) => {
     const teamsId = e.target.value;
@@ -46,15 +46,15 @@ const FindTeamsModal = ({ data, isLoading, matchId, setRandom }) => {
     });
   };
 
-  console.log("Seleted Teams: ", selectedTeams);
-  console.log("Seleted Teams IDs: ", selectedIds);
+  // console.log("Seleted Teams: ", selectedTeams);
+  // console.log("Seleted Teams IDs: ", selectedIds);
 
-  console.log("Team data: ", data);
+  // console.log("Team data: ", data);
 
   // console.log('teams modal', matchId)
   const handleFindGroup = async (e) => {
     e.preventDefault();
-    console.log(selectedIds);
+    // console.log(selectedIds);
     const teamId = { teams: selectedIds, "match-id": matchId };
 
     try {
