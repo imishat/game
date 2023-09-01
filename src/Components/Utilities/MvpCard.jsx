@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlayer}) => {
@@ -83,7 +84,7 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
                 </div>
                 {/* title */}
                 <div className=' flex gap-x-6 font-semibold' >
-                  <h2 className='text-[40px]'> 0 </h2>
+                  <h2 className='text-[40px]'> {bestPlayer?.contribution ? bestPlayer.contribution.toFixed(2) : 0}% </h2>
                   <h2 className="uppercase text-[40px]"> Contribution </h2>
                 </div>
                 {/* result */}
