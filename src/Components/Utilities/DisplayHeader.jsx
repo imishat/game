@@ -50,6 +50,9 @@ const DisplayHeader = () => {
         .then(res => res.json())
         .then(data => {
           setStageData(data)
+          setStageId(data.at(0)?._id)
+          setSelectedStageId(data.at(0)?._id)
+          localStorage.setItem('stageID', selectedGroupId)
         })
     }
   }, [tournamentId])
@@ -62,7 +65,9 @@ const DisplayHeader = () => {
         .then(data => {
           setMatches(data)
           // console.log(data,'matches')
-
+          setMatchId(data.at(0)?._id);
+          setSelectedMatchId(data.at(0)?._id)
+          localStorage.setItem('matchID', data.at(0)?._id)
         })
     }
   }, [stageId])
