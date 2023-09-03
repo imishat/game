@@ -25,7 +25,9 @@ function Coming() {
       </nav>
       <div className='w-[600px]  mx-auto flex items-center bg-car bg-cover bg-center bg-no-repeat  border border-[5px] border-white h-96 justify-center'></div>
         </div>
-
+      <div>
+         dsafsdaf
+      </div>
     </section>
    </>
   )
