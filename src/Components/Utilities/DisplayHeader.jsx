@@ -52,7 +52,7 @@ const DisplayHeader = () => {
           setStageData(data)
           setStageId(data.at(0)?._id)
           setSelectedStageId(data.at(0)?._id)
-          localStorage.setItem('stageID', selectedGroupId)
+          // localStorage.setItem('stageID', selectedGroupId)
         })
     }
   }, [tournamentId])
@@ -67,7 +67,7 @@ const DisplayHeader = () => {
           // console.log(data,'matches')
           setMatchId(data.at(0)?._id);
           setSelectedMatchId(data.at(0)?._id)
-          localStorage.setItem('matchID', data.at(0)?._id)
+          // localStorage.setItem('matchID', data.at(0)?._id)
         })
     }
   }, [stageId])
@@ -173,7 +173,7 @@ const DisplayHeader = () => {
     });
   };
 
-  const baseUrl="http://localhost:5173"
+  const baseUrl=window.location.href
 
   const copyLinkHanlder = () => {
     const sharableLink = `${baseUrl}${location.pathname}?tournamentId=${tournamentId}&stageId=${stageId}&matchId=${matchId}`;

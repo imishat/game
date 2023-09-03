@@ -42,11 +42,15 @@ const Standing = () => {
     localStorage.setItem("tournamentId", tournamentId);
     localStorage.setItem("stageId", stageId);
     localStorage.setItem("matchId", matchId);
-  }, []);
+  }, [searchParams,
+    setSelectedMatchId,
+    setSelectedStageId,
+    setSelectedTournamentid,
+    selectedStageId,]);
 
   useEffect(() => {
     setTeams(
-      Object.keys(teamData).map((team) => teamData[team]) // set  Team data as a array
+      Object.keys(teamData).map((team,i) => teamData[team,i]) // set  Team data as a array
     );
   }, [teamData]);
 
@@ -134,7 +138,7 @@ const Standing = () => {
       {/* {JSON.stringify(matchData)} */}
 
       <DisplayLayout>
-        <StandingTable
+       {teams && <StandingTable
           selectedMatchId={selectedMatchId}
           selectedStageId={selectedStageId}
           selectedTournamentId={selectedTournamentId}
@@ -144,7 +148,7 @@ const Standing = () => {
           stageData={stageData}
           teamData={teamData}
           selectedMatchData={selectedMatchData}
-        />
+        />}
       </DisplayLayout>
     </>
   );

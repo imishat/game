@@ -3,7 +3,7 @@ import '../../assets/Style/style.css'
 import '../../assets/Style/Table.css'
 
 
-const OverAllStandingTable = ({tournamentData,  stageData,  teamData,  selectedStageId, teams,}) => {
+const OverAllStandingTable = ({tournamentData,  teams,}) => {
  
   // sort data by points max to  min 
   const sortTeams = teams?.sort((a, b) => b?.points - a?.points ) 

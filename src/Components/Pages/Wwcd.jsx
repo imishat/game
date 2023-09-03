@@ -19,7 +19,7 @@ const Wwcd = () => {
   const [data, setData] = useState([])
   const [dead, setDead] = useState([])
  
-  
+  console.log(data)
 
   useEffect(() => {
     async function main() {
@@ -44,9 +44,12 @@ const Wwcd = () => {
       
       i?.players.forEach(j => j.dead && count++)
       i.kills=i.points
+ const tota= data.totalNumber.value===i?._id
 
+console.log(tota
+  )
       // i?.players?.forEach(j=>killsCount+=Number(j?.kills?.[id])||0)
-      arr.push({teamId: i?._id, dead: count,teamName:i?.name,temeLogo:i?.logo, tolal:i?.kills})
+      arr.push({teamId: i?._id, dead: count,teamName:i?.name,temeLogo:i?.logo, tolal:tota})
     })
     setDead(arr)
   }, [data])

@@ -5,13 +5,13 @@ const WwcdTeams = ({deadData}) => {
     const [filteredData, setFilteredData] = useState([]);
     const [showBackdrop, setShowBackdrop] = useState(false);
 
-console.log(deadData)
+
       useEffect(() => {
         if (deadData.dead === 4) {
-            toast.success(deadData.teamName)
+           
          setFilteredData(deadData)
           setShowBackdrop(true);
-          console.log("work")
+       
     
           const timeout = setTimeout(() => {
             setShowBackdrop(false);
@@ -22,11 +22,11 @@ console.log(deadData)
         }
       }, [deadData.dead,deadData.teamName]);
     return (
-        <section className="">
-        Inner  section 
+        <section className="mt-2">
+        
         {/* <div className=" h-full grid grid-cols-12 items-center w-full  ">
           {/* Left side live section start  */}
-          <section className="col-span-10 flex justify-center items-end bg-orange-100 h-full ">
+          <section className="col-span-10 flex  bg-orange-100 h-full ">
             {showBackdrop&& <div className=" h-36 w-80 p-4 gap-x-3 bg-orange-400 flex  items-center">
               <img
                 src={deadData.temeLogo
@@ -50,8 +50,8 @@ console.log(deadData)
         <span className={` ${deadData.dead===4 && 'absolute z-50 w-full left-0 top-0 h-full backdrop-blur-sm   backdrop-opacity-90'}`}></span>
        <div  className="flex items-center justify-between w-full">
        <div className="avatar">
-<div className="w-12">
-<img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+<div className="w-9 h-6">
+<img  src={deadData.temeLogo} />
 </div>
 </div>
         
