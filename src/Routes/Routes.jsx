@@ -74,10 +74,7 @@ const router = createBrowserRouter([
         path:  '/:id/topfragger',
         element: <TopFregger/>  
     },
-    // {
-    //   path: '/next',
-    //   element: <Next/>
-    // },
+    
     {
         path: '/overall-topfragger',
         element: <OverAllTopFragger/>

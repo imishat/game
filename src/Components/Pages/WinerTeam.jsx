@@ -211,7 +211,7 @@ useEffect(() => {
                 
                 </div>
                 <div className='w-[32%] '>
-                <h5 className='bg-white  p-4 font-dm  text-5xl font-semibold text-black'>{bestTeam?.kills}</h5>
+                <h5 className='bg-white  p-4 font-dm  text-5xl font-semibold text-black'>match point {bestTeam?.kills}</h5>
                 </div>
             
             </div>

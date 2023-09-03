@@ -10,7 +10,7 @@ import vikendi from "../../assets/images/images/vikendi.jpg";
 function Coming() {
    const {selectedMatchId} = useContext(AuthContext)
    const [nextMatch,setNextMatch]= useState({})
-   console.log(nextMatch)
+   console.log(selectedMatchId,"ss")
   useEffect(() => {
     fetch(`http://localhost:8000/matches/next?match-id=${selectedMatchId}`)
     .then(res => res.json())

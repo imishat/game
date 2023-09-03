@@ -10,6 +10,7 @@ import vikendi from "../../assets/images/images/vikendi.jpg";
 
 const Next = () => {
   const {selectedMatchId} = useContext(AuthContext)
+  console.log(selectedMatchId,"selected")
   
   const [nextMatch,setNextMatch]= useState({})
 

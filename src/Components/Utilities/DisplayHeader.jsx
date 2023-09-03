@@ -50,7 +50,7 @@ const DisplayHeader = () => {
         .then(res => res.json())
         .then(data => {
           setStageData(data)
-          setStageId(data.at(0)?._id)
+          setStageId(data.at(0)._id)
           setSelectedStageId(data.at(0)?._id)
           // localStorage.setItem('stageID', selectedGroupId)
         })
@@ -64,7 +64,7 @@ const DisplayHeader = () => {
         .then(res => res.json())
         .then(data => {
           setMatches(data)
-          // console.log(data,'matches')
+          console.log(data,'matches')
           setMatchId(data.at(0)?._id);
           setSelectedMatchId(data.at(0)?._id)
           // localStorage.setItem('matchID', data.at(0)?._id)
@@ -190,7 +190,7 @@ const DisplayHeader = () => {
         <div className=''>
           <label className='lg:text-2xl  lg:font-semibold font-bold'>  Select Tournament: </label>
           <select className='lg:text-xl text-lg border hover:cursor-pointer' value={tournamentId} onChange={handleSelectTournament} >
-            <option  disabled selected> Select Tournament </option>
+            {/* <option  disabled selected> Select Tournament </option> */}
             {tournaments?.map((tournament) => <option key={tournament._id} value={tournament?._id} >
               {/* <Link to={`/${tournament?._id}`} className='cursor-pointer'> {tournament.name} </Link> */}
               {tournament?.name}
