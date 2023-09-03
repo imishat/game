@@ -54,11 +54,7 @@ const Standing = () => {
     );
   }, [teamData]);
 
-  // get tournament data by tournament id
-  // if(selectedTournamentId == null && selectedStageId  == null){
-  //  toast.error("Please  click display then select  tournament and group")
-  // }
-  // Tournament, Stage, Match data get and set
+
   useEffect(() => {
     if (selectedTournamentId) {
       const FetchTournamentById = async () => {
@@ -130,9 +126,9 @@ const Standing = () => {
     }
   }, [selectedMatchId]);
 
-  // console.log(teamData,'teamdata')
+  console.log(teamData,'teamdata')
 
-  console.log(teams, "teams");
+  console.log(stageData, "teams");
   return (
     <>
       {/* {JSON.stringify(matchData)} */}

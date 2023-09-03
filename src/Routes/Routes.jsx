@@ -14,7 +14,7 @@ import Next from "../Components/Pages/Next";
 import OverAllMvp from "../Components/Pages/OverAllMvp";
 import Standing from "../Components/Pages/Standing";
 import OverallStanding from "../Components/Pages/OverallStanding";
-import Schediul from "../Components/Pages/Schediul";
+
 import OverAllTopFragger from "../Components/Pages/OverAllTopFragger";
 import Table from "../Components/Utilities/Table";
 import WinerTeam from "../Components/Pages/WinerTeam";
@@ -74,18 +74,15 @@ const router = createBrowserRouter([
         path:  '/:id/topfragger',
         element: <TopFregger/>  
     },
-    {
-      path: '/next',
-      element: <Next/>
-    },
+    // {
+    //   path: '/next',
+    //   element: <Next/>
+    // },
     {
         path: '/overall-topfragger',
         element: <OverAllTopFragger/>
     },
-    {
-        path: '/schedul',
-        element: <Schediul/>
-    },
+   
     {
         path: '/overall-mvp',
         element: <OverAllMvp/>
@@ -105,17 +102,17 @@ const router = createBrowserRouter([
 
     },
     {
-      path: '/winer',
+      path: '/:id/winer',
       element: <WinerTeam/>
 
     },
     {
-      path: '/coming',
+      path: '/next',
       element: <Coming/>
 
     },
     {
-      path: '/matchTime',
+      path: '/schedul',
       element: <PubgMatchTime/>
 
     },

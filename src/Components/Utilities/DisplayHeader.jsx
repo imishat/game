@@ -221,6 +221,7 @@ const DisplayHeader = () => {
 
       {user && <div className="flex  lg:text-xl text-lg px-1 mt-4 justify-center flex-wrap">
         <Link onClick={onNavigate}to={`/${tournamentId}/standing`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  STANDING</Link>
+        <Link onClick={onNavigate}to={`/${tournamentId}/winer`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'> winer</Link>
         <NavLink onClick={onNavigate}to={`/${tournamentId}/topfragger`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  Top Fragger</NavLink>
         <NavLink onClick={onNavigate}to={`/${tournamentId}/mvp`} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  MVP</NavLink>
         <NavLink onClick={onNavigate}to={'/schedul'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  SCHEDULE </NavLink>

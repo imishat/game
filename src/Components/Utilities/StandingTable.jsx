@@ -8,6 +8,7 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
   const teamArray = teams?.map(item => item?.points[selectedMatchId] || item?.points)
   const maxPoints = Math.max(...teamArray);
   const bestTeam = teams?.find(x => x?.points[selectedMatchId] === maxPoints || x?.points === maxPoints)
+  console.log(bestTeam,"best")
   
   // sort data by points max to  min 
   const sortTeams = teams?.sort((a, b) => b?.points?.[selectedMatchId] - a?.points?.[selectedMatchId] ) 
