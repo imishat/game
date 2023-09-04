@@ -78,7 +78,7 @@ function PubgMatchTime() {
     </div>
    </nav>
 
-    <div className="flex justify-between">
+    <div className="flex  gap-x-10">
 
 {
     data.map((match)=>{

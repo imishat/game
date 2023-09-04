@@ -146,9 +146,9 @@ useEffect(() => {
           
   return (
     <DisplayLayout>
-    <div className=' bg-[teal] h-screen'>
+    <div className=' bg-[teal]  reletive z-30'>
      <div className='max-w-container mx-auto'>
-        <nav className=' py-4'>
+        <nav className=''>
             <div className="gap-x-20 flex items-center">
                     <div className='w-1/6'>
                     <img src={tournamentData.logo
@@ -159,7 +159,7 @@ useEffect(() => {
                     <h2 className='text-2xl font-semibold font-dm text-white'>{tournamentData.name}</h2>
                     <h2 className='text-2xl font-semibold font-dm text-white'>{stageData?.name} {selectedMatchData?.matchNo} / {matchData?.length}</h2>
                     </div>
-                    <h1 className='font-Oswald text-white text-[80px] font-bold tracking-wide'>WINNER TEAM FOCUS</h1>
+                    <h1 className='font-Oswald text-white text-[60px] font-bold tracking-wide'>WINNER TEAM FOCUS</h1>
                     
                     </div>
             </div>
@@ -171,11 +171,11 @@ useEffect(() => {
             {
           bestTeam&& bestTeam?.players?.slice(0,4)?.map((player,index)=>{
                 
-            return <div key={index} className='w-[300px] relative mt-10'>
-                        <div className='h-[150px]  bg-black/50'></div>
-                        <div className="absolute -top-[84px] left-1/2 -translate-x-1/2 ">
+            return <div key={index} className='w-[300px] relative mt-5'>
+                        <div className='h-[150px]  bg-black/50 absolute top-[150px] w-full z-[-1]'></div>
+                        <div className="">
                             {/* <img src={imageUrl} alt="ManOne" /> */}
-                            <img  className = "w-[250px]"src={player?.playerImg
+                            <img  className = " "src={player?.playerImg
 } alt="" />
                         </div>
                         <h3 className='text-center bg-[green] py-2 font-dm text-white text-2xl font-semibold text-white'>{player?.name?player?.name:"name"}</h3>
