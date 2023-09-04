@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import Eelemination from './Eelemination';
 
 const WwcdTeams = ({deadData}) => {
     const [filteredData, setFilteredData] = useState([]);
@@ -22,29 +23,34 @@ const WwcdTeams = ({deadData}) => {
         }
       }, [deadData.dead,deadData.teamName]);
     return (
+      <>
+      {/* <section className="col-span-10 flex  bg-orange-100 h-full ">
+      {showBackdrop&& <div className=" h-36 w-80 p-4 gap-x-3 bg-orange-400 flex  items-center">
+        <img
+          src={deadData.temeLogo
+          }
+          className="w-24  h-28"
+        />
+        <div className="bg-orange-400 w-60 h-24 ">
+          <h1 className="font-bold  text-xl bg-white p-2">
+            {" "}
+            {deadData.teamName}
+          </h1>
+          <h1 className="font-bold  text-xl mt-3 bg-white p-2">
+            {" "}
+            Match 3{" "}
+          </h1>
+        </div>
+      </div>}
+    </section> */}
+    {
+      showBackdrop && <Eelemination></Eelemination>
+    }
         <section className="mt-2">
         
         {/* <div className=" h-full grid grid-cols-12 items-center w-full  ">
           {/* Left side live section start  */}
-          <section className="col-span-10 flex  bg-orange-100 h-full ">
-            {showBackdrop&& <div className=" h-36 w-80 p-4 gap-x-3 bg-orange-400 flex  items-center">
-              <img
-                src={deadData.temeLogo
-                }
-                className="w-24  h-28"
-              />
-              <div className="bg-orange-400 w-60 h-24 ">
-                <h1 className="font-bold  text-xl bg-white p-2">
-                  {" "}
-                  {deadData.teamName}
-                </h1>
-                <h1 className="font-bold  text-xl mt-3 bg-white p-2">
-                  {" "}
-                  Match 3{" "}
-                </h1>
-              </div>
-            </div>}
-          </section>
+        
         
         <li className={`text-start px-2 w-full h-8 bg-thin-rose mt-1 border border-yellow-300 text-white font-bold flex justify-between items-center gap-4 relative`}>
         <span className={` ${deadData.dead===4 && 'absolute z-50 w-full left-0 top-0 h-full backdrop-blur-sm   backdrop-opacity-90'}`}></span>
@@ -98,6 +104,7 @@ const WwcdTeams = ({deadData}) => {
        </div>
     </li>
     </section>
+    </>
     );
 };
 

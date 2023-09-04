@@ -66,23 +66,23 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
 
     return (
         <div>
-            <div className='bg-linear-rose h-auto pb-6 pt-3 lg:px-4 '>
+            <div className='bg-linear-rose h-auto  pt-1 lg:px-4 '>
                 {/* Top section  */}
              {tournamentData &&
               <section className='grid lg:grid-cols-4 grid-cols-1'>
               
               <div className='col-span-1 border-none mb-2 mt-2 mx-auto flex lg:gap-x-0 gap-x-4'>
-              <img src={tournamentData?.logo} className='lg:w-28 lg:h-24 w-20  h-20 '/>
+              <img src={tournamentData?.logo} className='lg:w-28 lg:h-20 w-20  h-20 '/>
             
              </div>
             
                
                <div className='col-span-3   px-2'>
                  <div className='flex xl:flex  lg:justify-between justify-around flex-row-reverse'>
-                 <h1 className='text-4xl  text-center font-semibold '> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1>
-                 <h1 className='text-4xl   text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
+                 <h1 className='text-2xl  text-center font-semibold '> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1>
+                 <h1 className='text-2xl   text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
                  </div>
-                 <h1 className='text-5xl   font-bold uppercase text-white lg:text-start text-center lg:mb-0 mb-2'> Match Standing  </h1>
+                 <h1 className='text-2xl   font-bold uppercase text-white lg:text-start text-center lg:mb-0 mb-1'> Match Standing  </h1>
                </div>
              </section>
              }
@@ -94,7 +94,7 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
                   <div className='col-span-1'>
                   <div className='mx-auto w-full relative' >
                            
-                  <div className='bg-thin-rose lg:w-full lg:h-96 bottom-0 w-11/12 mx-auto'
+                  <div className='bg-thin-rose lg:w-full lg:h-[350px] bottom-0 w-11/12 mx-auto'
                       style={{clipPath:"polygon(49% 5%, 74% 5%, 79% 0%, 96% 0%, 100% 4%, 100% 33%, 98% 34%, 98% 98%, 100% 100%, 0% 100%, 2% 99%, 1% 35%, 0% 33%, 0% 3%, 3% 0%, 21% 0%, 26% 5%)",}}>
                     <div className='h-[40vh]  flex  '>
                   {/* { teamData.sort(a, b)=> }    */}
@@ -112,7 +112,7 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
                    </div>
   
                    <div className='lg:h-[10vh] h-[8vh] '>
-                     <div style={{fontFamily:'teko'}} className='text-3xl font-bold  h-full flex justify-around items-center bg-rose'> <img src={bestTeam?.logo} className='w-10 h-10 rounded-lg' />  {bestTeam?.name} </div>
+                     <div style={{fontFamily:'pop'}} className='text-3xl font-bold  h-full flex justify-around items-center bg-rose'> <img src={bestTeam?.logo} className='w-10 h-10 rounded-lg' />  {bestTeam?.name} </div>
                    </div>
                       {/* <h1 className='text-white'> {teamData?.[1]?.points[selectedMatchId]} </h1> */}
   

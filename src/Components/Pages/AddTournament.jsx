@@ -7,7 +7,7 @@ import ListItems from '../Utilities/ListItems';
 import Loading from '../Utilities/Loading';
 
 const AddTournament = () => {
-    // const {tournaments} =  useContext()
+    
   // fetch data using react query 
     const {data ,error,isLoading, refetch} = useQuery('tournaments',fetchTournament);
     const [currentPage, setCurrentPage] = useState(1);

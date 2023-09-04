@@ -49,7 +49,7 @@ const AddTeamsModal = ({refetch}) => {
        playerImg: playerFiveImg
       }
     ]}
-    // console.log(AddTeam)
+    
   
     fetch(`http://localhost:8000/teams`,{
       method: "Post",

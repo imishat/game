@@ -51,28 +51,8 @@ const [loading, setLoading] = useState(true);
     selectedStageId,])
 
 
-//  fetch  Tournament data 
-//  async function fetchOverAllData()  {
-//      if(selectedTournamentId){
-//       const response = await fetch(`http://localhost:8000/standings/overall-topfragger?groupId=${selectedStageId}`)
-      
-//      if(!response.ok){
-//          throw new Error('Failed to fetch  overall data')
-//      }
-//      refetch()
-//      return response.json() ;
-//      }
-//  }
 
 
-// // console.log(data)
-//  if(isLoading){
-//   return <Loading/>
-// }  
-
-// if(error){
-//   return <div> Error: {error.message} </div>
-// }
 
 //  sort data largest kills to 
 

@@ -8,8 +8,7 @@ import StandingTable from "../Utilities/StandingTable";
 
 const Standing = () => {
   const navigate = useNavigate();
-  //const  tournamentId = 64a9811459adef7a8d9fc300
-  // required code for live update
+ 
   const {
     selectedTournamentId,
     selectedStageId,
@@ -42,7 +41,7 @@ const Standing = () => {
     setSelectedStageId(stageId);
     setSelectedMatchId(matchId);
 
-    // set on localstorage
+    
     localStorage.setItem("tournamentId", tournamentId);
     localStorage.setItem("stageId", stageId);
     localStorage.setItem("matchId", matchId);
@@ -130,9 +129,7 @@ const Standing = () => {
     }
   }, [selectedMatchId]);
 
-  console.log(teamData,'teamdata')
-
-  console.log(stageData, "teams");
+ 
   return (
     <>
       {/* {JSON.stringify(matchData)} */}

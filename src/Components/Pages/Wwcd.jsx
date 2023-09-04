@@ -119,22 +119,7 @@ console.log(tota
         <div className=" h-full grid grid-cols-12 items-center w-full  ">
           {/* Left side live section start  */}
           <section className="col-span-10 flex justify-center items-end bg-orange-100 h-full ">
-           {/* {showBackdrop&& <div className=" h-36 w-80 p-4 gap-x-3 bg-orange-400 flex  items-center">
-              <img
-                src="https://i.pinimg.com/originals/11/09/52/1109528a8206ea6b777b84bc5bdaaec6.jpg"
-                className="w-24  h-28"
-              />
-              <div className="bg-orange-400 w-60 h-24 ">
-                <h1 className="font-bold  text-xl bg-white p-2">
-                  {" "}
-                  Grand Final{" "}
-                </h1>
-                <h1 className="font-bold  text-xl mt-3 bg-white p-2">
-                  {" "}
-                  Match 3{" "}
-                </h1>
-              </div>
-            </div>} */}
+           
           </section>
           {/* Left side live section start  */}
 

@@ -6,22 +6,19 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
 
   const sortPlayers = bestPlayer?.sort((a, b) => b?.kills[selectedMatchId] - a?.kills[selectedMatchId] )
 
-  console.log(bestPlayer,'overall best  ')
 
-  const sortPlayers = bestPlayer?.sort((a, b) => b?.kills[selectedMatchId] - a?.kills[selectedMatchId] ) 
 
     return (
         <div>
             
+      
            
-          
-           
-           <div className="w-full relative h-[100vh] mx-auto">
+           <div className="w-full relative  mx-auto">
         {/* bg frame right */}
       
         {/* bg image */}
         <div
-          className={` z-10 p-11 !pr-14 h-auto`}
+          className={` z-10 p-11 !pr-14 `}
         >
           <div>
             <div className=""> 
@@ -31,7 +28,7 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
                 <div className="relative ">
                   <img
                     src={tournanmentData?.logo}
-                    className="-z-10 w-36  h-36"
+                    className="-z-10 w-36"
                     alt=""
                   />
                 </div>
@@ -46,12 +43,12 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
           <div className="flex justify-between">
             <div className="w-[646px]">
               
-              <div className="space-y-[72px]">
+              <div className="space-y-[20px]">
                 {/* Finishes */}
                   <div  className="flex justify-between items-center w-[805px] border-b-[6px] border-[#26BA8E] pl-6 pr-28 relative">
                 
                 {/* icon */}
-                <div  className=" flex items-center justify-center w-[70px] h-[70px] border-[#26BA8E] border-[6px]">
+                <div  className="mb-1 flex items-center justify-center w-[70px] h-[50px] border-[#26BA8E] border-[6px]">
                 <span className=" after:bg-[#26BA8E] after:w-8 after:rounded-full after:h-8 after:absolute after:-right-4 after:-bottom-4"></span>
                   <img className="" src={''} alt="" />
                 </div>
@@ -67,7 +64,7 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
                 {/* Rank  */}
                   <div  className="flex justify-between items-center w-[805px] border-b-[6px] border-[#26BA8E] pl-6 pr-28 relative">
                 {/* icon */}
-                <div  className=" flex items-center justify-center w-[70px] h-[70px] border-[#26BA8E] border-[6px]">
+                <div  className="mb-1 flex items-center justify-center w-[70px] h-[50px] border-[#26BA8E] border-[6px]">
                 <span className=" after:bg-[#26BA8E] after:w-8 after:rounded-full after:h-8 after:absolute after:-right-4 after:-bottom-4"></span>
                   <img className="" src={''} alt="" />
                 </div>
@@ -84,7 +81,7 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
                   <div  className="flex justify-between items-center w-[805px] border-b-[6px] border-[#26BA8E] pl-6 pr-28 relative">
                 
                 {/* icon */}
-                <div  className=" flex items-center justify-center w-[70px] h-[70px] border-[#26BA8E] border-[6px]">
+                <div  className=" flex items-center justify-center w-[70px] h-[50px] border-[#26BA8E] border-[6px]">
                 <span className=" after:bg-[#26BA8E] after:w-8 after:rounded-full after:h-8 after:absolute after:-right-4 after:-bottom-4"></span>
                   <img className="" src={''} alt="" />
                 </div>
@@ -100,10 +97,10 @@ const MvpCard = ({selectedMatchId,bestPlayer, tournanmentData,  OverallBestPlaye
               </div>
             </div>
             {/* Player imgage  */}
-            <div className="  absolute top-0   right-0 h-full">
+            <div className="  absolute top-0   right-0 ">
               <img
                 src={bestPlayer?.at(0)?.playerImg}
-                className=" w-11/12 float-right h-full z-1"
+                className=" w-11/12 float-right h-[500px]  z-1"
                 alt=""
               />
             </div>
