@@ -146,7 +146,7 @@ useEffect(() => {
           
   return (
     <DisplayLayout>
-    <div className=' bg-[teal]  reletive z-30'>
+    <div className=' bg-[teal]  absolute w-full z-30'>
      <div className='max-w-container mx-auto'>
         <nav className=''>
             <div className="gap-x-20 flex items-center">
@@ -159,7 +159,7 @@ useEffect(() => {
                     <h2 className='text-2xl font-semibold font-dm text-white'>{tournamentData.name}</h2>
                     <h2 className='text-2xl font-semibold font-dm text-white'>{stageData?.name} {selectedMatchData?.matchNo} / {matchData?.length}</h2>
                     </div>
-                    <h1 className='font-Oswald text-white text-[60px] font-bold tracking-wide'>WINNER TEAM FOCUS</h1>
+                    <h1 className='font-Oswald text-white text-[50px] font-bold tracking-wide'>WINNER TEAM FOCUS</h1>
                     
                     </div>
             </div>
@@ -171,16 +171,16 @@ useEffect(() => {
             {
           bestTeam&& bestTeam?.players?.slice(0,4)?.map((player,index)=>{
                 
-            return <div key={index} className='w-[300px] relative mt-5'>
+            return <div key={index} className='w-[300px] relative '>
                         <div className='h-[150px]  bg-black/50 absolute top-[150px] w-full z-[-1]'></div>
                         <div className="">
                             {/* <img src={imageUrl} alt="ManOne" /> */}
                             <img  className = " "src={player?.playerImg
 } alt="" />
                         </div>
-                        <h3 className='text-center bg-[green] py-2 font-dm text-white text-2xl font-semibold text-white'>{player?.name?player?.name:"name"}</h3>
+                        <h3 className='text-center bg-[green] py-1 font-dm text-white text-2xl font-semibold text-white'>{player?.name?player?.name:"name"}</h3>
                         <div className='bg-white'>
-                            <div className="flex justify-between pt-4 px-2">
+                            <div className="flex justify-between pt-2 px-2">
                             <button className='bg-[green] px-2 py-2 font-dm font-semibold text-white text-lg hover:bg-black duration-500 rounded-[2px]'>ELIMINATON</button>
                             <button className='bg-[green] px-2 py-2 font-dm font-semibold text-white text-lg hover:bg-black duration-500 rounded-[2px]'>CONTRIBUTION</button>
                             
@@ -199,19 +199,19 @@ useEffect(() => {
             </div>
         </section>
 
-        <section className='mt-6'>
-        <div className="flex justify-between">
+        <section className='mt-4'>
+        <div className="flex justify-between pb-2">
                 <div className='w-[25%] '>
-                <h2 className='text-5xl bg-[green] p-4  font-semibold font-dm text-white'>{bestTeam?.name}</h2>
+                <h2 className='text-4xl bg-[green] p-2  font-semibold font-dm text-white'>{bestTeam?.name}</h2>
                 
                 </div>
                 <div className='w-[40%] '>
 
-                <h5 className='p-4 bg-white font-dm  text-5xl font-semibold text-black'>esas</h5>
+                <h5 className='p-2 bg-white font-dm  text-4xl font-semibold text-black'>esas</h5>
                 
                 </div>
                 <div className='w-[32%] '>
-                <h5 className='bg-white  p-4 font-dm  text-5xl font-semibold text-black'>match point {bestTeam?.kills}</h5>
+                <h5 className='bg-white  p-2 font-dm  text-4xl font-semibold text-black'>match point {bestTeam?.kills}</h5>
                 </div>
             
             </div>
