@@ -28,7 +28,7 @@ const TeamKillsCard = ({
   setTotalsKills,
   
 }) => {
-  console.log(matchData,'teamKIlss')
+ 
   const { logo, name, tag, players, _id } = team;
   const { dead } = matches[0];
   const [kills, setlKills] = useState({});

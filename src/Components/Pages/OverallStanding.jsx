@@ -11,9 +11,9 @@ import axios from 'axios';
 const OverallStanding = () => {
     const {selectedStageId , selectedMatchId,setSelectedTournamentid, setSelectedStageId,
         setSelectedMatchId} = useContext(AuthContext)
-    // const {data ,error,isLoading, refetch} = useQuery('overall', fetchOverAllData); 
+    const {data ,error,isLoading, refetch} = useQuery('overall', fetchOverAllData); 
     
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
 
@@ -35,15 +35,15 @@ const OverallStanding = () => {
       localStorage.setItem('stageId', stageId);
       localStorage.setItem('matchId', matchId);
 
-      if (selectedStageId) {
-        setLoading(true);
-        axios
-          .get(`http://localhost:8000/standings/overall?stage-id=${selectedStageId}`)
-          .then((res) => {
-            setData(res.data);
-            setLoading(false);
-          });
-      }
+      // if (selectedStageId) {
+      //   setLoading(true);
+      //   axios
+      //     .get(`http://localhost:8000/standings/overall?stage-id=${selectedStageId}`)
+      //     .then((res) => {
+      //       setData(res.data);
+      //       setLoading(false);
+      //     });
+      // }
 
 
 
@@ -64,19 +64,19 @@ const OverallStanding = () => {
 
 
 
-  //  async function fetchOverAllData()  {
-  //      if(selectedStageId){
-  //       const response = await fetch(`http://localhost:8000/standings/overall?stage-id=${selectedStageId}`);
-  //      if(!response.ok){
-  //          throw new Error('Failed to fetch  overall data')
-  //      }
-  //      refetch()
-  //      return response.json() ;
-  //      }
-  //  }
-  //  if(isLoading){
-  //   return <Loading/>
-  //  }
+   async function fetchOverAllData()  {
+       if(selectedStageId){
+        const response = await fetch(`http://localhost:8000/standings/overall?stage-id=${selectedStageId}`);
+       if(!response.ok){
+           throw new Error('Failed to fetch  overall data')
+       }
+       refetch()
+       return response.json() ;
+       }
+   }
+   if(isLoading){
+    return <Loading/>
+   }
 
    console.log(data,'over')
     return (

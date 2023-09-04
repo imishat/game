@@ -46,19 +46,19 @@ const Standing = () => {
     localStorage.setItem("tournamentId", tournamentId);
     localStorage.setItem("stageId", stageId);
     localStorage.setItem("matchId", matchId);
-  }, []);
+  }, [searchParams,
+    setSelectedMatchId,
+    setSelectedStageId,
+    setSelectedTournamentid,
+    selectedStageId,]);
 
   useEffect(() => {
     setTeams(
-      Object.keys(teamData).map((team) => teamData[team]) // set  Team data as a array
+      Object.keys(teamData).map((team,i) => teamData[team,i]) // set  Team data as a array
     );
   }, [teamData]);
 
-  // get tournament data by tournament id
-  // if(selectedTournamentId == null && selectedStageId  == null){
-  //  toast.error("Please  click display then select  tournament and group")
-  // }
-  // Tournament, Stage, Match data get and set
+
   useEffect(() => {
     if (selectedTournamentId) {
       const FetchTournamentById = async () => {
@@ -130,15 +130,15 @@ const Standing = () => {
     }
   }, [selectedMatchId]);
 
-  // console.log(teamData,'teamdata')
+  console.log(teamData,'teamdata')
 
-  console.log(teams, "teams");
+  console.log(stageData, "teams");
   return (
     <>
       {/* {JSON.stringify(matchData)} */}
 
       <DisplayLayout>
-        <StandingTable
+       {teams && <StandingTable
           selectedMatchId={selectedMatchId}
           selectedStageId={selectedStageId}
           selectedTournamentId={selectedTournamentId}
@@ -148,7 +148,7 @@ const Standing = () => {
           stageData={stageData}
           teamData={teamData}
           selectedMatchData={selectedMatchData}
-        />
+        />}
       </DisplayLayout>
     </>
   );

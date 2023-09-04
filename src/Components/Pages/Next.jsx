@@ -11,17 +11,7 @@ import vikendi from "../../assets/images/images/vikendi.jpg";
 
 const Next = () => {
   const {selectedMatchId} = useContext(AuthContext)
-  // const {data, isLoading, refetch} = useQuery('next', fetchNextMatch)
-  // const fetchNextMatch = async () => {
-  //    const response = await fetch(`http://localhost:8000/matches/next`)
-  //    if(!response.ok){
-  //      throw new Error ('Failed  to fetch next match') 
-  //    }
-  //    return response.json()
-
-  // }
-
-  // next match
+  
   const [nextMatch,setNextMatch]= useState({})
 
 console.log(nextMatch)
@@ -60,7 +50,7 @@ console.log(selectedMatchId,"metch is")
         <div className='h-[90vh] bg-linear-rose'  >
            <h1 className='font-bold  text-2xl text-yellow-400 pt-4'> Next Match  </h1>
            <div style={{ position:"relative"}}
-    className='mx-auto ' >
+           className='mx-auto ' >
          
         <div className='bg-rose'
             style={{height:"300px",width:"350px",clipPath:"polygon(49% 5%, 74% 5%, 79% 0%, 96% 0%, 100% 4%, 100% 33%, 98% 34%, 98% 98%, 100% 100%, 0% 100%, 2% 99%, 1% 35%, 0% 33%, 0% 3%, 3% 0%, 21% 0%, 26% 5%)",}}>
