@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Banner from '../Utilities/Banner';
-import ListItems from '../Utilities/ListItems';
+
 import { FaPlus } from 'react-icons/fa';
 import FindTeamsModal from '../Utilities/FindTeamsModal';
 import { useQuery } from 'react-query';
@@ -31,7 +31,7 @@ const {data, isLoading, refetch, error} = useQuery('teams', async ()  => {
         })
     })
 
-    // console.log(matches?.at(0), 'asd')
+ 
 
 // get match by group id 
 useEffect(() => {
@@ -56,7 +56,7 @@ setMatchData({
             const newI = structuredClone(i)
             newI.players = i?.players?.map(j => {
                 const obj = structuredClone(j)
-                // console.log(j?._id, matches?.at(0)?.dead)
+              
                 obj.dead = matches?.at(0)?.dead?.includes(j?._id)
                 return obj
             })
@@ -80,7 +80,7 @@ const copyLinkHanlder = () => {
 
   }
 
-// console.log(data)
+
     return (
         <Banner> 
         <div className=''>
@@ -96,7 +96,7 @@ const copyLinkHanlder = () => {
           
            <div className='w-full  grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-5 px-4 pb-10 pt-3'>
            {matches?.map((team) => team?.teams?.map((teamData,i) => {
-            // console.log(teamData)
+         
             return <TeamKillsCard key={i}
             matchData={matchData}
             setMatchData={setMatchData}

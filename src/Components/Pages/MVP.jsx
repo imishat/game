@@ -12,7 +12,7 @@ const MVP = () => {
     const [noData,setNoData] = useState('');
     const [tournanmentData,setTournamentData] = useState(null)
 
-    // Abdullah Mia's codes
+    
     const [teamData,setTeamData] = useState({}); 
 
     const [searchParams] = useSearchParams();
@@ -37,12 +37,12 @@ const MVP = () => {
 
 
     useEffect(() => {
-      // setTeams(Object.keys(teamData).map((team) => (teamData[team])))
+      
     }, [teamData])
 
 
    
-   // get best three players by match id 
+
 useEffect(()=> {
     if(!selectedMatchId){
         setNoData("No Data, Please select tournament and match number")
@@ -53,7 +53,7 @@ useEffect(()=> {
               const response = await fetch(`http://localhost:8000/standings/fragger?match-id=${selectedMatchId}`)
               const result = await response.json();
               setBestPlayer(result)
-            //   console.log(result,'best players')
+          
               
             }catch(error){
               console.log(error)

@@ -127,7 +127,7 @@ useEffect(()=> {
           className={``}
         >
          {/* Logo section */}
-         <LogoSection stageData={stageData} tournamentData={tournamentData} />
+        <LogoSection stageData={stageData} tournamentData={tournamentData}  matchData={matchData}/>
          {/* Card section */}
          <TopFraggerCard bestPlayers={bestPlayers} selectedMatchId={selectedMatchId}  />
         </div>

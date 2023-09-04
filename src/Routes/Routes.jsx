@@ -10,7 +10,7 @@ import Signup from "../Components/Shared/Signup";
 import SignIn from "../Components/Shared/SignIn";
 import MVP from "../Components/Pages/MVP";
 import TopFregger from "../Components/Pages/TopFregger";
-import Next from "../Components/Pages/Next";
+
 import OverAllMvp from "../Components/Pages/OverAllMvp";
 import Standing from "../Components/Pages/Standing";
 import OverallStanding from "../Components/Pages/OverallStanding";

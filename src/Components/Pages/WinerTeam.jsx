@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import data from '../../data/data'
+
 import LogoPubg from "../../assets/images/images/logoPabg.png"
-import PubgMan from "../../assets/images/images/pabgMan.png"
+
 import DisplayLayout from '../../Layout/DisplayLayout'
 import { AuthContext } from '../../Context/AuthProvider'
 import { useSearchParams } from 'react-router-dom'
 
 function WinerTeam() {
+
+  
 
 
     const {
@@ -29,13 +31,21 @@ function WinerTeam() {
       const [searchParams] = useSearchParams();
 
  const teamArray = teams?.map(item => item?.points[selectedMatchId] || item?.points)
+
+ 
   const maxPoints = Math.max(...teamArray);
   const bestTeam = teams?.find(x => x?.points[selectedMatchId] === maxPoints || x?.points === maxPoints)
-  console.log(bestTeam,"teambest")
+  const teamArray2 = bestTeam?.players?.map(item => item?.kills[selectedMatchId] || item?.kills)
+    console.log(teamArray2,"teamarray")
   // sort data by points max to  min 
   const sortTeams = teams?.sort((a, b) => b?.points?.[selectedMatchId] - a?.points?.[selectedMatchId] ) 
 
-
+  const [currentPage ,setCurrentPage]  = useState(1)
+  const PER_PAGE_ITEM = 10 ;
+  const startIndex =  (currentPage - 1) * PER_PAGE_ITEM ;
+  const endIndex = startIndex + PER_PAGE_ITEM ;
+  const currentData = sortTeams?.slice(startIndex , endIndex);
+  const totalPages = Math.ceil(sortTeams?.length / PER_PAGE_ITEM);
 useEffect(() => {
     setTeams(
       Object.keys(teamData).map((team,i) => teamData[team,i]) // set  Team data as a array
@@ -152,7 +162,7 @@ useEffect(() => {
             <div className="gap-x-20 flex items-center">
                     <div className='w-1/6'>
                     <img src={tournamentData.logo
-} alt="" />
+?tournamentData.logo :{LogoPubg }} alt="" />
                     </div>
                     <div className='w-5/6'>
                     <div className="gap-x-[75px] flex">
@@ -172,7 +182,7 @@ useEffect(() => {
           bestTeam&& bestTeam?.players?.slice(0,4)?.map((player,index)=>{
                 
             return <div key={index} className='w-[300px] relative '>
-                        <div className='h-[200px]  bg-black/50  absolute top-[85px] w-full z-[-1]'></div>
+                        <div className='h-[230px]  bg-black/50  absolute top-[85px] w-full z-[-1]'></div>
                         <div className='flex justify-center'>
                             <img  className = " w-[200px]" src={player?.playerImg} alt="" />
                         </div>
@@ -184,7 +194,11 @@ useEffect(() => {
                             
                             </div>
                             <className className="flex justify-center gap-x-[130px]">
-                            <h4 className='font-dm  text-2xl font-semibold text-black'>kilss</h4>
+                            {/* {Array.isArray(teamArray2) && teamArray2.slice(0,4).map((item, index) => (
+  <h4 className='font-dm text-2xl font-semibold text-black' key={index}>
+    {item[player._id]}
+  </h4>
+))} */}
                             <h4 className='font-dm  text-2xl font-semibold text-black'>{player?.contribution ? player.contribution.toFixed(2) : 0}% </h4>
                             </className>
 
@@ -198,22 +212,24 @@ useEffect(() => {
         </section>
 
         <section className='mt-2'>
-        <div className="flex justify-between pb-2">
-                <div className='w-[25%] '>
-                <h2 className='text-4xl bg-[green] p-2  font-semibold font-dm text-white'>{bestTeam?.name}</h2>
-                
-                </div>
-                <div className='w-[40%] '>
-
-                <h5 className='p-2 bg-white font-dm  text-4xl font-semibold text-black'>esas</h5>
-                
-                </div>
-                <div className='w-[32%] '>
-                <h5 className='bg-white  p-2 font-dm  text-4xl font-semibold text-black'>match point {bestTeam?.kills}</h5>
-                </div>
-            
-            </div>
-        </section>
+  {Array.isArray(currentData) && currentData.map((bestTeam, i) => (
+    <div className='flex justify-between pb-2' key={i}>
+      <div className='w-[25%] '>
+        <h2 className='text-4xl bg-[green] p-2 font-semibold font-dm text-white'>{bestTeam.name}</h2>
+      </div>
+      <div className='w-[40%] '>
+        <h5 className='p-2 bg-white font-dm text-4xl font-semibold text-black'>
+      {bestTeam?.points[selectedMatchId] || b?.points }
+        </h5>
+      </div>
+      <div className='w-[32%] '>
+        <h5 className='bg-white p-2 font-dm text-4xl font-semibold text-black'>
+          match point {bestTeam.kills}
+        </h5>
+      </div>
+    </div>
+  ))}
+</section>
     </div>     
 
     </div>

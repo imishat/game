@@ -1,5 +1,13 @@
-import React from 'react';
-const LogoSection = ({ stageData,tournamentData}) => {
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthProvider';
+const LogoSection = ({ stageData,tournamentData,matchData}) => {
+console.log(matchData,"sss")
+
+const {
+  
+  selectedMatchData,
+} = useContext(AuthContext);
+
 
     return (
         <div className="flex justify-between items-start mt-1 ">
@@ -14,7 +22,8 @@ const LogoSection = ({ stageData,tournamentData}) => {
            <div className='flex flex-col'>
            <span className="text-[36px] font-pop  leading-[50.4px] tracking-wide italic  font-semibold" > {tournamentData?.name} </span>
            <span className="text-[#141EF2] font-pop text-[22px]">
-           SHOWDOWN</span> 
+          {stageData.name
+}</span> 
            </div>
             </div>
 
@@ -32,7 +41,7 @@ const LogoSection = ({ stageData,tournamentData}) => {
       </h2>
         }
           {tournamentData &&  
-          <h4 className="text-[22px] uppercase font-semibold  ">  Match No: 01 </h4>
+          <h4 className="text-[22px] uppercase font-semibold  ">  Match No: {selectedMatchData?.matchNo?selectedMatchData?.matchNo:0} </h4>
           }
       </div>
    
