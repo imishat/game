@@ -173,10 +173,8 @@ useEffect(() => {
                 
             return <div key={index} className='w-[300px] relative '>
                         <div className='h-[150px]  bg-black/50 absolute top-[150px] w-full z-[-1]'></div>
-                        <div className="">
-                            {/* <img src={imageUrl} alt="ManOne" /> */}
-                            <img  className = " "src={player?.playerImg
-} alt="" />
+                        <div className='flex justify-center'>
+                            <img  className = " w-[200px]" src={player?.playerImg} alt="" />
                         </div>
                         <h3 className='text-center bg-[green] py-1 font-dm text-white text-2xl font-semibold text-white'>{player?.name?player?.name:"name"}</h3>
                         <div className='bg-white'>
