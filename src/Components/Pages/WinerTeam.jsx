@@ -172,7 +172,7 @@ useEffect(() => {
           bestTeam&& bestTeam?.players?.slice(0,4)?.map((player,index)=>{
                 
             return <div key={index} className='w-[300px] relative '>
-                        <div className='h-[150px]  bg-black/50 absolute top-[150px] w-full z-[-1]'></div>
+                        <div className='h-[200px]  bg-black/50  absolute top-[85px] w-full z-[-1]'></div>
                         <div className='flex justify-center'>
                             <img  className = " w-[200px]" src={player?.playerImg} alt="" />
                         </div>
