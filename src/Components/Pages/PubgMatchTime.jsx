@@ -61,7 +61,7 @@ function PubgMatchTime() {
 
   return (
     <DisplayLayout>
-    <div className='bg-[teal] h-screen'>
+    <div className='bg-[teal] '>
      <div className='max-w-container mx-auto'>
     <nav className=' py-4'>
       <div className="flex gap-x-20 items-center">
@@ -78,7 +78,7 @@ function PubgMatchTime() {
     </div>
    </nav>
 
-    <div className="flex  gap-x-10">
+    <div className="flex  gap-x-10 pb-8">
 
 {
     data.map((match)=>{

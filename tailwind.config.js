@@ -9,6 +9,9 @@ export default {
       maxWidth: {
         'container': '1320px',
       },
+      fontFamily: {
+        'pop': ['Poppins'],
+      },
       backgroundImage: {
         'hero': "url('./src/assets/images/images/background.png')",
         'car': "url('./src/assets/images/images/car.jpg')",

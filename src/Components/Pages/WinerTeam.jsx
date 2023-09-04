@@ -197,7 +197,7 @@ useEffect(() => {
             </div>
         </section>
 
-        <section className='mt-4'>
+        <section className='mt-2'>
         <div className="flex justify-between pb-2">
                 <div className='w-[25%] '>
                 <h2 className='text-4xl bg-[green] p-2  font-semibold font-dm text-white'>{bestTeam?.name}</h2>

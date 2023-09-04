@@ -116,10 +116,10 @@ useEffect(()=> {
     return (
         <DisplayLayout>
         
-        <div className="w-full relative  mx-auto">
+        <div className="w-full  relative  mx-auto">
         {/* bg frame right */}
         <img
-          className="absolute right-0"
+          className="absolute right-0 "
           src=""
         />
         {/* bg image */}
@@ -127,7 +127,7 @@ useEffect(()=> {
           className={``}
         >
          {/* Logo section */}
-         <LogoSection stageData={stageData} tournamentData={tournamentData}  />
+         <LogoSection stageData={stageData} tournamentData={tournamentData} />
          {/* Card section */}
          <TopFraggerCard bestPlayers={bestPlayers} selectedMatchId={selectedMatchId}  />
         </div>

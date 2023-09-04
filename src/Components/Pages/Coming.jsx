@@ -22,20 +22,18 @@ function Coming() {
   return (
    <>
    <DisplayLayout>
-     <section className=' h-screen bg-cover bg-center bg-[teal]'>
-        <div className='max-w-container mx-auto'>
-
-       <nav className='py-5'>
+     <section className=' bg-[teal] pb-3'>
+       <nav className='max-w-container mx-auto'>
             <div className="flex gap-x-10 items-center">
-                    <div className='w-[15%]'>
+                    <div className='w-[12%]'>
                        <img src={LogoPubg} alt="" />
                     </div>
-                    <div className='w-[70%]'>
+                    <div className='w-[65%]'>
                        <div className="flex gap-x-10 items-center">
-                        <h2 className='text-2xl font-semibold font-dm text-white'>PUBG MOBILE BATTLE OF THOUGHT SEASON 1</h2>
-                        <h2 className='bg-[green] px-4 py-2 text-2xl font-semibold font-dm text-white'>GRAND FINAL M1/08</h2>
+                        <h2 className='text-2xl font-semibold font-pop text-white'>PUBG MOBILE BATTLE OF THOUGHT SEASON 1</h2>
+                        <h2 className='bg-[green] px-4 py-1 text-2xl font-semibold font-pop text-white'>GRAND FINAL M1/08</h2>
                        </div>
-                       <h1 className='font-Oswald font-semibold text-white text-[80px] font-extrabold tracking-wide'>COMING NEXT MAP</h1>
+                       <h1 className='font-pop font-semibold text-white text-[65px] font-extrabold tracking-wide'>COMING NEXT MAP</h1>
                         
                     </div>
                 </div>
@@ -43,7 +41,7 @@ function Coming() {
       {/* <div className='w-[600px]  mx-auto flex items-center  bg-cover bg-center bg-no-repeat  border border-[5px] border-white h-96 justify-center'> */}
       <img 
          //   style={{position:"absolute",zIndex:1}}
-            className='w-[600px]  mx-auto flex items-center  bg-cover bg-center bg-no-repeat  border border-[5px] border-white h-96 justify-center '
+            className='w-[600px]  mx-auto flex items-center  bg-cover bg-center bg-no-repeat  border border-[5px] border-white  justify-center '
             src={
               nextMatch?.chooseMap?.toLowerCase() === "shenok"
                 ? shanok
@@ -58,8 +56,6 @@ function Coming() {
                 : bg
             }
             alt="" />
-        </div>
-      
     </section>
     </DisplayLayout>
    </>
