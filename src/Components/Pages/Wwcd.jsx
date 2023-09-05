@@ -10,6 +10,7 @@ import supabase from "../../../config/supabase-client";
 import { AuthContext } from "../../Context/AuthProvider";
 import { toast } from "react-hot-toast";
 import WwcdTeams from "./wwcdTeams";
+import { object } from "prop-types";
 
 const Wwcd = () => {
  
@@ -19,7 +20,7 @@ const Wwcd = () => {
   const [data, setData] = useState([])
   const [dead, setDead] = useState([])
  
-  console.log(data)
+  console.log(dead)
 
   useEffect(() => {
     async function main() {
@@ -37,19 +38,16 @@ const Wwcd = () => {
 
   useEffect(() => {
     const arr = []
+    
 
     data?.teams?.teams?.forEach(i => {
       // console.log(i.points,"data")
       let count = 0
       
       i?.players.forEach(j => j.dead && count++)
-      i.kills=i.points
- const tota= data.totalNumber.value===i?._id
-
-console.log(tota
-  )
-      // i?.players?.forEach(j=>killsCount+=Number(j?.kills?.[id])||0)
-      arr.push({teamId: i?._id, dead: count,teamName:i?.name,temeLogo:i?.logo, tolal:tota})
+    
+     
+      arr.push({teamId: i?._id, dead: count,teamName:i?.name,temeLogo:i?.logo,kills:data.totalNumber[i._id]})
     })
     setDead(arr)
   }, [data])

@@ -99,7 +99,7 @@ const WwcdTeams = ({deadData}) => {
           <div className="h-3 rounded-md w-2 bg-orange-500"></div>
      </div>
       )}
-    <p>{deadData.dead}</p>
+    <p>{deadData.kills}</p>
 
        </div>
     </li>

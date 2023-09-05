@@ -27,18 +27,20 @@ function WinerTeam() {
       const [matchData, setMatchData] = useState([]);
       const [teamData, setTeamData] = useState({});
       const [teams, setTeams] = useState([]);
+      console.log(teams,"aa")
 
       const [searchParams] = useSearchParams();
 
- const teamArray = teams?.map(item => item?.points[selectedMatchId] || item?.points)
+ const teamArray = Array.isArray(teams) && teams?.map(item => item?.points[selectedMatchId] || item?.points)
 
  
   const maxPoints = Math.max(...teamArray);
-  const bestTeam = teams?.find(x => x?.points[selectedMatchId] === maxPoints || x?.points === maxPoints)
-  const teamArray2 = bestTeam?.players?.map(item => item?.kills[selectedMatchId] || item?.kills)
-    console.log(teamArray2,"teamarray")
+  //  find the max pointed team
+  const bestTeam = Array.isArray(teams) && teams?.find(x => x?.points[selectedMatchId] === maxPoints || x?.points === maxPoints)
+
+   
   // sort data by points max to  min 
-  const sortTeams = teams?.sort((a, b) => b?.points?.[selectedMatchId] - a?.points?.[selectedMatchId] ) 
+  const sortTeams = Array.isArray(teams) && teams?.sort((a, b) => b?.points?.[selectedMatchId] - a?.points?.[selectedMatchId] ) 
 
   const [currentPage ,setCurrentPage]  = useState(1)
   const PER_PAGE_ITEM = 10 ;
@@ -48,9 +50,10 @@ function WinerTeam() {
   const totalPages = Math.ceil(sortTeams?.length / PER_PAGE_ITEM);
 useEffect(() => {
     setTeams(
-      Object.keys(teamData).map((team,i) => teamData[team,i]) // set  Team data as a array
+      Object?.keys(teamData)?.map((team,i) => teamData[team,i]) // set  Team data as a array
     );
   }, [teamData]);
+  
 
 
 
@@ -179,7 +182,8 @@ useEffect(() => {
         <div className="flex justify-between">
             
             {
-          bestTeam&& bestTeam?.players?.slice(0,4)?.map((player,index)=>{
+          bestTeam?.players?.length && bestTeam?.players?.slice(0,4)?.map((player,index)=>{
+            console.log(player,"pp")
                 
             return <div key={index} className='w-[300px] relative '>
                         <div className='h-[230px]  bg-black/50  absolute top-[85px] w-full z-[-1]'></div>
@@ -194,11 +198,9 @@ useEffect(() => {
                             
                             </div>
                             <className className="flex justify-center gap-x-[130px]">
-                            {/* {Array.isArray(teamArray2) && teamArray2.slice(0,4).map((item, index) => (
-  <h4 className='font-dm text-2xl font-semibold text-black' key={index}>
-    {item[player._id]}
-  </h4>
-))} */}
+                            
+  <h4 className='font-dm text-2xl font-semibold text-black' key={index}>{player.kills[selectedMatchId]}</h4>
+
                             <h4 className='font-dm  text-2xl font-semibold text-black'>{player?.contribution ? player.contribution.toFixed(2) : 0}% </h4>
                             </className>
 
@@ -212,14 +214,16 @@ useEffect(() => {
         </section>
 
         <section className='mt-2'>
-  {Array.isArray(currentData) && currentData.map((bestTeam, i) => (
-    <div className='flex justify-between pb-2' key={i}>
+  {Array.isArray(currentData) && currentData.slice(0,1).map((bestTeam, i) => {
+    console.log(bestTeam)
+
+     return( <div className='flex justify-between pb-2' key={i}>
       <div className='w-[25%] '>
         <h2 className='text-4xl bg-[green] p-2 font-semibold font-dm text-white'>{bestTeam.name}</h2>
       </div>
       <div className='w-[40%] '>
         <h5 className='p-2 bg-white font-dm text-4xl font-semibold text-black'>
-      {bestTeam?.points[selectedMatchId] || b?.points }
+      {bestTeam?.points[selectedMatchId] || bestTeam?.points }
         </h5>
       </div>
       <div className='w-[32%] '>
@@ -227,8 +231,8 @@ useEffect(() => {
           match point {bestTeam.kills}
         </h5>
       </div>
-    </div>
-  ))}
+    </div>)
+})}
 </section>
     </div>     
 
