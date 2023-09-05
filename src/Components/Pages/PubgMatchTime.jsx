@@ -141,29 +141,29 @@ console.log(matchData,"rrr")
     <div className='bg-[teal] '>
      <div className='max-w-container mx-auto'>
     <nav className=' py-4'>
-      <div className="flex gap-x-20 items-center">
+      <div className="flex items-center">
             <div className='w-1/6'>
             <img src={tournamentData.logo
 } alt="" />
             </div>
-            <div className='w-5/6'>
-            <div className=" flex gap-x-[75px]">
-              <h2 className='text-2xl font-semibold font-dm text-white'>{tournamentData?.name}</h2>
-              <h2 className="bg-[green] px-4 py-2 text-2xl font-semibold font-dm text-white">{stageData?.name} {selectedMatchData?.matchNo} / {matchData?.length}</h2>
+            <div>
+            <div className="flex justify-center items-center gap-x-5">
+              <h2 className='text-2xl font-semibold font-pop text-white'>{tournamentData?.name}</h2>
+              <h2 className="bg-[green] px-4 py-2 text-2xl font-semibold font-pop text-white">{stageData?.name} {selectedMatchData?.matchNo} / {matchData?.length}</h2>
             </div>
-            <h1 className='font-Oswald text-white text-[80px] font-bold tracking-[10px]'>TODAYS   SCHEDULE</h1>
+            <h1 className='font-pop text-white text-[80px] font-bold tracking-[10px]'>TODAYS   SCHEDULE</h1>
             </div>
     </div>
    </nav>
 
-    <div className="flex  gap-x-10 pb-8">
+    <div className="flex justify-center  gap-x-28 pb-8">
 
 {
     data.map((match)=>{
   
 return <div className='w-[300px]'>
      <div className='w-full bg-[green]  py-4 text-center hover:bg-white duration-500 group'> 
-     <h2 className="group-hover:text-black text-2xl font-semibold font-dm text-white"> {match?.matchNo}</h2>
+     <h2 className="group-hover:text-black text-2xl font-semibold font-pop text-white"> {match?.matchNo}</h2>
    </div>
     <div className='relative'>
 
@@ -199,11 +199,11 @@ return <div className='w-[300px]'>
 
 
     <div className='flex justify-center items-end bg-black/30 h-full w-full absolute top-0 left-0'>
-       <h3 className="font-dm text-white text-2xl font-semibold text-white pb-4">{match?.chooseMap}</h3>
+       <h3 className="font-pop text-2xl font-semibold text-white pb-4">{match?.chooseMap}</h3>
     </div>
     </div>
    <div className='w-full bg-gray-600 py-2 text-center hover:bg-black duration-500 group'> 
-     <h2 className=' font-dm  font-extrabold text-3xl text-[black] group-hover:text-white'>{match?.time}</h2>
+     <h2 className=' font-pop  font-extrabold text-3xl text-[black] group-hover:text-white'>{match?.time}</h2>
    </div>
   </div>
    

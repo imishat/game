@@ -82,6 +82,7 @@ const AddMatchDetails = () => {
               : 
               <h2 className='text-2xl font-bold text-white '> No Match Data </h2>
             }
+            
              </div>
             </div>
             <div className='lg:w-1/5  w-11/12 mx-auto '>
