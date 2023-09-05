@@ -31,10 +31,22 @@ function WinerTeam() {
 
       const [searchParams] = useSearchParams();
 
- const teamArray = Array.isArray(teams) && teams?.map(item => item?.points[selectedMatchId] || item?.points)
+//  const teamArray = Array.isArray(teams) && teams?.map(item => item?.points[selectedMatchId] || item?.points)
+const teamArray = Array.isArray(teams) && teams?.map(item => {
+  // Check if the item has the points property and if it has the selectedMatchId property
+  if (item?.points && item?.points[selectedMatchId]) {
+    // If it does, return the team's points for the selectedMatchId
+    return item.points[selectedMatchId];
+  } else {
+    // If not, return 0 or some default value, depending on your logic
+    return 0; // Change this if needed
+  }
+});
+
+const maxPoints = Math.max(...teamArray);
 
  
-  const maxPoints = Math.max(...teamArray);
+  // const maxPoints = Math.max(...teamArray);
   //  find the max pointed team
   const bestTeam = Array.isArray(teams) && teams?.find(x => x?.points[selectedMatchId] === maxPoints || x?.points === maxPoints)
 
