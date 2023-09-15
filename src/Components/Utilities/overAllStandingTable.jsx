@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../../assets/Style/style.css'
 import '../../assets/Style/Table.css'
+import "../../App.css"
+import OverallTop from '../Pages/OverallTop';
 
 
 const OverAllStandingTable = ({tournamentData,  teams,}) => {
@@ -59,63 +61,168 @@ const OverAllStandingTable = ({tournamentData,  teams,}) => {
 
 
     return (
-        <div>
-            <div className='bg-linear-rose h-auto pb-6 pt-3 lg:px-4 '>
-                {/* Top section  */}
-             {tournamentData &&
-              <section className='grid lg:grid-cols-4 grid-cols-1'>
-              
-              <div className='col-span-1 border-none mb-2 mt-2 mx-auto flex lg:gap-x-0 gap-x-4'>
-              <img src={tournamentData?.logo} className='lg:w-28 lg:h-24 w-20  h-20 '/>
-            
-             </div>
-            
-               
-               <div className='col-span-3   px-2'>
-                 <div className='flex xl:flex  lg:justify-between justify-around flex-row-reverse'>
-                 {/* <h1 className='text-4xl  text-center font-semibold '> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1> */}
-                 <h1 className='text-4xl   text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
-                 </div>
-                 <h1 className='text-5xl   font-bold uppercase text-white lg:text-start text-center lg:mb-0 mb-2'> Match Standing  </h1>
-               </div>
-             </section>
-             }
-              
-              {/* best  Team section left side   */}
-              <section className='grid lg:grid-cols-3  lg:gap-x-4'>
-            
-                {/* Show other team in  table   */}
-           <div className='  w-full px-2 col-span-3'>
-       <div className="hidden lg:flex items-center justify-center">
-	<div className="container">
-		<table className="w-full flex flex-row flex-no-wrap sm:bg-white sm:hidden rounded-lg overflow-hidden sm:shadow-lg my-5">
-			<thead className="text-white">
-      
-				<tr className="bg-rose flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-					<th className="p-3 text-left"> Rank  </th>
-					<th className="p-3 text-left">  Team Name </th>
-					{/* <th className="p-3 text-left">  Place  </th> */}
-					<th className="p-3 text-left">  Rank Pts </th>
-					<th className="p-3 text-left" > Elims </th>
-					<th className="p-3 text-left" > Total Pts </th>
-				</tr>
-			</thead>
 
-			<tbody className="flex-1 sm:flex-none text-slate-700 font-semibold">
-      {Array.isArray(currentData) && currentData?.map((team,i) => 
-				<tr key={team?._id} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-					<td className="border-grey-light border hover:bg-gray-100 p-3"> # {i+1} </td>
-					<td className="border-grey-light border hover:bg-gray-100 px-3 h-8 flex justify-between items-center"> <img src={team?.logo}  className='h-8 w-8' /> {team?.name} </td>
-					{/* <td className="border-grey-light border hover:bg-gray-100 p-3">0 </td> */}
-					<td className="border-grey-light border hover:bg-gray-100 p-3"> {pointTable[team?.rank]}  </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3 "> {team?.kills} </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3 "> {team?.points } </td>
-				</tr>
-      )}
-			
-      </tbody>
-     </table>
-         {sortTeams?.length? 
+  <div>
+  <OverallTop/>
+       
+
+      <div className="w-full flex justify-center mt-20 " >
+      <table
+            style={{ borderCollapse: "separate", borderSpacing: "3px" }}
+            class="  "
+          >
+            <thead>
+              <tr>
+                <th
+                  style={{
+                    width: "110px",
+                    height: "38px",
+                    textAlign: "center",
+                    backgroundColor: "black",
+                    color: "white",
+                    clipPath:
+                      "polygon(10.91% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 22.41%)",
+                  }}
+                  scope="col"
+                >
+                  RANK
+                </th>
+                <th
+                  style={{
+                    width: "529px",
+                    height: "38px",
+                    textAlign: "center",
+                    backgroundColor: "black",
+                    color: "white",
+                    clipPath:
+                      "polygon(0% 0%, 7.56% 0%, 8.88% 13.79%, 31.76% 13.79%, 32.7% 0%, 70.13% 0%, 71.27% 13.79%, 89.22% 13.79%, 90.36% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                  }}
+                  scope="col"
+                >
+                  TEAM NAME
+                </th>
+                <th
+                 className="w-28 h-10 text-center text-white bg-[#007B56]"
+                  scope="col"
+                >
+                  PLACE
+                </th>
+                <th
+                className="w-28 h-10 text-center text-white bg-[#007B56]"
+                  scope="col"
+                >
+                  RANK PTS
+                </th>
+                <th
+                className="w-28 h-10 text-center text-white bg-[#007B56]"
+                 
+                  scope="col"
+                >
+                  ELMS
+                </th>
+                <th
+                  style={{
+                    width: "105px",
+                    height: "38px",
+                    textAlign: "center",
+                    backgroundColor: "#007B56",
+                    color: "white",
+                    clipPath:
+                      "polygon(0% 0%, 88.46% 0%, 100% 20.34%, 100% 100%, 0% 100%)",
+                  }}
+                  scope="col"
+                >
+                  TOTAL PTS
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+            {Array.isArray(currentData) &&currentData?.map((team,i) => 
+              <tr
+                style={{
+                  height: "48px",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                  fontFamily: "teko",
+                  fontWeight: "bold",
+                  fontSize: "32px",
+                  background: "rgba(216, 216, 216, 0.3)",
+                }}
+              >
+                <th
+                  style={{
+                    padding: "0px",
+                    background: "rgba(158, 158, 158, 0.7)",
+                    color: "white",
+                  }}
+                  scope="row"
+                >
+                  {i+1}
+                </th>
+                <td
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    textAlign: "center",
+                    padding: "0px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "112px",
+                      background: "rgba(256,256,256,0.7",
+                      padding: "0px",
+                    }}
+                  >
+                    <img
+                      height="38.78px"
+                      width="38.78px"
+                      src={tournamentData?.logo}
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "41px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{}}>
+                      <img
+                        height="30px"
+                        width="35px"
+                        style={{ padding: "3px", marginLeft: "5px" }}
+                        src={team?.logo}
+                        alt=""
+                      />
+                    </div>
+                    <h2
+                      style={{
+                        fontFamily: "teko",
+                        position: "relative",
+                        top: "7px",
+                        fontWeight: "bolder",
+                        color: "black",
+                      }}
+                    >
+                     {team?.name}
+                    </h2>
+                    {""}
+                  </div>
+                </td>
+
+                <td style={{ padding: "0px" }}>0</td>
+                <td style={{ padding: "0px" }}>{pointTable[team?.rank]}</td>
+                <td style={{ padding: "0px" }}>{team?.kills}</td>
+                <td style={{ padding: "0px" }}>{team?.points}</td>
+              </tr> )}
+            </tbody>
+          </table>
+      </div>
+
+      {sortTeams?.length? 
               <div className=" mt-4 full">
               <h1 className='text-xl font-bold text-white text-center'> Page  No: {currentPage} </h1>
              <div className='flex justify-center mt-4'>
@@ -144,15 +251,13 @@ const OverAllStandingTable = ({tournamentData,  teams,}) => {
               <h2 className='text-2xl font-bold text-white '> No Tournament data </h2>
             }
     </div>
-    </div>
-        {/* large device table show end  */}
+  
+   
 
 
        
-             </div>
-           </section>
-           </div>
-        </div>
+          
+  
     );
 };
 

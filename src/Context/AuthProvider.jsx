@@ -43,19 +43,7 @@ useEffect(()=> {
     const unsubscribe = onAuthStateChanged(auth, currentUser=>{
         setLoading(false)
         setUser( currentUser)
-        // setLoading(true)
-
-        // the condition work  properly to verify user and access  to login 
-
-        // if(currentUser.emailVerified){
-        //     setUser(currentUser)
-
-        // }
-        //  if (!currentUser.emailVerified) { 
-          
-        //     setUser({})
-          
-        // }
+        
         
     
     })
@@ -69,7 +57,7 @@ const [selectedStageId,setSelectedStageId] = useState(null)
 const [selectedMatchId,setSelectedMatchId] = useState(null)
 const [selectedMatchData,setSelectedMatchData] = useState({})
 const [deadname,setDeadname]=useState('')
-console.log(deadname,"deadname")
+console.log(selectedMatchId,"deadname")
 
 
     

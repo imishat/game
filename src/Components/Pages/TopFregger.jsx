@@ -7,6 +7,7 @@ import '../../assets/Style/style.css';
 import LogoSection from '../Utilities/LogoSection';
 import TopFraggerCard from '../Utilities/TopFraggerCard';
 
+
 const TopFregger = () => {
     const {selectedMatchId,selectedStageId,selectedTournamentId,setSelectedTournamentid, setSelectedStageId, setSelectedMatchId} = useContext(AuthContext)
     const [bestPlayers,setBestPlayers] = useState([])
@@ -48,7 +49,7 @@ useEffect(()=> {
               const response = await fetch(`http://localhost:8000/standings/fragger?match-id=${selectedMatchId}`)
               const result = await response.json();
               setBestPlayers(result)
-              console.log(result,'best players')
+           
               
             }catch(error){
               console.log(error)
@@ -116,10 +117,10 @@ useEffect(()=> {
     return (
         <DisplayLayout>
         
-        <div className="w-full  relative  mx-auto">
+        <div className="">
         {/* bg frame right */}
         <img
-          className="absolute right-0 "
+          className=" "
           src=""
         />
         {/* bg image */}
@@ -130,6 +131,7 @@ useEffect(()=> {
         <LogoSection stageData={stageData} tournamentData={tournamentData}  matchData={matchData}/>
          {/* Card section */}
          <TopFraggerCard bestPlayers={bestPlayers} selectedMatchId={selectedMatchId}  />
+     
         </div>
       </div>
         </DisplayLayout>

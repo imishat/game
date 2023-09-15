@@ -138,7 +138,7 @@ console.log(matchData,"rrr")
 
   return (
     <DisplayLayout>
-    <div className='bg-[teal] '>
+    {/* <div className='bg-[teal] '>
      <div className='max-w-container mx-auto'>
     <nav className=' py-4'>
       <div className="flex items-center">
@@ -212,7 +212,53 @@ return <div className='w-[300px]'>
 
     </div>
     </div>
-    </div>
+    </div> */}
+
+
+      <div className='flex '>
+      {
+    data.map((match)=>{
+    
+      return  <div className='mt-20 flex justify-center ' >
+         {/* MATCH-1 */}
+         <div className='h-[563px] w-[360px] mx-7 '> 
+          <div className='h-[87px] bg-black text-center text-5xl font-medium text-white font-custom'
+           style={{clipPath:"polygon(0% 0.32%, 28.4% 0.32%, 30.19% 6.07%, 63.6% 5.37%, 65.43% 0.32%, 96.05% 0.32%, 100% 19.35%, 100% 44.09%, 98.02% 50.16%, 98.02% 70.91%, 100% 77.42%, 100% 100%, 2.58% 100%, 0% 89.25%, 0% 56.77%, 1.77% 51.34%, 1.77% 26.6%, 0% 19.35%)"}}>
+            {/* Match Number */}
+            <div className='pt-[10px]' >{match?.matchNo}</div>
+          </div>
+          <div className='h-[392px]'  style={{clipPath:"polygon(0% 0%, 100.25% 0%, 100% 17.52%, 97.98% 19.19%, 97.98% 53.66%, 100% 55.65%, 100.25% 100.22%, 0% 100.22%, 0% 72.34%, 1.97% 71.4%, 1.97% 56.76%, 0% 54.77%)"}}>
+           {/* Match Image */}
+           <img
+                className='w-full h-full'
+                src={
+                  match?.chooseMap?.toLowerCase() === "shenok"
+                    ? shanok
+                    : match?.chooseMap?.toLowerCase() === "erangel"
+                    ? bg
+                    : match?.chooseMap?.toLowerCase() === "miramar"
+                    ?
+                    miramar
+                    : match?.chooseMap?.toLowerCase() === "vikendi"
+                    ?
+                    vikendi
+                    : bg
+                }
+                alt=""
+              />
+            {/* Map Name */}
+            <div className='relative bottom-[46px] left-[136px] text-white font-custom text-[45px]' >{match?.chooseMap}</div>
+          </div>
+          <div className='bg-[#c1c1c1] h-[61px] text-center text-[50px] font-semibold text-black font-custom' style={{clipPath:"polygon(0% 0%, 100% 0%, 100% 100%, 83.99% 100%, 83% 92.42%, 51.23% 92.42%, 50% 100%, 2.46% 100%, 0% 84.47%)"}}>
+            <div>{match?.time?match?.time:"0"}</div>
+          </div>
+        </div>
+      </div>
+     
+    })
+  }</div>
+   
+
     </DisplayLayout>
   )
 }

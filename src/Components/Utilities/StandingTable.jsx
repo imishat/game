@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../../assets/Style/style.css'
 import '../../assets/Style/Table.css'
+import LogoSection from './LogoSection';
 
 
-const StandingTable = ({tournamentData, matchData, stageData,  teamData,  selectedMatchId, selectedStageId, teams, selectedMatchData}) => {
+const StandingTable = ({tournamentData, matchData, stageData,    selectedMatchId,  teams, selectedMatchData}) => {
   // get maxpoints team 
   const teamArray = teams?.map(item => item?.points[selectedMatchId] || item?.points)
   const maxPoints = Math.max(...teamArray);
@@ -65,112 +66,241 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
   const best = (bestTeam?.players?.map((player) => console.log(player?.playerImg)))
 
     return (
-        <div>
-            <div className='bg-linear-rose h-auto  pt-1 lg:px-4 '>
-                {/* Top section  */}
-             {tournamentData &&
-              <section className='grid lg:grid-cols-4 grid-cols-1'>
-              
-              <div className='col-span-1 border-none mb-2 mt-2 mx-auto flex lg:gap-x-0 gap-x-4'>
-              <img src={tournamentData?.logo} className='lg:w-28 lg:h-20 w-20  h-20 '/>
-            
-             </div>
-            
-               
-               <div className='col-span-3   px-2'>
-                 <div className='flex xl:flex  lg:justify-between justify-around flex-row-reverse'>
-                 <h1 className='text-2xl  text-center font-semibold '> <span className='text-yellow-400'> {stageData?.name} </span>:  {selectedMatchData?.matchNo} / {matchData?.length} </h1>
-                 <h1 className='text-2xl   text-center uppercase font-semibold text-yellow-400'> {tournamentData?.name}   </h1>
-                 </div>
-                 <h1 className='text-2xl   font-bold uppercase text-white lg:text-start text-center lg:mb-0 mb-1'> Match Standing  </h1>
-               </div>
-             </section>
-             }
-              
-              {/* best  Team section left side   */}
-              <section className='grid lg:grid-cols-3  lg:gap-x-4'>
-                {/* Who is best team in the match  */}
-                {bestTeam && 
-                  <div className='col-span-1'>
-                  <div className='mx-auto w-full relative' >
-                           
-                  <div className='bg-thin-rose lg:w-full lg:h-[350px] bottom-0 w-11/12 mx-auto'
-                      style={{clipPath:"polygon(49% 5%, 74% 5%, 79% 0%, 96% 0%, 100% 4%, 100% 33%, 98% 34%, 98% 98%, 100% 100%, 0% 100%, 2% 99%, 1% 35%, 0% 33%, 0% 3%, 3% 0%, 21% 0%, 26% 5%)",}}>
-                    <div className='h-[40vh]  flex  '>
-                  {/* { teamData.sort(a, b)=> }    */}
-                  
-                  {(bestTeam?.players?.slice(0,4)?.map((img) => <div key={img?._id}
-                  className='w-full lg:h-[20vh] h-[20vh] mt-20'
+<>
+<LogoSection/>
+  <div className="w-full flex justify-evenly mt-20" >
+        <div className="h-[619px] w-[599px]">
+         <div className="flex  bg-black bg-opacity-50  h-[452px]  custom-clip-path ">
+            {/* palyer1 image of 1st team */}
+            {(bestTeam?.players?.slice(0,4)?.map((img) => <img
+            key={img?._id}
+              height="375px"
+              // style={{ position: "relative", top: "78px", left: "-110px" }}
+              className="relative top-[78px] -left-[100px]"
+              src={img?.playerImg}
+              alt=""
+            />
+           
+            ))}
+          </div>
+          <div className="flex h-[120px] w-full justify-between bg-[#c0c0c0] px-2 custom-clip-path2">
+            {/* logo of 1st team */}
+           
+            {/* name of 1st team */}
+            <div
+              className="font-custom text-[63px] font-bold relative top-2"
+            >
+           <p> {bestTeam?.name} </p>
+            </div>
+            {/* static flag of nepal */}
+            <img
+              height="68px"
+              src={bestTeam?.logo}
+              alt=""
+            />
+          </div>
+          <div className="h-[120px] flex bg-white items-center justify-evenly custom-clip-path3">
+
+            {/* higesht team postion */}
+            <div className="text-center  font-bold text-3xl "  >
+              <div>
+              {bestTeam?.rank||0 }
+</div>
+              <div>PLACE</div>
+            </div>
+            {/* top team Rank Point */}
+            <div className="text-center  font-bold text-3xl ">
+              <div>15</div>
+              <div>RANK PTS</div>
+            </div>
+            {/* top team Total kill */}
+            <div className="text-center  font-bold text-3xl ">
+              <div>{bestTeam?.kills }</div>
+              <div>ELIMS</div>
+            </div>
+              {/* top team Total Point */}
+            <div className="text-center  font-bold text-3xl ">
+              <div>{bestTeam?.points[selectedMatchId] }</div>
+              <div>TOTAL PTS</div>
+            </div>
+          </div>
+        </div>
+        <div className="">
+        <table
+            style={{ borderCollapse: "separate", borderSpacing: "3px" }}
+            class="  "
+          >
+            <thead>
+              <tr>
+                <th
+                  style={{
+                    width: "110px",
+                    height: "38px",
+                    textAlign: "center",
+                    backgroundColor: "black",
+                    color: "white",
+                    clipPath:
+                      "polygon(10.91% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 22.41%)",
+                  }}
+                  scope="col"
+                >
+                  RANK
+                </th>
+                <th
+                  style={{
+                    width: "529px",
+                    height: "38px",
+                    textAlign: "center",
+                    backgroundColor: "black",
+                    color: "white",
+                    clipPath:
+                      "polygon(0% 0%, 7.56% 0%, 8.88% 13.79%, 31.76% 13.79%, 32.7% 0%, 70.13% 0%, 71.27% 13.79%, 89.22% 13.79%, 90.36% 0%, 100% 0%, 100% 100%, 0% 100%)",
+                  }}
+                  scope="col"
+                >
+                  TEAM NAME
+                </th>
+                <th
+                  style={{
+                    width: "104px",
+                    height: "38px",
+                    textAlign: "center",
+                    backgroundColor: "#007B56",
+                    color: "white",
+                  }}
+                  scope="col"
+                >
+                  PLACE
+                </th>
+                <th
+                  style={{
+                    width: "104px",
+                    height: "38px",
+                    textAlign: "center",
+                    backgroundColor: "#007B56",
+                    color: "white",
+                  }}
+                  scope="col"
+                >
+                  RANK PTS
+                </th>
+                <th
+                  style={{
+                    width: "104px",
+                    height: "38px",
+                    textAlign: "center",
+                    backgroundColor: "#007B56",
+                    color: "white",
+                  }}
+                  scope="col"
+                >
+                  ELMS
+                </th>
+                <th
+                  style={{
+                    width: "105px",
+                    height: "38px",
+                    textAlign: "center",
+                    backgroundColor: "#007B56",
+                    color: "white",
+                    clipPath:
+                      "polygon(0% 0%, 88.46% 0%, 100% 20.34%, 100% 100%, 0% 100%)",
+                  }}
+                  scope="col"
+                >
+                  TOTAL PTS
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+            {Array.isArray(currentData) && currentData?.map((team,i) => 
+              <tr
+                style={{
+                  height: "48px",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                  fontFamily: "teko",
+                  fontWeight: "bold",
+                  fontSize: "32px",
+                  background: "rgba(216, 216, 216, 0.3)",
+                }}
+              >
+                <th
+                  style={{
+                    padding: "0px",
+                    background: "rgba(158, 158, 158, 0.7)",
+                    color: "white",
+                  }}
+                  scope="row"
+                >
+                 {i+1}
+                </th>
+                <td
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    textAlign: "center",
+                    padding: "0px",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "112px",
+                      background: "rgba(256,256,256,0.7",
+                      padding: "0px",
+                    }}
                   >
-                  <img key={img?._id}
-                       style={{position:"absolute",zIndex:1}}
-                        className='w-28 h-[25vh] '
-                        src={img?.playerImg}
-                        alt="" />
-                  </div>))}
-                   
-                   </div>
-  
-                   <div className='lg:h-[10vh] h-[8vh] '>
-                     <div style={{fontFamily:'pop'}} className='text-3xl font-bold  h-full flex justify-around items-center bg-rose'> <img src={bestTeam?.logo} className='w-10 h-10 rounded-lg' />  {bestTeam?.name} </div>
-                   </div>
-                      {/* <h1 className='text-white'> {teamData?.[1]?.points[selectedMatchId]} </h1> */}
-  
-                    
+                    <img
+                      height="38.78px"
+                      width="38.78px"
+                      src={tournamentData?.logo}
+                      alt=""
+                    />
                   </div>
-                   
-                  <div className='bg-thin-rose px-2 py-1 lg:w-full w-11/12 mx-auto mt-[1px]'
-                      style={{height:"67px",fontfamily:"teko", zIndex: 10,fontWeight:"600",display:"flex",justifyContent:"space-between",alignItems:'center',clipPath:" polygon(0% 0%, 100% 0%, 100% 88.75%, 79.49% 88.86%, 76.92% 100%, 3.63% 100%, 0% 76.97%)"}}>
-                      <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}>Place <span className='text-2xl'> 0 </span> </h2> 
-                      <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Rank Pts <span className='text-2xl'> 0 </span>  </h2> 
-                      <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Elims <span className='text-2xl'> {bestTeam?.kills } </span> </h2> 
-                      <h2 style={{fontFamily:"teko",fontWeight:"600", textTransform:'uppercase', display:'flex', flexDirection:'column-reverse', }}> Total Pts <span className='text-2xl'> {bestTeam?.points[selectedMatchId] } </span> </h2> 
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "41px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{}}>
+                      <img
+                        height="30px"
+                        width="35px"
+                        style={{ padding: "3px", marginLeft: "5px" }}
+                        src={team?.logo}
+                        alt=""
+                      />
+                    </div>
+                    <h2
+                      style={{
+                        fontFamily: "teko",
+                        position: "relative",
+                        top: "7px",
+                        fontWeight: "bolder",
+                        color: "black",
+                      }}
+                    >
+                      {team?.name}
+                    </h2>
+                    {""}
                   </div>
-                 </div>
-               </div>
-                }
-              
+                </td>
 
-
-             
-
-
-                {/* Show other team in  table   */}
-           <div className='  w-full px-2 col-span-2'>
-       <div className="hidden lg:flex items-center justify-center">
-	<div className="container">
-		<table className="w-full flex flex-row flex-no-wrap sm:bg-white sm:hidden rounded-lg overflow-hidden sm:shadow-lg my-5">
-			<thead className="text-white">
-      
-				<tr className="bg-rose flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
-					<th className="p-3 text-left"> Rank  </th>
-					<th className="p-3 text-left">  Team Name </th>
-					<th className="p-3 text-left">  Place  </th>
-					<th className="p-3 text-left">  Rank Pts </th>
-					<th className="p-3 text-left" > Elims </th>
-					<th className="p-3 text-left" > Total Pts </th>
-				</tr>
-			</thead>
-
-			<tbody className="flex-1 sm:flex-none text-slate-700 font-semibold">
-      {Array.isArray(currentData) && currentData?.map((team,i) => 
-				<tr key={team?._id} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-
-					<td className="border-grey-light border hover:bg-gray-100 p-3"> # {i+1} </td>
-
-					<td className="border-grey-light border hover:bg-gray-100 p-3"> #{ i+1} </td>
-
-					<td className="border-grey-light border hover:bg-gray-100 px-3 h-8 flex justify-between items-center"> <img src={team?.logo}  className='h-8 w-8' /> {team?.name} </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3">0 </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3">{pointTable[team?.rank]} </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3 "> {team?.kills} </td>
-					<td className="border-grey-light border hover:bg-gray-100 p-3 "> {team?.points[selectedMatchId] || team?.points } </td>
-				</tr>
-      )}
-			
-      </tbody>
-     </table>
-         {sortTeams?.length? 
+                <td style={{ padding: "0px" }}>{i+1}</td>
+                <td style={{ padding: "0px" }}>{pointTable[team?.rank]} </td>
+                <td style={{ padding: "0px" }}>{team?.kills} </td>
+                <td style={{ padding: "0px" }}> {team?.points[selectedMatchId] || team?.points }</td>
+              </tr>
+                 )}
+            </tbody>
+          </table>
+        </div>
+        </div>
+{/* <div>
+      {sortTeams?.length? 
               <div className=" mt-4 full">
               <h1 className='text-xl font-bold text-white text-center'> Page  No: {currentPage} </h1>
              <div className='flex justify-center mt-4'>
@@ -194,16 +324,14 @@ const StandingTable = ({tournamentData, matchData, stageData,  teamData,  select
               : 
               <h2 className='text-2xl font-bold text-white '> No Tournament data </h2>
             }
-    </div>
-    </div>
-        {/* large device table show end  */}
-
-
-       
-             </div>
-           </section>
-           </div>
-        </div>
+  
+    </div> */}
+      </>
+      
+      
+      
+             
+                 
     );
 };
 
