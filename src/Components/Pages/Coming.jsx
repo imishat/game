@@ -81,14 +81,14 @@ function Coming() {
        <nav className='max-w-container mx-auto'>
             <div className="flex gap-x-10 items-center">
                     <div className='w-[12%]'>
-                       <img src={tournamentData.logo} alt="" />
+                       <img src={tournamentData?.logo} alt="" />
                     </div>
                     <div className='w-[65%]'>
-                       <div className="flex gap-x-10 items-center">
-                        <h2 className='text-2xl font-semibold font-pop text-white'>{tournamentData.name}</h2>
-                        <h2 className='bg-[green] px-4 py-1 text-2xl font-semibold font-pop text-white text-end'>{stageData?.name} {selectedMatchData?.matchNo} / {matchData?.length}</h2>
+                       <div className=" pt-2 flex gap-x-10 justify-center items-center">
+                        <h2 className='text-2xl font-semibold font-pop text-white'>{tournamentData?.name}</h2>
+                        <h2 className='bg-[green] px-4 py-1 text-2xl font-semibold font-pop text-white'>{stageData?.name} {selectedMatchData?.matchNo} / {matchData?.length}</h2>
                        </div>
-                       <h1 className='font-pop font-semibold text-white text-[65px] font-extrabold tracking-wide text-center'>COMING NEXT MAP</h1>
+                       <h1 className='font-pop  text-white text-[65px] font-extrabold tracking-wide text-center'>COMING NEXT MAP</h1>
                         
                     </div>
                 </div>
@@ -96,7 +96,7 @@ function Coming() {
    
       <img 
          
-            className='w-[600px]  mx-auto flex items-center  bg-cover bg-center bg-no-repeat  border border-[5px] border-white  justify-center mt-10 '
+            className='w-[600px]  mx-auto flex items-center  bg-cover bg-center bg-no-repeat   border-[5px] border-white  justify-center mt-5 '
             src={
               match?.chooseMap?.toLowerCase() === "shenok"
                 ? shanok

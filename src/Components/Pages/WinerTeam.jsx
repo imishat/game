@@ -31,10 +31,22 @@ function WinerTeam() {
 
       const [searchParams] = useSearchParams();
 
- const teamArray = Array.isArray(teams) && teams?.map(item => item?.points[selectedMatchId] || item?.points)
+//  const teamArray = Array.isArray(teams) && teams?.map(item => item?.points[selectedMatchId] || item?.points)
+const teamArray = Array.isArray(teams) && teams?.map(item => {
+  // Check if the item has the points property and if it has the selectedMatchId property
+  if (item?.points && item?.points[selectedMatchId]) {
+    // If it does, return the team's points for the selectedMatchId
+    return item.points[selectedMatchId];
+  } else {
+    // If not, return 0 or some default value, depending on your logic
+    return 0; // Change this if needed
+  }
+});
+
+const maxPoints = Math.max(...teamArray);
 
  
-  const maxPoints = Math.max(...teamArray);
+  // const maxPoints = Math.max(...teamArray);
   //  find the max pointed team
   const bestTeam = Array.isArray(teams) && teams?.find(x => x?.points[selectedMatchId] === maxPoints || x?.points === maxPoints)
 
@@ -167,12 +179,12 @@ useEffect(() => {
                     <img src={tournamentData.logo
 ?tournamentData.logo :{LogoPubg }} alt="" />
                     </div>
-                    <div className='w-5/6'>
-                    <div className="gap-x-[75px] flex">
-                    <h2 className='text-2xl font-semibold font-dm text-white'>{tournamentData.name}</h2>
-                    <h2 className='text-2xl font-semibold font-dm text-white'>{stageData?.name} {selectedMatchData?.matchNo} / {matchData?.length}</h2>
+                    <div>
+                    <div className="gap-x-[75px] flex justify-center">
+                    <h2 className='text-2xl font-semibold font-pop text-white'>{tournamentData.name}</h2>
+                    <h2 className='text-2xl font-semibold font-pop text-white'>{stageData?.name} {selectedMatchData?.matchNo} / {matchData?.length}</h2>
                     </div>
-                    <h1 className='font-Oswald text-white text-[50px] font-bold tracking-wide'>WINNER TEAM FOCUS</h1>
+                    <h1 className='font-pop text-center text-white text-[50px] font-bold tracking-wide'>WINNER TEAM FOCUS</h1>
                     
                     </div>
             </div>
@@ -190,18 +202,18 @@ useEffect(() => {
                         <div className='flex justify-center'>
                             <img  className = " w-[200px]" src={player?.playerImg} alt="" />
                         </div>
-                        <h3 className='text-center bg-[green] py-1 font-dm text-white text-2xl font-semibold text-white'>{player?.name?player?.name:"name"}</h3>
+                        <h3 className='text-center bg-[green] py-1 font-dm  text-2xl font-semibold text-white'>{player?.name?player?.name:"name"}</h3>
                         <div className='bg-white'>
                             <div className="flex justify-between pt-2 px-2">
-                            <button className='bg-[green] px-2 py-2 font-dm font-semibold text-white text-lg hover:bg-black duration-500 rounded-[2px]'>ELIMINATON</button>
-                            <button className='bg-[green] px-2 py-2 font-dm font-semibold text-white text-lg hover:bg-black duration-500 rounded-[2px]'>CONTRIBUTION</button>
+                            <button className='bg-[green] px-2 py-2 font-pop font-semibold text-white text-lg hover:bg-black duration-500 rounded-[2px]'>ELIMINATON</button>
+                            <button className='bg-[green] px-2 py-2 font-pop font-semibold text-white text-lg hover:bg-black duration-500 rounded-[2px]'>CONTRIBUTION</button>
                             
                             </div>
                             <className className="flex justify-center gap-x-[130px]">
                             
   <h4 className='font-dm text-2xl font-semibold text-black' key={index}>{player.kills[selectedMatchId]}</h4>
 
-                            <h4 className='font-dm  text-2xl font-semibold text-black'>{player?.contribution ? player.contribution.toFixed(2) : 0}% </h4>
+                            <h4 className='font-pop  text-2xl font-semibold text-black'>{player?.contribution ? player.contribution.toFixed(2) : 0}% </h4>
                             </className>
 
                         </div>
