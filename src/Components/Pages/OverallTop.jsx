@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
-const LogoSection = () => {
+const OverallTop = () => {
 
 
 const {
@@ -86,7 +86,7 @@ useEffect(() => {
       <div className=" bg-black  flex relative mt-40  h-60  ">
       {/* //static */}
       <div className="text-[18rem] inset-0 absolute -left-4 -top-28  font-custom text-custom">
-          FRAGGERS OF THE MATCH
+      OVERALL STANDING
       </div>
       <div className=" relative flex w-full justify-evenly items-center right-0 ">
           {/* tournament logo */}
@@ -104,11 +104,11 @@ useEffect(() => {
                   </div>
                   {/* group stage + match number -16 is total no. of match */}
                   <div className="relative font-bold text-[38px]  font-custom top-16 bg-[#187d5d] px-1 rounded-md ">
-                  {stageData?.name} {selectedMatchData?.matchNo} / {matchData?.length} 
+                      QUALIFICATION ROUND  {selectedMatchData?.matchNo} / {matchData?.length} 
                   </div>
               </div>
               <div className="font-custom text-[11rem] font-bold ">
-                  FRAGGERS OF THE MATCH
+              OVERALL STANDING
               </div>
           </div>
       </div>
@@ -117,4 +117,4 @@ useEffect(() => {
     );
 };
 
-export default LogoSection;
+export default OverallTop;

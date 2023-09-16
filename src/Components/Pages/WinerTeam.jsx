@@ -31,6 +31,31 @@ function WinerTeam() {
 
       const [searchParams] = useSearchParams();
 
+
+
+
+      
+
+
+    // required code for live update
+    useEffect(() => {
+      const tournamentId = searchParams.get('tournamentId');
+      const stageId = searchParams.get('stageId');
+      const matchId = searchParams.get('matchId');
+
+      setSelectedTournamentid(tournamentId);
+      setSelectedStageId(stageId);
+      setSelectedMatchId(matchId);
+    
+
+      // set on localstorage
+      localStorage.setItem('tournamentId', tournamentId);
+      localStorage.setItem('stageId', stageId);
+      localStorage.setItem('matchId', matchId);
+
+    }, [searchParams,setSelectedMatchId,setSelectedStageId,setSelectedTournamentid])
+
+
 //  const teamArray = Array.isArray(teams) && teams?.map(item => item?.points[selectedMatchId] || item?.points)
 const teamArray = Array.isArray(teams) && teams?.map(item => {
   // Check if the item has the points property and if it has the selectedMatchId property

@@ -11,11 +11,10 @@ import axios from 'axios';
 const OverAllTopFragger = () => {
   const {selectedTournamentId,  selectedMatchId , selectedStageId,setSelectedTournamentid, setSelectedStageId,
     setSelectedMatchId} = useContext(AuthContext)
-  // const {data ,error,isLoading, refetch} = useQuery('overall', fetchOverAllData);
-// const {data, setData}=useState([])
-// console.log(data,"data from ")
+ 
 const [data, setData] = useState([]);
 const [loading, setLoading] = useState(true);
+
   
   const [searchParams] = useSearchParams();
 
@@ -58,22 +57,19 @@ const [loading, setLoading] = useState(true);
 
     return (
       <DisplayLayout>  
-         <div className="w-full relative  mx-auto">
+       
         {/* bg frame right */}
-        <img
-          className="absolute right-0"
-          src=""
-        />
+        
         {/* bg image */}
-        <div
-          className={``}
-        >
+
+         
+       
          {/* Logo section */}
          <LogoSection   />
          {/* Card section */}
          <TopFraggerCard  players={data}  />
-        </div>
-      </div>
+      
+   
       </DisplayLayout>
     );
 };

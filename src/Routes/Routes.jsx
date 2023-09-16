@@ -22,6 +22,7 @@ import Coming from "../Components/Pages/Coming";
 import PubgMatchTime from "../Components/Pages/PubgMatchTime";
 import GrandFinal from "../Components/Pages/GrandFinal";
 import Eelemination from "../Components/Pages/Eelemination";
+import Fagger from "../Components/Pages/Fagger";
 
 
 const router = createBrowserRouter([
@@ -121,6 +122,11 @@ const router = createBrowserRouter([
     {
       path: '/elemintion',
       element: <Eelemination/>
+
+    },
+    {
+      path: '/e',
+      element:<Fagger></Fagger>
 
     },
  

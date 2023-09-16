@@ -19,6 +19,7 @@ const DisplayHeader = () => {
     selectedMatchId,
     setSelectedMatchData,
     user,
+
   } = useContext(AuthContext);
   const [tournamentId, setTournamentId] =useState()
   const [stageData, setStageData] = useState([]);
@@ -64,7 +65,7 @@ const DisplayHeader = () => {
         .then(res => res.json())
         .then(data => {
           setMatches(data)
-          console.log(data,'matches')
+         
           setMatchId(data.at(0)?._id);
           setSelectedMatchId(data.at(0)?._id)
           // localStorage.setItem('matchID', data.at(0)?._id)
@@ -86,7 +87,6 @@ const DisplayHeader = () => {
   const handleSelectTournament = (e) => {
     const selectedTournament = (e.target.value);
 
-    console.log(selectedTournament,"selectedTournament")
     setTournamentId(selectedTournament)
     setSelectedTournamentid(selectedTournament)
     navigate(`/${e.target.value}`)
@@ -105,7 +105,7 @@ const DisplayHeader = () => {
   }, [setSelectedStageId])
   const handleSelectStage = (e) => {
     const selectedGroupId =(e.target.value);
-    console.log( selectedGroupId,"gropid")
+
     setStageId(selectedGroupId)
     setSelectedStageId(selectedGroupId)
     localStorage.setItem('stageID', selectedGroupId)
@@ -162,7 +162,7 @@ const DisplayHeader = () => {
     if (typeof event.target?.href !== "string") { return; }
 
     // const url = event.target.href;
-    const url = `${event.target.href}?tournamentId=${tournamentId}&stageId=${stageId}&matchId=${matchId}`
+    const url = `${event.target.href}?tournamentId=${tournamentId}&stageId=${stageId}&matchId=${selectedMatchId}`
 
     // if (!isLoggedIn) { return; }
 
@@ -176,7 +176,7 @@ const DisplayHeader = () => {
   const baseUrl=window.location.href
 
   const copyLinkHanlder = () => {
-    const sharableLink = `${baseUrl}${location.pathname}?tournamentId=${tournamentId}&stageId=${stageId}&matchId=${matchId}`;
+    const sharableLink = `${baseUrl}${location.pathname}?tournamentId=${tournamentId}&stageId=${stageId}&matchId=${selectedMatchId}`;
     navigator.clipboard.writeText(sharableLink);
 
     toast.success("Link has been copied!")
@@ -229,6 +229,7 @@ const DisplayHeader = () => {
         <NavLink onClick={onNavigate}to={'/overall-topfragger'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  OverAll Top Fragger </NavLink>
         <NavLink onClick={onNavigate}to={'/overall-mvp'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm'>  OverAll MVP </NavLink>
         <NavLink onClick={onNavigate}to={'/overall-standing'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm '>  Overall Standing </NavLink>
+        <NavLink onClick={onNavigate}to={'/e'} className='text-neutral-50   px-2 lg:py-1 bg-linear-rose rounded-sm '>  Overall Standing </NavLink>
       </div>}
     </div>
   );

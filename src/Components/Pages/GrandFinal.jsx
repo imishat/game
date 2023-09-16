@@ -11,12 +11,12 @@ function GrandFinal() {
         </div>
         <div className='w-[56%]'>
            <div className='bg-[#444444] '>
-              <h1 className="pl-2 font-Oswald text-white text-[80px] font-bold tracking-[10px]">GRAND-FINAL</h1>
+              <h1 className="pl-2 font-Oswald text-white text-[80px] font-bold tracking-[10px]">grp name</h1>
               
-              <h2 className="font-semibold my-4 text-2xl pl-5 text-2xl font-semibold font-dm text-white">MATCH 1-ERANGEL</h2>
+              <h2 className="font-semibold my-4 text-2xl pl-5 text-2xl font-semibold font-dm text-white">MATCH 1 -ERANGEL map ka name</h2>
               
                 <div className='bg-white'>
-                  <h5 className=" text-center mt-2  font-dm  text-5xl font-semibold text-black">BATTLE OF THOUGHTS</h5>
+                  <h5 className=" text-center mt-2  font-dm  text-5xl font-semibold text-black">tunament name</h5>
                 </div> 
            </div>
         </div>
